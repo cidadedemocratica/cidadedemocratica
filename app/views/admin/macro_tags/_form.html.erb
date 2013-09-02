@@ -1,0 +1,23 @@
+<fieldset>
+  <ol>
+    <li>
+      <%= f.label :title, :label => 'Título' %>
+      <%= f.text_field :title %>
+    </li>
+
+    <li>
+      <%= f.label :tag_list, 'Tags (separadas por vírgula)' %>
+      <%= text_area_with_auto_complete :macro_tag, :tag_list,
+                                          { :class => "tags",
+                                            :autocomplete => "off",
+                                            :rows => 4,
+                                            :cols => 100 },
+                                          { :url => auto_complete_responder_tags_path,
+                                            :min_chars => 2,
+                                            :tokens => ",",
+                                            :param_name => "tag"
+                                          } %>
+
+    </li>
+  </ol>
+</fieldset>

@@ -1,0 +1,49 @@
+/* Imagens ===================================================================*/
+
+.imagens_index ul {
+  margin: 0 0 20px 0;
+}
+
+.imagens_index li {
+  list-style: none;
+  margin: 0 10px 0 0;
+  float: left;
+  display: inline;
+}
+
+.imagens_index .imagem {
+  width: 100px;
+  height: 110px;
+  background: #FFFFBC;
+  padding: 5px;
+  -moz-border-radius: 5px;
+}
+
+.imagens_index .moldura {
+  width: 50px;
+  height: 50px;
+  background: #CCC;
+  border: 1px solid #AAA;
+  margin: 0 auto 5px;
+}
+
+.imagens_index .imagem p {
+  margin: 0;
+}
+
+.imagens_index .imagem .legenda {
+  font-size: 11px;
+  line-height: 1.25em;
+  text-align: center;
+  margin: 0 0 5px 0;
+  height: 28px;
+}
+
+.imagens_index .imagem .remover {
+  text-align: center;
+}
+
+.imagens_index .moldura img {
+  display: block;
+  margin: 0 auto;
+}

@@ -1,0 +1,16 @@
+<div class="grid_16 alpha omega">
+  <h2>Observatório</h2>
+  <div class="grid_12 alpha">
+    <%= render :partial => "observatorios/abas" %>
+<% if action_name == "index" -%>
+    <%= render :partial => "observatorios/topicos" %>
+<% elsif action_name == "comentarios" -%>
+    <%= render :partial => "observatorios/comentarios" %>
+<% elsif action_name == "apoios" -%>
+    <%= render :partial => "observatorios/apoios" %>
+<% end -%>
+  </div>
+  <div class="grid_4 omega">
+    <%= render :partial => "contexto_do_observatorio" %>
+  </div>
+</div>

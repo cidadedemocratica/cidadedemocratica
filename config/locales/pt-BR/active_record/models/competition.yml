@@ -1,0 +1,28 @@
+"pt-BR":
+  activerecord:
+    models:
+      competition:
+        one: Concurso
+        other: Concursos
+    attributes:
+      competition:
+        start_date: Data de início
+        finish_date: Data de término
+        current_phase: Fase atual
+        human_current_phase: Fase atual
+        inspiration_phase: Inspiração
+        proposals_phase: Propostas
+        support_phase: Aplauso
+        joining_phase: União
+        announce_phase: Anúncio
+        title: Título
+        image: Imagem
+        short_description: Descrição curta
+        prizes: Prêmios
+        long_description: Descrição longa
+        author_description: Descrição do autor
+        published: Publicar
+        regulation: Regulamento
+        awards: Prêmios
+        partners: Patrocinadores
+        created_at: Criado em

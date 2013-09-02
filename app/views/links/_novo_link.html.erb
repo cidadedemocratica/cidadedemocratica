@@ -1,0 +1,20 @@
+<h2>Adicionar um link ao tópico</h2>
+<%= form_for :link,
+            :url => { :controller => "links", 
+                      :action => "create" 
+                    } do |f| %>
+  
+  <%= hidden_field_tag "topico[id]", @topico.id %>
+  
+  <p><%= f.label :nome, 'Nome' %><br />
+  <%= f.text_field :nome %><br />
+
+  <p><%= f.label :url, 'URL' %><br />
+  <%= f.text_field :url %><br />
+
+  <p class="action_horizontal">
+    <%= submit_tag 'Inserir', :class => "btn btn-mini" %> 
+    <%= link_to 'Finalizar', topico_url(:topico_slug => @topico.to_param), :class => "btn btn-mini" %> ou
+    <%= link_to 'voltar ao tópico', topico_url(:topico_slug => @topico.to_param) %>
+</p>
+<% end %>

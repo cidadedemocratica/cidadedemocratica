@@ -1,0 +1,13 @@
+<div class="grid_12 alpha static_page">
+  <div class="rounded">
+    <h2>Prêmios</h2>
+    <%= markdown @competition.awards %>
+    <div class="prizes_list">
+      <% @competition.prizes.each do |prize| %>
+        <h3><%= prize.name %></h3>
+        <%= render "prize_panel", :prize => prize %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= render "competitions/menu_sidebar" %>

@@ -1,0 +1,12 @@
+<% if topicos and not topicos.empty? -%>
+  <h3>Questões relacionadas</h3>
+  <p class="ajuda">Antes de cadastrar sua questão, verifique a(s) abaixo relacionada(s). Evite criar duplicatas.</p>
+  <ol id="sugestoes">
+    <% for topico in topicos -%>
+    <li>
+      <%= link_to topico.titulo, topico_url(:topico_slug => topico.to_param) %>
+      <span class="small"><span class="<%= topico.display_name.downcase %>"><%= topico.display_name %></span>
+    </li>
+    <% end -%>
+  </ol>
+<% end -%>

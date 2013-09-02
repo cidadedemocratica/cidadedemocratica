@@ -1,0 +1,400 @@
+.topicos {
+  #caixa_de_usuarios_relacionados {
+    margin:0;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  #caixa_de_usuarios_relacionados .rolagem {
+    max-height:215px;
+    overflow:auto;
+  }
+  #caixa_de_usuarios_relacionados p {
+    margin: 0 0 0 5px;
+    font-size:11px;
+  }
+  #caixa_de_usuarios_relacionados p .carregando {
+    background: image-url("spinners/indicator_snake.gif") no-repeat scroll 55px 2px transparent;
+  }
+
+  #usuarios_relacionados {
+    margin:0;
+    overflow:hidden;
+  }
+
+  #usuarios_relacionados li {
+    float:left;
+    list-style:none outside none;
+    margin:0;
+    padding: 6px;
+  }
+
+  #usuarios_relacionados li a {
+    background-color:#CCC;
+    color:#CCC;
+    display:block;
+    font-size:1px;
+    height:30px;
+    line-height:1px;
+    width:30px;
+  }
+
+  .edit_lnk {
+    background: #009BCC;
+    color: white!important;
+    font-size: 0.857em;
+    padding: 2px;
+  }
+  .edit_lnk:hover {
+    background: white;
+    color: #009BCC!important;
+  }
+
+  .novo_topico .fieldWithErrors textarea,
+  .novo_topico .titulo,
+  .novo_topico .descricao,
+  .novo_topico .tags {
+    font-family: "Helvetica", "Arial", sans-serif;
+    width: 626px;
+  }
+
+  .novo_topico .titulo {
+    font-size: 18px;
+    height: 50px;
+
+  }
+
+  .novo_topico .descricao {
+    font-size: 14px;
+  }
+
+  #form_novo_topico {
+    .grid_11 {
+      margin-left: 140px;
+    }
+    #bot_continuar {
+      float: right;
+      clear: both;
+      margin-right: 140px;
+    }
+  }
+
+  /* new topic */
+
+  #similares #sugestoes {
+    li {
+      list-style:decimal;
+      margin:0 0 2px 20px;
+    }
+    .small {
+      color:#333;
+      font-size:11px;
+    }
+  }
+
+  /* location */
+
+  #ambitos {
+    float:left;
+    margin:0 100px 0 0px;
+    font-size:32px;
+    li {
+      margin:10px 0;
+      padding: 10px;
+      -moz-border-radius: 20px;
+      -webkit-border-radius: 20px;
+      a {
+        position: relative;
+        top: -15px;
+      }
+      img {
+        margin-right: 10px;
+        width: 60px;
+        height: 60px;
+      }
+    }
+    .ambito_ativado {
+      background: #E2E2E2;
+    }
+  }
+  #localizacao_seletores {
+    float: left;
+    margin-top: 20px;
+    .escondido {
+      display: none;
+    }
+    #seletor_de_pais img {
+      margin-left: 80px;
+    }
+    #bot_continuar {
+      float: right;
+      clear: both;
+    }
+  }
+
+  /* add this - divulgacao */
+
+  #chamada_para_divulgacao li{list-style-position: inside;}
+  #chamada_para_divulgacao {
+    border:1px solid yellow;
+    background-color:#E6EAC5;
+    padding:10px;
+    margin-bottom:20px;
+  }
+  #chamada_para_divulgacao .fechar {
+    text-align:right;
+    margin-bottom:0;
+    font-size:11px;
+  }
+  #chamada_para_divulgacao .fechar a {
+    color:#B09411;
+  }
+  .divulgacao {margin: 10px 0;}
+  .addthis_toolbox .vertical {
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+  .addthis_toolbox .vertical a {
+    width: 113px;
+    padding: 4px 0 4px 34px;
+    position: relative;
+    display: block;
+    text-decoration: none;
+    color: black;
+  }
+  .addthis_toolbox .vertical a:hover {
+    text-decoration: underline;
+  }
+  .addthis_toolbox .vertical span {
+    position: absolute;
+    left: 14px;
+    top: 4px;
+  }
+  .addthis_toolbox p {margin: 4px 0 4px 12px;}
+  /* remove style do input do "more..." add this */
+  #at16psf input {
+    background: none;
+    border: none;
+    height: 15px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+}
+
+/* Topicos show
+-----------------------------------------------------------------------------
+*/
+.topicos_show {
+  #comentar_ou_fazer_campanha {
+    list-style:none outside none;
+    margin:15px 0 0 0;
+  }
+
+  #comentar_ou_fazer_campanha li {
+    display:inline-block;
+    float:left;
+    margin:0 20px 0 0;
+    min-width: 280px;
+  }
+
+  .joining_comments .topics {
+    list-style: inside disc;
+    margin: -15px 0 0 0;
+  }
+
+  /* Estatisticas dos comentarios */
+
+  #comentarios_estatisticas ul {
+    float:left;
+    margin:0;
+  }
+  #comentarios_estatisticas ul li {
+    list-style:none;
+    margin:0 20px 0 5px;
+  }
+  #comentarios_estatisticas #temperatura {
+    margin:0;
+    display: inline-block;
+    float: left;
+    border-left: 1px solid gray;
+    padding: 15px 20px;
+  }
+  #comentarios_estatisticas #temperatura p {
+    margin:9px 0;
+  }
+  #comentarios_estatisticas #temperatura p.line {
+    margin:0 0 0 135px;
+    width:200px;
+    border-bottom:1px solid gray;
+    line-height:0.1em;
+  }
+
+  /* Lista de comentarios */
+
+  ul.comentarios {
+    list-style:none;
+    margin-top:10px;
+  }
+
+  ul.comentarios li {
+    margin: 0 0 10px 0;
+  }
+
+  ul.comentarios .simple_format {
+    padding: 10px;
+  }
+
+  p.identificador {
+    text-align: right;
+    font-size: 11px;
+    margin: 0;
+    line-height: 24px;
+    padding: 0 5px 0 0;
+  }
+
+  p.identificador a { color: #333; }
+  .comentario p.identificador { background-color: #809FFF; }
+  .pergunta p.identificador { background-color: #F1C4BD; }
+  .resposta p.identificador { background-color: #89CE7E; }
+  .ideia p.identificador { background-color: #F6E172; }
+
+  /* Formulario para novo comentario */
+  #novo_comentario {
+    margin:10px 0 20px 0;
+  }
+
+  #novo_comentario textarea {
+    width: 588px;
+    height: 150px;
+    padding: 5px;
+    border: 1px solid #CCC;
+    font-family: "Helvetica", "Arial", sans-serif;
+    font-size: 14px;
+  }
+
+  #novo_comentario .conteudo {
+    padding:10px 20px 5px;
+    background-color:#fff;
+    -moz-border-radius: 0 5px 5px 5px;
+    -webkit-border-radius: 0 5px 5px 5px;
+    border-radius: 0 5px 5px 5px;
+  }
+  #comentario_colorido p {
+    margin:0 0 10px;
+  }
+  #comentario_colorido p.action a{
+    color: white;
+  }
+
+  /* Cores para os tipos de comentários */
+  #comentario_colorido.comentario .conteudo { background-color:#809FFF; }
+  #comentario_colorido.pergunta .conteudo { background-color:#F1C4BD; }
+  #comentario_colorido.resposta .conteudo { background-color:#89CE7E; }
+  #comentario_colorido.ideia .conteudo { background-color:#F6E172; }
+
+  #menu_tipo_comentario {
+    margin: 0;
+    line-height: 27px;
+    height: 27px;
+  }
+  #menu_tipo_comentario a {
+    padding: 0 10px;
+    height: 26px;
+    line-height: 27px;
+    background-color:#00b1da;
+    color: #fff;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+    display: inline-block;
+  }
+  #menu_tipo_comentario a#link_comentario { background-color:#809FFF; }
+  #menu_tipo_comentario a#link_pergunta { background-color:#F1C4BD; }
+  #menu_tipo_comentario a#link_resposta { background-color:#89CE7E; }
+  #menu_tipo_comentario a#link_ideia { background-color:#F6E172; }
+
+  #menu_tipo_comentario a img,
+  .my_icon {
+    vertical-align:middle;
+  }
+  #menu_tipo_comentario a:hover { text-decoration:none; }
+  #menu_tipo_comentario a.link_menu { font-weight:normal; }
+  #menu_tipo_comentario a.ativo {
+    background-color: #fff;
+    border-bottom: none;
+    font-weight: bold;
+  }
+  #menu_tipo_comentario a.ativo {height:27px;}
+  .comentario_topico {
+    margin-bottom: 0;
+    margin-left: 125px;
+  }
+
+  /* Tópicos relacionados */
+
+  #topicos_relacionados {max-height: 500px;}
+  #topicos_relacionados ul {
+    max-height: 490px;
+    overflow-y: auto;
+    margin: 0;
+  }
+  #topicos_relacionados ul li { list-style: none; margin: 0 0 20px 0; }
+  #topicos_relacionados ul li p { margin: 0; }
+  #topicos_relacionados a { font-size: 14px; line-height: 18px; }
+
+  #topicos_relacionados .problema a { color: #EF564A; }
+  #topicos_relacionados .proposta a { color: #73BF2F; }
+  #topicos_relacionados .titulo { background: none; }
+  #topicos_relacionados .detalhes { font-size: 11px; color: #666; }
+
+  /* denuncie */
+
+  #denuncie h2 {
+    margin:0;
+    color:#A84EB1;
+  }
+  #denuncie h2 img {
+    margin-left:10px;
+  }
+  #denuncie p {
+  }
+  #denuncie p a {
+    display: block;
+    background: #A84EB1;
+    text-align: center;
+    color: #FFF;
+    text-decoration: none;
+    padding: 7px;
+    border-radius: 20px;
+    font-size: 19px;
+  }
+  #denuncie p a:hover {
+    background:#FFF;
+    color:#A84EB1;
+  }
+}
+
+/* Topicos tags
+-----------------------------------------------------------------------------
+*/
+.topicos_tags {
+  #linha_direita {
+    border-right:1px dotted gray;
+  }
+  #all_tags {
+    background:#BEE3E9;
+    padding:10px;
+  }
+  .tag_edit {
+    display:inline;
+    margin:0 20px 0 0;
+    width: 100px;
+  }
+  .tag_edit span {
+    font-weight:bold;
+  }
+  .tag_edit a img {
+    vertical-align:middle;
+  }
+}

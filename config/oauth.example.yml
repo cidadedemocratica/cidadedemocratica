@@ -1,0 +1,31 @@
+development:
+  facebook:
+    app_id: 412604828829960
+    app_secret: 979f9e354a85cf173849afd674b4d038
+  twitter:
+    consumer_key: LOw90viUdLoTBISdexvg
+    consumer_secret: eebZjJzU5Swb14fq359yAMM6kKbi5YMVLMmhq28NHGA
+
+test:
+  facebook:
+    app_id: 412604828829960
+    app_secret: 979f9e354a85cf173849afd674b4d038
+  twitter:
+    consumer_key: LOw90viUdLoTBISdexvg
+    consumer_secret: eebZjJzU5Swb14fq359yAMM6kKbi5YMVLMmhq28NHGA
+
+staging:
+  facebook:
+    app_id: 412604828829960
+    app_secret: 979f9e354a85cf173849afd674b4d038
+  twitter:
+    consumer_key: LOw90viUdLoTBISdexvg
+    consumer_secret: eebZjJzU5Swb14fq359yAMM6kKbi5YMVLMmhq28NHGA
+
+production:
+  facebook:
+    app_id: 412604828829960
+    app_secret: 979f9e354a85cf173849afd674b4d038
+  twitter:
+    consumer_key: LOw90viUdLoTBISdexvg
+    consumer_secret: eebZjJzU5Swb14fq359yAMM6kKbi5YMVLMmhq28NHGA

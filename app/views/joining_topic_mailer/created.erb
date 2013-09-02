@@ -1,0 +1,8 @@
+Caro Administrador,
+
+Uma nova sugestão de união foi deixada para as propostas: <%= @joining_topic.topicos_from[0].titulo %> [<%= topico_url(@joining_topic.topicos_from[0]) %>] e <%= @joining_topic.topicos_from[1].titulo %> [<%= topico_url(@joining_topic.topicos_from[1]) %>].
+
+Você precisa definir qual será o autor da união, para isto, clique no link abaixo:
+<%= attribute_author_edit_admin_new_joining_topic_url(@joining_topic) %>
+
+<%= rodape %>

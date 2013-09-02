@@ -1,0 +1,14 @@
+<% tema = @tag ? @tag.name : "todos os temas" -%>
+<rss version="2.0">
+<channel>
+<title><%= title :site => "Cidade Democrática: #{tema}" %></title>
+<link>http://www.cidadedemocratica.org.br/</link>
+<description>RSS do Cidade Democrática para <%= tema %></description>
+<language>pt-br</language>
+<source url="<%= request.url %>"><%= tema %> no CidadeDemocrática</source>
+<generator>RailsApp@CidadeDemocratica.org.br</generator>
+<managingEditor>admin@cidadedemocratica.org.br</managingEditor>
+<webMaster>admin@cidadedemocratica.org.br</webMaster>
+    <%= yield %>
+</channel>
+</rss>

@@ -1,0 +1,7 @@
+<div id="divulgacao<%= name_suffix %>" style="<% if not mostrar %>display:none;<% end %>">
+<div id="divulgue" class="addthis_toolbox rounded">
+  <p>Escolha diversas maneiras para divulgar <%= @topico.nome_do_tipo(:demonstrativo => true) %>: faça sua campanha!</p>
+  <div class="vertical"><%= render :partial => "addthis" -%></div>
+  <p><%= link_to_function "Cancelar", "Effect.BlindUp('divulgacao', {duration:0.6})" %></p>
+</div>
+</div>

@@ -1,0 +1,10 @@
+<h1>Editar Macro Tag</h1>
+
+<%= form_for([:admin, @macro_tag]) do |f| %>
+  <%= f.error_messages %>
+  <%= render :partial => "form", :locals => { :f => f } %>
+  <p>
+    <%= f.submit "Salvar" %> ou
+    <%= link_to "Voltar", admin_macro_tags_path %>
+  </p>
+<% end %>

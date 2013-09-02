@@ -1,0 +1,53 @@
+<%
+  title "Pessoas e Entidades"
+  title @bairro.nome if @bairro
+  title @cidade.nome if @cidade
+  title @estado.abrev if @estado
+%>
+<div class="grid_16 alpha omega">
+  <div class="grid_12 alpha">
+
+    <%= render :partial => "users/breadcrumb" %>
+
+    <div id="contador_e_ordenador" class="clearfix rounded rounded_beige">
+      <ul id="ordenador">
+        <li><%= link_to_usuarios_with_context "Relevância", :order => "relevancia" %></li>
+        <li><%= link_to_usuarios_with_context "Recém cadastrados", :order => "recentes" %></li>
+        <li><%= link_to_usuarios_with_context "Mais tópicos", :order => "mais_topicos" %></li>
+        <li><%= link_to_usuarios_with_context "Mais comentários", :order => "mais_comentarios" %></li>
+        <li><%= link_to_usuarios_with_context "Mais apoios", :order => "mais_apoios" %></li>
+        <li><%= link_to_usuarios_with_context "A-Z", :order => "a-z" %></li>
+        <li><%= link_to_usuarios_with_context "Z-A", :order => "z-a" %></li>
+      </ul>
+      <p id="contador">
+        <span class="total"><%= @users.total_entries %></span>
+        <span class="tipo">usuários</span>
+      </p>
+    </div>
+
+    <div id="lista_de_usuarios" class="clearfix grid_12 alpha omega">
+    <% @users.each do |u| %>
+      <div class="rounded box"><%= ficha_do_usuario_full(u, :with_summary => true, :truncate => 60) %></div>
+    <% end -%>
+    </div>
+
+    <%= will_paginate @users %>
+
+  </div>
+  <div class="grid_4 omega sidebar">
+    <%= render :partial => "shared/action_buttons" %>
+
+
+    <% if signed_in? and current_user.local and current_user.local.cidade %>
+    <h3>Da sua cidade</h3>
+      <%= link_to_usuarios_with_context "Usuários de #{current_user.local.descricao}",
+                                    {:estado_abrev => current_user.local.estado.abrev.downcase,
+                                    :cidade_slug => current_user.local.cidade.slug,
+                                    :bairro_id => nil,
+                                    :user_type => nil},
+                                    :class => "btn btn-mini-extended" %>
+
+    <% end %>
+    <%= render :partial => "filtros" %>
+  </div>
+</div>

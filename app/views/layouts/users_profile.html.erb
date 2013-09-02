@@ -1,0 +1,137 @@
+<% content_for :content do %>
+
+  <% title "Perfil de #{@user.nome.nome_proprio}" %>
+
+  <!-- Bloco primário -->
+  <div class="grid_12 alpha">
+    <h2 class="nome_e_tipo_do_usuario">
+      <span class="tipo cor_de_<%= @user.type.to_s.underscore.downcase %>"><%= @user.nome_do_tipo %></span>
+      <span class="nome"><%= @user.nome %></span>
+    </h2>
+
+    <!-- Profile -->
+    <div class="grid_4 alpha">
+      <div id="ficha_do_usuario" class="rounded rounded_beige clearfix">
+        <div id="avatar_wrapper_inside">
+          <%= perfil_avatar(@user, :version => "big") %>
+          <% if @user.poder_publico? %>
+            <%= image_tag("faixa_poder_publico.png", :alt => "Poder Público", :size => "190x30", :class => "faixa_vip") %>
+          <% end %>
+        </div>
+        <div id="avatar_wrapper_bottom">
+          <p>
+            <% if is_owner? @user and not @user.imagem -%>
+              <!-- incitar o upload de imagem -->
+              <span style="text-align:center;margin:0;display:block;">
+              <%= link_to "Suba sua foto ou logotipo", new_avatar_path %><br>
+              </span>
+            <% end -%>
+            <% if !@user.poder_publico? %>
+              Membro há <span class="tempo"><%= distance_of_time_in_words_to_now(@user.created_at).gsub(/aproximadamente/, "") %></span>
+            <% end %>
+          </p>
+        </div>
+      </div>
+
+      <!-- Inicio descricao do perfil -->
+      <div id="descricao" class="rounded rounded_beige">
+        <p id="fatos">
+          <%= @user.descricao_basica %>
+          <% if @user.local -%>
+            em
+            <%= "#{@user.local.bairro.nome}," if @user.tem_bairro? %>
+            <%= "#{@user.local.cidade.nome}, #{@user.local.cidade.estado.abrev}" if @user.tem_cidade? %>
+          <% end -%>
+          <% if @user.pessoa? and @user.parent -%>
+            Faz parte de <%= link_to @user.parent.nome, perfil_url(@user.parent.id) %></li>
+          <% end -%>
+        </p>
+
+        <div class="wrapper">
+          <b>Descrição</b>
+          <% if @user.descricao.present? %>
+            <%= simple_format(@user.descricao) %>
+          <% else -%>
+            <p><%= @user.nome rescue "Novo usuário" %> ainda não escreveu uma descrição.</p>
+          <% end -%>
+        </div>
+      </div><!-- descricao -->
+
+      <ul id="contato" class="rounded rounded_beige">
+        <% if @user.site_url.present? -%>
+        <% url = (@user.site_url.strip =~ /^http:\/\//).nil? ? "http://" + @user.site_url.strip : @user.site_url.strip -%>
+            <li><p class="sobre"><%= link_to "Site #{image_tag('icones/link_externo.png')}".html_safe, url, :target => "_blank" %></p></li>
+        <% end -%>
+        <% if @user.fone.present? %>
+            <li><p class="sobre">Fone</p><p class="valor"><%= @user.fone %></p></li>
+        <% end -%>
+        <% if @user.fax.present? %>
+            <li><p class="sobre">Fax</p><p class="valor"><%= @user.fax %></p></li>
+        <% end -%>
+        <% if @user.email_de_contato.present? %>
+            <li><p class="sobre">E-mail</p><p class="valor"><%= link_to 'Envie uma mensagem', perfil_mensagem_url(@user) %></p></li>
+        <% end -%>
+      </ul>
+
+      <% if @user.class == Parlamentar %>
+        <!-- ADOTE UM VEREADOR -->
+        <div class="rounded rounded_beige">
+          <p id="adote_1_vereado"><b><a href="http://vereadores.wikia.com/wiki/P%C3%A1gina_principal" target="_blank">Adote um Vereador</a></b></p>
+          <div class="wrapper" style="height:100px;">
+            <p>
+              Encontre e acompanhe as atividades dos vereadores de sua cidade.
+              Acesse <b><a href="http://vereadores.wikia.com/wiki/P%C3%A1gina_principal" target="_blank">Adote um Vereador</a></b>.
+            </p>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @user.organizacao? and
+            user_signed_in? and
+            current_user.pessoa? and
+            current_user.parent_id != @user.id %>
+        <p><%= link_to "Sou integrante desta organização",
+                    { :controller => "users",
+                      :action => "solicitar_vinculacao",
+                      :organizacao_id => @user.id },
+                    :confirm => "Enviaremos um e-mail para #{@user.nome} com sua solicitação. Tem certeza?" %></p>
+      <% end %>
+
+      <% if @user.organizacao? -%>
+        <h3>Pessoas relacionadas</h3>
+        <%= usuarios(@user.children) %>
+      <% end %>
+
+      <% if is_owner? @user %>
+        <%= link_to "Descadastrar?", descadastrar_path() %>
+      <% end %>
+    </div>
+    <!-- Fim do profile -->
+
+    <div class="grid_8 omega">
+      <%= yield %>
+    </div>
+  </div>
+  <!-- Fim bloco primário -->
+
+  <!-- Sidebar -->
+  <div class="grid_4 omega sidebar">
+    <%= render :partial => "shared/action_buttons" %>
+    <div id="resumo_de_atividades" class="resumo rounded clearfix">
+      <p class="qtd"><%= @user.topicos_count %></p>
+      <p class="sobre">Propostas<br />e problemas</p>
+      <p class="qtd"><%= @user.comments_count %></p>
+      <p class="sobre">Comentários</p>
+      <p class="qtd"><%= @user.adesoes_count %></p>
+      <p class="sobre">Apoios</p>
+    </div>
+
+    <!-- Nuvem de tags do perfil -->
+    <h3>Tags principais</h3>
+    <%= render :partial => "tags/cloud", :locals => { :tags => @tags } %>
+    <!-- Fim nuvem de tags do perfil -->
+  </div>
+  <!-- Fim sidebar -->
+<% end %>
+
+<%= render :template => 'layouts/application' %>

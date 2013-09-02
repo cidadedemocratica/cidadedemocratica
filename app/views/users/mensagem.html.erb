@@ -1,0 +1,29 @@
+<h1>Envie uma mensagem para <%= link_to @user.nome, perfil_url(@user) %></h1>
+
+<%= error_messages_for :contato,
+                       :header_message => "Opa!" -%>
+
+<%= form_for :contato do |f| %>
+  <fieldset>
+    <ol>
+      <li>
+        <%= label_tag :nome, "Nome" %><br/>
+        <%= text_field :contato, :nome %><br/>
+      </li>
+      <li>
+        <%= label_tag :email, "Email" %><br/>
+        <%= text_field :contato, :email %><br/>
+      </li>
+      <li>
+        <%= label_tag :mensagem, "Mensagem" %><br/>
+        <%= text_area :contato, :mensagem, :cols => 150, :rows => 6 %><br/>
+      </li>
+      <li>
+        <%= recaptcha_tags %>
+      </li>
+      <li>
+        <%= submit_tag 'Enviar', :class => "btn btn-mini" %> ou <%= link_to 'Voltar', perfil_url(@user) %>
+      </li>
+    </ol>
+  </fieldset>
+<% end %>

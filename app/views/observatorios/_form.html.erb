@@ -1,0 +1,48 @@
+<div class="rounded clearfix">
+  <div id="tags" class="grid_16 alpha omega">
+    <h3>1. Escolha os temas a serem observados</h3>
+    <div class="grid_8 alpha">
+      <!-- Precisa para funcionar o HABTM com checkboxes. -->
+      <%= hidden_field_tag "observatorio[tag_ids][]", "" %>
+      <%= select_tag "observatorio[tag_ids][]",
+                     options_for_select(@tags.collect { |t| [ t.name, t.id ] }, @observatorio.tag_ids),
+                     :multiple => true %>
+    </div>
+    <div class="grid_8 omega">
+      <p>
+        Para selecionar vários temas, pressione a tecla <span class="tecla">CTRL</span> e clique nos temas desejados.
+      </p>
+    </div>
+  </div>
+  <div id="onde" class="grid_16 alpha omega">
+    <h3>2. Escolha as regiões a serem observadas</h3>
+    <p>
+      Se quiser, você pode escolher <strong>cidades</strong> e <strong>bairros</strong> a serem observados.
+    </p>
+    <p style="margin:0 0 10px 0;">
+      <%= link_to_remote image_tag("icones/add.png") + " Escolher mais uma região",
+                         :url => {
+                           :controller => "locais",
+                           :action => "escolher_uma_regiao"
+                         },
+                         :before => "$('spinner').show()",
+                         :complete => "$('spinner').hide()",
+                         :html => {
+                           :class => "adicionar",
+                           :title => "Adicione uma cidade ou bairro às regiões que você deseja observar"
+                         } %>
+      <span id="spinner" style="display:none;"><%= image_tag("spinners/dots-white.gif") %></span>
+    </p>
+    <div id="locais" class="grid_16 alpha omega">
+
+    </div>
+  </div>
+  <div id="opcoes" class="grid_16 alpha omega">
+    <h3>3. Quer receber as novidades por e-mail?</h3>
+    <p>
+      <label>
+      <%= check_box :observatorio, :receber_email %> Sim, quero receber as novidades em e-mails semanais
+      </label>
+    </p>
+  </div>
+</div>

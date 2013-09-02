@@ -1,0 +1,10 @@
+<h1>Novo tema</h1>
+
+<%= form_for(@tema, :url => admin_temas_path) do |f| %>
+  <%= f.error_messages %>
+  <%= render :partial => "form", :locals => { :f => f } %>
+  <p>
+    <%= f.submit "Salvar" %> ou
+    <%= link_to "Voltar", admin_temas_path %>
+  </p>
+<% end %>

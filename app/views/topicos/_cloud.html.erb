@@ -1,0 +1,19 @@
+<% if tags.present? %>
+  <% if params[:tag_id] %>
+    <h3>Temas relacionados</h3>
+  <% end %>
+  <div class="cloud">
+  <h3>Tags</h3>
+  <% tag_cloud_contexto(tags) do |tag, c| -%>
+    <span class="<%= c %>"><%= link_to_topicos_with_context tag.name, :tag_id => tag.id %></span>
+  <% end -%>
+  </div>
+<% else -%>
+  <p class="no_tags rounded rounded_beige">
+    Ainda não há temas (ou tags...) cadastradas.<br />
+    <span class="call2action">Indique uma questão e associe-a aos temas apropriados!</span><br />
+    <span class="hint">Use os botões no topo à direita:
+    <br/>
+    “Aponte um problema” e “Crie uma proposta”.</span>
+  </p>
+<% end -%>

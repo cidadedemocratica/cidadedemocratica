@@ -1,0 +1,91 @@
+.joining_topics {
+
+  .section_title {
+    padding: 20px 0;
+    .title, p {
+      margin-bottom: 0;
+    }
+    .title {
+      color: #00b1da;
+    }
+    p {
+      font-size: 14px;
+    }
+  }
+
+  .topicos_list {
+    overflow: hidden;
+    h3 {
+      padding: 20px 0 10px 0;
+      color: black;
+      font-size: 1.7em;
+    }
+  }
+  input[type="text"] {
+    font-size: 1.3em;
+    height: 50px;
+    line-height: 50px;
+  }
+  textarea {
+    font-size: 1em;
+  }
+  input[type="text"],
+  textarea {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+
+  .highlight {
+    font-size: 17px;
+  }
+  .actions .btn {
+    text-align: center;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+}
+
+/* Joining topics new
+-----------------------------------------------------------------------------
+*/
+.joining_topics_new {
+  .topico_main .titulo {
+    width: 788px;
+  }
+
+  .topicos_list {
+    float: none;
+    display: block;
+    margin: 0 auto;
+    padding: 30px 0 10px 0;
+    .topico {
+      padding-left: 200px;
+      position: relative;
+    }
+  }
+  .botao_de_acao {
+    float: left;
+    margin-left: -200px;
+    margin-top: 8px;
+    width: 180px;
+    a, button {
+      line-height: 18px;
+      padding-top: 5px;
+    }
+    [class^="btn-icon-"] {
+      margin-top: -5px;
+    }
+  }
+}
+
+/* Joining topics description edit
+-----------------------------------------------------------------------------
+*/
+.joining_topics_description_edit .descricao {
+  margin: 0;
+}

@@ -1,0 +1,26 @@
+<div class="competition_banner rounded clearfix">
+  <h2><%= @competition.title %></h2>
+
+  <% if @competition.phase_over? @phase %>
+    <h3 class="short_description">Esta fase já está finalizada.</h3>
+  <% else %>
+    <h3 class="short_description"><%= t("competition.short_description.#{@phase}") %></h3>
+  <% end %>
+
+  <%= render "phases", :competition => @competition, :active_phase => @phase %>
+
+  <%= image_tag @competition.image.url(:small), :class => "thumb" %>
+
+  <%= markdown @competition.short_description  %>
+
+  <p><%= link_to_function "Ver mais", "jQuery('#longDescription').toggle('slide')" %></p>
+
+  <div id="longDescription">
+    <h3>Sobre o Concurso <span><%= link_to_function "[fechar]", "jQuery('#longDescription').toggle('slide')" %></span></h3>
+
+    <%= markdown @competition.long_description  %>
+
+    <h3>Quem propõe:</h3>
+    <%= markdown @competition.author_description  %>
+  </div>
+</div>

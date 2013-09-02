@@ -1,0 +1,30 @@
+<% if @topico.competition.present? %>
+  <div class="rounded">
+    <% unless is_owner? @topico -%>
+      <div id="botao_de_seguir" class="botao_de_acao">
+        <%= link_to(raw("<i class='btn-icon-follow'></i>") + (@topico.is_seguido(current_user) ? "Pare de seguir" : "Siga!"),
+                    seguir_path(@topico)) %>
+      </div>
+    <% end %>
+    <div id="botao_de_divulgar" class="botao_de_acao">
+      <%= link_to_function(raw("<i class='btn-icon-arroba'></i>") + "Divulgue!",
+                             visual_effect(:toggle_blind, "divulgacao", :duration => 0.4)) %>
+    </div>
+    <%= render :partial => "competition_addthis" %>
+  </div>
+
+<% elsif not is_owner? @topico %>
+  <div class="rounded">
+    <div id="botao_de_apoiar" class="botao_de_acao">
+      <%= link_to(raw("<i class='btn-icon-hand-up'></i>") + (@topico.is_apoiado(current_user) ? "Deixe de apoiar" : "Apoie!"),
+                  aderir_path(@topico)) %>
+    </div>
+    <div id="botao_de_seguir" class="botao_de_acao">
+       <%= link_to(raw("<i class='btn-icon-follow'></i>") + (@topico.is_seguido(current_user) ? "Pare de seguir" : "Siga!"),
+                   seguir_path(@topico)) %>
+    </div>
+    <div id="facebook_ilikeit">
+      <iframe src="http://www.facebook.com/plugins/like.php?href=<%= request.url %>&amp;layout=standard&amp;show_faces=true&amp;width=220&amp;action=like&amp;colorscheme=light&amp;height=30" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:220px; height:30px;" allowTransparency="true"></iframe>
+    </div>
+  </div>
+<% end %>

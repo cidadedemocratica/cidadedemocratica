@@ -1,0 +1,61 @@
+<div class="section">
+  <h2 class="title">Pessoas e Entidades</h2>
+  <% @users_by_group.each do |type, group| %>
+    <h3 class="subtitle"><%= type %></h3>
+    <p>Veja os usuários mais relevantes.</p>
+    <% group.each do |data| %>
+      <%= ficha_do_usuario_full(data["model"], :with_summary => true) %>
+      <table class="crud">
+        <tr>
+          <th>Atividades</th>
+          <th width="250">Propostas e Problemas</th>
+          <th>Apoiou</th>
+          <th>Seguiu</th>
+          <th>Comentou</th>
+        </tr>
+        <tr>
+          <td><%= data["total"] %></td>
+          <td>
+            Total: <%= data["topicos_count"] %><br>
+            Propostas: <%= data["propostas_count"] %><br>
+            Problemas: <%= data["problemas_count"] %><br>
+
+            <%= pie_graph({ "Propostas" => data["propostas_count"],
+                            "Problemas" => data["problemas_count"] }) %>
+          </td>
+          <td><%= data["adesoes_count"] %></td>
+          <td><%= data["seguidos_count"] %></td>
+          <td><%= data["comments_count"] %></td>
+        </tr>
+      </table>
+    <% end %>
+  <% end %>
+
+  <h3 class="subtitle">Análise</h3>
+  <table class="crud">
+    <tr>
+      <th>Id</th>
+      <th>Relevância</th>
+      <th>Nome</th>
+      <th>E-mail</th>
+      <th>Propostas</th>
+      <th>Problemas</th>
+      <th>Apoiou</th>
+      <th>Seguiu</th>
+      <th>Comentou</th>
+    </tr>
+    <% @users.each do |id, user| %>
+      <tr>
+        <td><%= id %></td>
+        <td><%= user["relevancia"] %></td>
+        <td><%= user["model"].nome %></td>
+        <td><%= user["model"].email %></td>
+        <td><%= user["propostas_count"] %></td>
+        <td><%= user["problemas_count"] %></td>
+        <td><%= user["adesoes_count"] %></td>
+        <td><%= user["seguidos_count"] %></td>
+        <td><%= user["comments_count"] %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

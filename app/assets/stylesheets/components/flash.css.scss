@@ -1,0 +1,39 @@
+.notice, .error, .warning, .info, .alert {
+  height: 25px;
+  line-height: 25px;
+  margin: 3px auto 5px;
+  padding: 0 0 0 27px;
+  -border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  padding: 5px 5px 5px 25px;
+}
+
+.notice {
+  border: 1px solid #9c9;
+  background: #e2f9e3 image-url("icones/tick.png") no-repeat 5px center;
+  color: #060;
+}
+
+.error, .alert {
+  background: #fcc image-url("icones/exclamation.png") no-repeat 5px center;
+  border: 1px solid #c68484;
+  color: #c00;
+}
+
+.warning {
+  border: 1px solid #dd0;
+  background: #ffc image-url("icones/error.png") no-repeat 5px center;
+  color: #000;
+}
+
+.info {
+  border: 1px solid #82c2d4;
+  background: #ebf5f8 image-url("icones/information.png") no-repeat 5px center;
+  color: #000;
+}
+
+#flash_message p {
+  margin-bottom: 0;
+}

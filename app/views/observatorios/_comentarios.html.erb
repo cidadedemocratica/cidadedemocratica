@@ -1,0 +1,6 @@
+<ul id="atividades" class="feeds_big">
+<% @comentarios.each do |comentario| -%>
+  <%= descreve(comentario, nil) %>
+<% end -%>
+</ul>
+<%= will_paginate @comentarios %>

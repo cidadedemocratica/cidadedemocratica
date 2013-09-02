@@ -1,0 +1,14 @@
+Caro Administrador,
+
+<%= @denuncia[:nome] %>, com o email <%= @denuncia[:email] %>, 
+denunciou o tópico "<%= @topico.titulo %>" no Cidade Democrática.
+Eis a denúncia:
+
+<%= @denuncia[:descricao] %>
+
+--
+O tópico encontra-se em:
+http://www.cidadedemocratica.com.br/topico/<%= @topico.to_param %>
+
+
+Sistema Cidade Democrática

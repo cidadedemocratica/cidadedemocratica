@@ -1,0 +1,10 @@
+<div class="resumo rounded clearfix">
+  <%= remaining_days_countdown_in phase %>
+  <p class="qtd"><%= @competition.proposals.count %></p>
+  <p class="sobre">propostas</p>
+  <p class="qtd"><%= @competition.participants_count %></p>
+  <p class="sobre">participantes</p>
+  <%= render "navigation_links", :competition => @competition %>
+</div>
+
+

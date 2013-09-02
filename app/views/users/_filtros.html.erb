@@ -1,0 +1,42 @@
+<div id="filtros">
+  <h3>Filtrar</h3>
+
+  <% if @users_stats -%>
+  <div id="filtro_de_proponente" class="filtro">
+    <p class="nome">Tipo</p>
+    <ul class="normal">
+      <% @users_stats.each do |type, total| -%>
+        <li>
+          <%= link_to_usuarios_with_context "#{type.underscore.pluralize.humanize.gsub(/(publicos)/,'públicos')} (#{total})",
+                                            { :user_type => type.underscore.pluralize.downcase },
+                                            :class => "#{type.underscore.downcase.strip}" -%>
+        </li>
+      <% end -%>
+    </ul>
+  </div>
+  <% end -%>
+
+  <%= filtro("Estado",
+              @estados.collect { |estado_abrev, name, total|
+                link_to_usuarios_with_context("#{name} (#{total})",
+                                              :estado_abrev => estado_abrev.downcase,
+                                              :cidade_slug => nil,
+                                              :bairro_id => nil)
+              }, :expandido => true) if @estados.present? %>
+
+  <%= filtro("Cidade",
+             @cidades.collect { |estado_abrev, cidade_slug, name, total|
+               link_to_usuarios_with_context("#{name} (#{total})",
+                                             :estado_abrev => estado_abrev.downcase,
+                                             :cidade_slug => cidade_slug,
+                                             :bairro_id => nil)
+             }, :expandido => true) if @cidades.present? %>
+
+  <%= filtro("Bairro",
+             @bairros.collect { |estado_abrev, cidade_slug, bairro_id, name, total|
+               link_to_usuarios_with_context("#{name} (#{total})",
+                                            :estado_abrev => estado_abrev.downcase,
+                                            :cidade_slug => cidade_slug,
+                                            :bairro_id => bairro_id)
+             }, :expandido => true) if @bairros.present? %>
+</div>

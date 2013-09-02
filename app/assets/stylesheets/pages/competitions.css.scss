@@ -1,0 +1,23 @@
+.competitions_index {
+  .running_competitions .description {
+    width: 550px;
+  }
+  .finished_competitions .description {
+    width: 650px;
+  }
+}
+
+.competitions_show {
+  .competition_summary > a {
+    font-weight: bold;
+  }
+  .competition_full .competition_phase {
+    margin: 20px 0 25px 0;
+  }
+  .competition_full p {
+    margin-bottom: 10px;
+  }
+  .inspirations_list, .topicos_list {
+    padding-top: 10px;
+  }
+}

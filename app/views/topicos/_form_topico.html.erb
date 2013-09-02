@@ -1,0 +1,63 @@
+<% title "#{action_name.humanize}" -%>
+<%= error_messages_for :topico,
+                       :header_message => "Opa!" -%>
+
+<div class="grid_11 clearfix">
+  <fieldset>
+    <%= f.hidden_field :competition_id %>
+    <ol>
+      <li>
+        <%= label_tag :titulo, "Título" %>
+        <span class="ajuda">Escreva uma única frase que resuma a questão. <b>Evite</b> mencionar o local (há uma etapa para a localização).</span><br />
+        <%= f.text_field :titulo, :class => "titulo", :rows => 2 %>
+        <% if controller.action_name != "edit" %>
+          <%= observe_field "topico_titulo",
+                          :url => topico_mostrar_similares_path,
+                          :with => "'type=#{@topico.type}&search=' + value" %>
+        <% end %>
+      </li>
+      <li id="similares"><!-- espaco reservado para listar topicos similares --></li>
+      <li>
+        <%= label_tag :descricao, "Descrição" %>
+        <span class="ajuda">Descreva de forma sucinta e objetiva <%= @topico.nome_do_tipo(:artigo => :definido) if @topico %>. Prefira 1 ou 2 parágrafos. Links, imagens, outros arquivos e demais referências poderão ser acrescidos depois.</span><br />
+        <%= f.text_area :descricao, :class => "descricao", :rows => 8 %>
+      </li>
+      <% if (controller.action_name != "edit") -%>
+      <li>
+        <%= label_tag :tags, "Tags" %>
+        <span class="ajuda">
+          Indique os <b>temas</b> relacionados a esta questão, separando-os com <b>vírgula</b>.<br />
+          Ex: <span id="tags_possiveis">saúde, remédios, mortalidade infantil</span>
+        </span><br/>
+        <%= text_field_with_auto_complete :topico, :tags_com_virgula,
+                                          {
+                                            :class => "tags texto",
+                                            :autocomplete => "off"
+                                          },
+                                          {
+                                            :url => auto_complete_responder_tags_path,
+                                            :tokens => ",",
+                                            :min_chars => 2,
+                                            :param_name => "tag"
+                                          } %><br />
+        <% if @tags -%>
+        <br />
+        <h4>Ou escolha suas tags clicando nos <b>temas mais populares</b> listados abaixo:</h4>
+        <div id="populares" class="cloud">
+          <% tag_cloud_contexto(@tags) do |tag, c| -%>
+            <span class="<%= c %>"><%= link_to_function tag.name, "acrescentaTagComVirgula('#{tag.name}')" %></span>
+          <% end %>
+        <div>
+        <% end #if @tags -%>
+      </li>
+      <% end -%>
+    </ol>
+  </fieldset>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+function acrescentaTagComVirgula(tag_name) {
+  $('topico_tags_com_virgula').value = $('topico_tags_com_virgula').value + tag_name + ',';
+}
+//]]>
+</script>

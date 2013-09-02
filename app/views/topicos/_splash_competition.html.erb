@@ -1,0 +1,6 @@
+<div class="rounded splash_competition">
+  <strong>Visite o concurso</strong>
+  <h4><%= link_to @topico.competition.title, competition_path(@topico.competition) %></h4>
+  <%= link_to (image_tag @topico.competition.image.url(:small)), competition_path(@topico.competition) %>
+  <%= render "competitions/navigation_links", :competition => @topico.competition %>
+</div>

@@ -1,0 +1,13 @@
+"pt-BR":
+  activerecord:
+    models:
+      inspiration:
+        one: Inspiração
+        other: Inspirações
+    attributes:
+      inspiration:
+        competition: Competição
+        title: Título
+        description: Descrição
+        image: Imagem
+        created_at: Criado em

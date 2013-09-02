@@ -1,0 +1,45 @@
+<h1>Temas</h1>
+<p>
+  <%= link_to "Novo tema", new_admin_tema_path %>
+</p>
+<table class="crud">
+  <tr>
+    <th>Nome</th>
+    <th>Ações</th>
+  </tr>
+<% for tema in @temas %>
+  <tr>
+    <td><%= link_to_function( image_tag("icones/seta_para_baixo.png", 
+                                        :id => "seta_direita_"+tema.id.to_s, 
+                                        :style => "display:none;")+
+                              image_tag("icones/seta_para_direita.png", 
+                                        :id => "seta_baixo_"+tema.id.to_s, 
+                                        :style => ""), 
+                              nil, :id => "link_to_seta_concorrente") do |page|
+      page["subtema_de_"+tema.id.to_s].toggle :blind # mostra | esconde
+      page.toggle "seta_direita_"+tema.id.to_s, "seta_baixo_"+tema.id.to_s # troca as setas direita | baixo
+    end
+    -%>
+        <%= link_to tema.nome, edit_admin_tema_path(tema) %></td>
+    <td><%= link_to "Remover", admin_tema_path(tema), :confirm => "Tem certeza?", :method => :delete %></td>
+  </tr>
+  <tr style="display:none;" id="subtema_de_<%= tema.id.to_s %>">
+    <td colspan="2">
+      <table class="crud" style="margin-left:20px">
+      <% for subtema in tema.children %>
+      <tr>
+        <td class="subtema"><%= link_to subtema.nome, edit_admin_tema_path(subtema) %></td>
+        <td><%= link_to "Remover", admin_tema_path(subtema), :confirm => "Tem certeza?", :method => :delete %></td>
+      </tr>
+      <% end -%>
+      </table>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<style type="text/css" media="screen">
+
+.subtema { padding-left: 20px; }
+
+</style>

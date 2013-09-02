@@ -1,0 +1,7 @@
+<% if estado and cidade -%>
+<div style="margin-top:20px; text-align:center; line-height:15px;">
+	<p style="margin-bottom:10px">Veja os <strong>Objetivos do Milênio</strong> em<br />
+	<strong><%= cidade.nome %></strong></p>
+	<p><a title="Conheça a cidade de <%= cidade.nome %> no portal ODM: clique!" href="http://www.portalodm.com.br/relatorios/<%= estado.abrev.downcase %>/<%= cidade.slug %>" target="_blank"><%= image_tag('selo_ODM_4x2.png', :alt => 'Selo ODM') %></a></p>
+</div>
+<% end -%>

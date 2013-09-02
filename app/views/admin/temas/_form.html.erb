@@ -1,0 +1,12 @@
+<fieldset>
+  <ol>
+    <li>
+      <%= f.label :nome %>
+      <%= f.text_field :nome %>
+    </li>
+    <li>
+      <%= f.label :parent_id, "É um subtema de" %>
+      <%= f.select :parent_id, Tema.find(:all, :conditions => [ "parent_id IS NULL" ], :order => "nome ASC").collect{ |t| [ t.nome, t.id ] }, :include_blank => true %>
+    </li>
+  </ol>
+</fieldset>

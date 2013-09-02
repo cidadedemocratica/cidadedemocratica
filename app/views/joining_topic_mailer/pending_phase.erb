@@ -1,0 +1,21 @@
+Olá <%= @joining_topic.coauthor.nome %>,
+
+<%= @joining_topic.user.nome %> sugeriu a união da sua proposta:
+<%= @joining_topic.coauthor_topico.titulo %> [<%= topico_url(@joining_topic.coauthor_topico) %>]
+
+Com a proposta:
+<%= @joining_topic.author_topico.titulo %> [<%= topico_url(@joining_topic.author_topico) %>]
+
+<%= @joining_topic.author.nome %> será o(a) autor(a) desta proposta unificada e você será indicado(a) como co-autor(a).
+
+Neste momento, ele(a) já escreveu um novo título e descrição unificando o conteúdo das propostas.
+
+<% if @date.present? %>
+Você tem até o dia <%= l @date %> para avaliar e aceitar a união.
+<% end %>
+
+Unidas, as ideias têm mais força. Aceite a união agora mesmo, clicando no link abaixo.
+
+<%= joining_topic_url(@joining_topic) %>
+
+<%= rodape %>

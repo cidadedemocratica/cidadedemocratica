@@ -1,0 +1,51 @@
+<%= semantic_form_for(report, :url => admin_new_relatorios_generate_path, :html => { :target => "_blank" }) do |f| %>
+  <%= f.inputs 'Relatório' do %>
+    <%= f.input :type, :as => 'select', :collection => GeneralReport::TYPES, :include_blank => false %>
+  <% end %>
+
+  <%= f.inputs 'Intervalo' do %>
+    <%= f.input :from, :input_html => { :value => l(report.from),  :class => 'date_picker tags_refresh'  } %>
+    <%= f.input :to, :input_html => { :value => l(report.to), :class => 'date_picker tags_refresh'  } %>
+  <% end %>
+
+  <%= f.inputs 'Concurso' do %>
+    <%= f.input :competition_id, :as => :select, :collection => competitions, :input_html => { :class => 'tags_refresh' } %>
+  <% end %>
+
+  <%= f.inputs 'Territórios' do %>
+    <%= f.input :state_ids, :as => :select, :collection => {},
+        :input_html => { 'data-placeholder' => 'Pesquisar Estados por nome.',
+                         :multiple => true,
+                         :class => 'input_chosen input_chosen_state tags_refresh' } %>
+    <%= f.input :city_ids, :as => :select, :collection => {},
+        :input_html => { 'data-placeholder' => 'Pesquisar Cidades por nome.',
+                         :multiple => true,
+                         :class => 'input_chosen input_chosen_city tags_refresh' } %>
+  <% end %>
+
+  <div class="fieldset_panel">
+    <a href="javascript:void(0)" class="button tags_refresh_button">Atualizar tags</a>
+  </div>
+
+  <%= f.inputs 'Tags', :class => ["inputs", "active_tags", "loading"] do %>
+    <%= f.input :macro_tags, :as => :select, :collection => macro_tags, :input_html => { :class => 'macro_tags' } %>
+    <li class="macro_tags_buttons">
+      <input type="button" class="apply_macro_tags" value="Aplicar" />
+      <input type="button" class="create_macro_tag" value="Criar Macro Tag com tags marcadas" />
+    </li>
+
+    <%= f.input :tags, :as => :select, :collection => tags, :input_html => { :multiple => true, :class => 'tags' } %>
+    <li class="tags_tools">
+      <div class="tags_buttons">
+        <input type="button" class="tags_select_all" value="Marcar Todos">
+        <input type="button" class="tags_deselect_all" value="Desmarcar Todos">
+      </div>
+      <div class="tags_count">0 selecionado(s)</div>
+    </li>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :input, :label => 'Gerar Relatório' %>
+    <%= f.action :cancel, :as => :link, :label => 'Cancelar', :wrapper_html => { :class => 'cancel' } %>
+  <% end %>
+<% end %>

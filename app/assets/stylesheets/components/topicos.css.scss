@@ -1,0 +1,169 @@
+.topico .local,
+.topico .tags {
+  font-size: 11px;
+  margin-bottom: 5px;
+  padding-left: 22px;
+  background-repeat: no-repeat;
+}
+
+.topico .local {
+  background-image: image-url("icones/world.png");
+}
+
+.proposta .titulo {
+  background: image-url("chupeta_verde.png") no-repeat 0 0; /*#82CC40 */
+}
+
+.problema .titulo {
+  background: image-url("chupeta_vermelha.png") no-repeat 0 0; /*#F38077*/
+}
+
+.topico.proposta .tags {
+  background-image: image-url("icones/tag_proposta.png");
+}
+.topico.problema .tags {
+  background-image: image-url("icones/tag_problema.png");
+}
+
+/* Pagina de topico (ver controller Topicos.show)
+-----------------------------------------------------------------------------
+*/
+
+.topico_main {
+  overflow: hidden;
+}
+.topico_main .bar {
+  clear: both;
+  padding-left: 135px;
+}
+.topico_main .perfil_topico {
+  width: 115px;
+  margin-right: 10px;
+  float: left;
+}
+.topico_main .descricao {
+  width: 545px;
+  float: left;
+}
+.topico_main .descricao p {
+  margin: 0 0 10px 0;
+}
+.topico_main .ficha_do_usuario {
+  margin-bottom: 10px;
+}
+.topico_main .opcoes {
+  margin-top: 20px;
+  font-size: 0.857em;
+}
+.topico_main .opcoes .title {
+  font-weight: bold;
+  color: #333;
+  font-size: 15px;
+  margin: 10px 0 0 0;
+}
+.topico_main .opcoes .links li {
+  list-style: inside disc;
+  color: #00b1da;
+}
+.topico_main .opcoes .photos img {
+  float: left;
+  margin: 4px 8px 4px 0;
+  height: 50px;
+}
+.topico_main .titulo {
+  margin-bottom: 5px;
+  width: 580px;
+  float: right;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+.topico_main .titulo h2 {
+  font-size: 18px;
+  color: #fff;
+  line-height: 22px;
+  font-weight: normal;
+  padding: 10px 10px 10px 25px;
+}
+.topico_main.problema .titulo .tipo {
+  color: #F38077;
+  font-weight: bold;
+}
+.topico_main.proposta .titulo .tipo {
+  color: #82CC40;
+  font-weight: bold;
+}
+.topico_main .tipo_topico {
+  font-size: 27px;
+  font-weight: bold;
+  float: left;
+  height: 45px;
+  line-height: 45px;
+  width: 120px;
+}
+.topico_main.problema .tipo_topico {
+  color: #EF5449;
+}
+.topico_main.proposta .tipo_topico {
+  color: #75B935;
+}
+
+/* Lista de tópicos  */
+
+.topicos_list { margin: 0 0 20px 0; }
+.topicos_list li { margin: 0 0 20px 0; list-style: none; }
+
+.topicos_list .titulo {
+  padding: 10px 10px 10px 25px;
+  min-height: 40px;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 0 5px 0;
+  color: #FFF;
+  a { color: #FFF; }
+}
+
+.topicos_list .local,
+.topicos_list .tags,
+.topicos_list .descricao {
+  margin-left: 16px;
+}
+
+.topicos_list .ficha_do_usuario {
+  float: left;
+  display: inline;
+  margin: 0 5px 0 0;
+}
+
+.topicos_list .detalhes {
+  margin: 0 0 0 120px;
+}
+
+.topicos_list .atividades {
+  text-align: right;
+  margin: 0;
+}
+
+.topicos_list .numero_apoio,
+.topicos_list .numero_comentario {
+  text-transform: uppercase;
+  font-size: 11px;
+  padding: 5px 0 0 20px;
+}
+
+.topicos_list .numero_apoio span,
+.topicos_list .numero_comentario span {
+  font-size: 20px;
+  margin: 0 5px 0 0;
+}
+
+/* page - add links to topic */
+#links_list {
+  background: #EFEFEF;
+  padding: 15px;
+  display: inline-block;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+  legend { font-weight: bold;}
+}

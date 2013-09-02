@@ -1,0 +1,232 @@
+/* Formularios
+-----------------------------------------------------------------------------
+*/
+
+form fieldset ol {
+  margin: 0;
+}
+
+form fieldset ol li {
+  list-style: none;
+  margin: 0 0 10px 0;
+}
+
+form fieldset label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.3em;
+  font-size: 14px;
+}
+
+form fieldset label.checkbox {
+  display: inline;
+}
+
+input,
+select,
+textarea {
+  padding: 0 5px;
+  line-height: 20px;
+  border: 1px solid #999;
+  font-size: 12px;
+  font-family: "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  border-radius: 15px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+}
+input[type=text],input[type=password]{
+  width: 90%;
+  height: 30px;
+}
+input[type=file]{
+  border: none;
+}
+input, textarea {
+  border: 1px solid #b4b5b9;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  -webkit-box-shadow: 0px 0px 2px 1px rgba(180, 183, 176, 0.3);
+  -moz-box-shadow: 0px 0px 2px 1px rgba(180, 183, 176, 0.3);
+  box-shadow: 0px 0px 2px 1px rgba(180, 183, 176, 0.3);
+  padding-left: 10px;
+}
+textarea {resize: none;}
+select {
+  padding: 4px;
+  height: 30px;
+}
+
+.ajuda {
+  color: #666;
+  font-size: 12px;
+  margin: 0;
+}
+/* Search
+--------------------------------------------------------
+*/
+
+#busca_google { position: absolute; right: 0px; top: 0px;}
+#busca_google input[name="q"] {
+  background-image: none!important;
+  height: 60px!important;
+  border: 1px solid #d3d4cb;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  -webkit-box-shadow: 0px 0px 2px 1px rgba(180, 183, 176, 0.4);
+  -moz-box-shadow: 0px 0px 2px 1px rgba(180, 183, 176, 0.4);
+  box-shadow: 0px 0px 2px 1px rgba(180, 183, 176, 0.4);
+  padding-left: 10px;
+  width: 540px;
+  display: inline-block;
+  font-size: 20px;
+  line-height: 40px;
+  color: #c9c9c9;
+}
+#busca_google_pequena input[type=submit],
+#busca_google input[name="sa"] {
+  width: 35px;
+  height: 35px;
+  background-color: white;
+  border: none;
+  position: absolute;
+  top:10px;
+  right: 10px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+#busca_google_pequena input[type=submit]{
+  display: none;
+}
+#form_seletor {
+  _padding-top:30px;
+  padding: 10px 20px;
+  position:relative;
+  top:30px;
+  _top:0;
+  background: #CEE7ED;
+}
+#form_seletor p {
+  color: #00b0d9;
+  margin: 0;
+  padding: 0;
+}
+#form_seletor ol {
+  list-style: none;
+  margin: 0;
+  height: 40px;
+}
+#form_seletor  li {
+  list-style: none;
+  padding: 0;
+  float: left;
+  margin: 0 10px 0 0;
+}
+#form_seletor li:last-child { margin: 0; float: right!important;}
+#cidade, #estado {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border: 2px solid gray;
+  font-size: 18px;
+  height: 50px;
+  padding: 11px 2px;
+  width: 305px;
+}
+#estado {
+  width: 160px;
+}
+
+/* Button
+---------------------------------------------
+*/
+.btn {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background: #00b0d9;
+  border-radius: 25px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 20px;
+  height: 50px;
+  line-height: 50px;
+  line-height: 50px;
+  padding: 0 20px;
+}
+.btn:hover {background: #80D8EC; text-decoration: none;}
+.btn-large {
+  width: 280px;
+  -moz-border-radius: 35px;
+  -webkit-border-radius: 35px;
+  text-align: center;
+  font-size: 37px;
+  height: 70px;
+  line-height: 70px;
+  border-radius: 35px;
+  padding: 0;
+}
+.btn-mini { height: 35px; line-height: 35px; padding: 0 15px; font-size: 15px;}
+.btn-mini-extended { height: auto; line-height: 20px; padding: 8px 15px; font-size: 15px;}
+.btn-pink {
+  background: #ff0066;
+}
+.btn-pink:hover {
+  background: #ff6699;
+}
+.btn-blue {
+  background: #00b0d9;
+}
+.btn-blue:hover {
+  background: #5fb7de;
+}
+.action_horizontal input.btn-mini {
+  float: left;
+  margin-right: 5px;
+}
+/* Mensagens de erro
+-----------------------------------------------------------------------------
+*/
+
+.fieldWithErrors label {
+  color: #E70000;
+}
+
+.fieldWithErrors input,
+.fieldWithErrors textarea {
+  border: 1px solid #FF8181;
+  background-color: #FFE9E9;
+}
+
+.errorExplanation {
+  background-color: #FFB5B5;
+  padding: 10px;
+  border: 1px solid #FF8181;
+  font-size: 12px;
+  margin: 0 0 20px 0;
+}
+
+.errorExplanation h2 {
+  color: #E60000;
+}
+
+.errorExplanation h2,
+.errorExplanation p {
+  margin: 0 0 10px 0;
+}
+
+.errorExplanation ul {
+  margin: 0;
+}
+
+.errorExplanation ul li {
+  margin: 0 0 10px 15px;
+}
+
+.errorExplanation ul li:first-letter {
+  text-transform: uppercase;
+}
+

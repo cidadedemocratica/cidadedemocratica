@@ -1,0 +1,35 @@
+<ul class="dropdown">
+  <li>
+    <%= link_to_function "Painel", "$('menu_painel').toggle();", :class => "dir" %>
+    <ul id="menu_painel" style="display: none;">
+      <li>
+        <%= link_to "Tela inicial", admin_url %>
+      </li>
+      <li>
+        <%= link_to "Configurações", admin_configuracoes_url %>
+      </li>
+      <li>
+        <%= link_to "Trocar senha", new_password_path(current_user) %>
+      </li>
+      <li>
+        <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <%= link_to_function "Tags e Comentários", "$('menu_de_problemas').toggle();", :class => "dir" %>
+    <ul id="menu_de_problemas" style="display: none;">
+      <li>
+        <%= link_to "Tags", admin_tags_path %>
+      </li>
+      <li>
+        <%= link_to 'Macro Tags', admin_macro_tags_path %>
+      </li>
+      <li>
+        <%= link_to "Comentários", admin_comentarios_path %>
+      </li>
+    </ul>
+  </li>
+
+  <li><%= link_to "Novo Admin", admin_new_root_path %></li>
+</ul>

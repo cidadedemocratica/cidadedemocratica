@@ -1,0 +1,27 @@
+/* Cloud
+-----------------------------------------------------------------------------
+*/
+
+.cloud {
+  font-family: Arial, sans-serif;
+  padding: 10px;
+  margin: 0;
+  line-height: 20px;
+  text-align: center;
+}
+
+.cloud h3 { text-align: left; color: #ef077d}
+
+.cloud .nuvem_1,
+.cloud .nuvem_2,
+.cloud .nuvem_3,
+.cloud .nuvem_4,
+.cloud .nuvem_5 { margin: 0 5px; color: #00b0d9; }
+
+.cloud a { color: #00b0d9;}
+
+.cloud .nuvem_1 { font-size: 11px; }
+.cloud .nuvem_2 { font-size: 14px; }
+.cloud .nuvem_3 { font-size: 16px; font-weight: bold; }
+.cloud .nuvem_4 { font-size: 22px; }
+.cloud .nuvem_5 { font-size: 25px; font-weight: bold; letter-spacing: -1px; }

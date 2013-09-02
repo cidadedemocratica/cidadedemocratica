@@ -1,0 +1,62 @@
+.home {
+  .manifesto {
+    padding-top: 8px;
+    .title {
+      font-size: 40px;
+      line-height: 40px;
+    }
+    p {
+      margin-bottom: 0;
+      font-size: 18px;
+    }
+  }
+
+  .competitions_list {
+    .title {
+      margin-top: 25px;
+      margin-bottom: 15px;
+      color: #ee0980;
+    }
+  }
+
+  .sidebar h3:first-child {
+    margin-top: 0;
+  }
+
+  .youtube-player {
+    display: block;
+    margin-bottom: 15px;
+    border-radius: 10px;
+  }
+
+  #resumo_de_atividades {
+    margin: 15px 0;
+  }
+
+  .local_panel {
+    overflow: hidden;
+    position: relative;
+    fieldset {
+      margin: 0;
+    }
+    li {
+      list-style: none;
+      margin: 0 0 5px 0;
+    }
+    label {
+      position: absolute;
+      left: -9999px;
+    }
+    select {
+      width: 100%;
+    }
+    button {
+      float: right;
+    }
+    #local_spinner {
+      position: absolute;
+      bottom: 12px;
+      right: 50px;
+    }
+  }
+}

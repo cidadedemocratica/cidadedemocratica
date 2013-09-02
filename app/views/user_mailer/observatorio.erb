@@ -1,0 +1,34 @@
+Olá, <%= @user.nome %>!
+
+Desde <%= @desde.strftime("%d/%m/%Y") %> até hoje (<%= Time.now.strftime("%d/%m/%Y") %>), <% if (@atividades.size > 1) %><%= "aconteceram #{@atividades.size} atividades" %><% else -%><%= "aconteceu #{@atividades.size} atividade" %><% end -%> em tópicos de seu interesse. Apenas para relembrá-lo, estes são os temas de seu interesse [<%= observatorio_temas(@user.observatorios.first) %>] e esta(s) a(s) localidade(s) [<%= observatorio_locais(@user.observatorios.first) %>]. Para alterar algum tema e/ou local, basta fazer seu login no cidadedemocrática e editar seu observatório.
+
+Bem, este é o resumo dessas atividades relacionadas ao seu observatório nesses últimos 7 dias:
+
+<%= resumo_numerico_do_observatorio(@atividades) %>
+..........................................................................
+Eis aqui detalhadamente as atividades, da mais recente até a mais antiga:
+
+<% @atividades.each_with_index do |atividade, k| -%>
+<%= "#{(k+1)}. " %><%= render :partial => "obs_proposta", 
+           :locals => { 
+             :atividade => atividade 
+           } if (atividade.class == Proposta) or (atividade.class == Problema) -%>
+<%= render :partial => "obs_comentario", 
+           :locals => { 
+             :atividade => atividade, 
+             :topico => Comment.find_commentable(atividade.commentable_type, atividade.commentable_id) 
+             } if (atividade.class==Comment) -%>
+<%= render :partial => "obs_adesao", 
+           :locals => { 
+             :atividade => atividade 
+           } if (atividade.class == Adesao) -%>
+<% end -%>
+..........................................................................
+
+Acesse seu observatório:
+<%= url_para_observatorio %>
+
+Para deixar de receber os resumos semanais, acesse:
+<%= url_para_editar_observatorio %>
+
+<%= rodape %>

@@ -1,0 +1,126 @@
+<h1>Painel</h1>
+
+<div class="wrapper clearfix">
+<div class="grid_6 alpha">
+  <div class="resumo_de_atividades">
+  <p class="resumo_titulo">Últimos tópicos</p>
+  <ol>
+  <% for t in @ultimos_topicos -%>
+    <li>
+      <%= link_to "#{t.titulo}", topico_url(:topico_slug => t.to_param), :target => "_blank" %><br />
+      <span class="tags">
+      <%= image_tag("icones/tag_#{t.type.to_s.downcase}.png", :class => "tag_image") %> <% tags_arr = [] -%>
+      <% t.tags.each do |tag| -%>
+        <% tags_arr << link_to_topicos_with_context(tag.name,
+                                                    { :tag_id => tag.id },
+                                                    {
+                                                      :target => "_blank",
+                                                      :title => "Veja outros tópicos de tema '#{tag.name}'"
+                                                    }) -%>
+      <% end -%>
+      <%= tags_arr.join(", ").html_safe %>
+      </span><br />
+      <span class="<%= t.type.to_s.downcase %>"><%= t.type.to_s %></span> criad<%= t.artigo_definido %> por <%= link_to t.user.nome, perfil_url(t.user), :target => "_blank" %> há <%= time_ago_in_words(t.created_at) %>.
+    </li>
+  <% end -%>
+  </ol>
+  <p class="mais"><%= link_to "Mais tópicos...", topicos_url(:topico_type => "topicos", :order => "recentes"), :target => "_blank" -%></p>
+  </div>
+</div>
+
+<div class="grid_6 omega">
+  <div class="resumo_de_atividades">
+  <p class="resumo_titulo">Últimos usuários confirmados</p>
+  <ol>
+  <% for u in @ultimos_usuarios -%>
+    <li>
+      <span class="<%= u.type.to_s.underscore %>"><span class="tipo"><%= u.nome_do_tipo %></span></span>
+      <%= link_to "#{u.nome}", perfil_url(u), :target => "_blank" %><br />
+      <span class="gray">Cadastrou-se em <%= l u.created_at, :format => "%d/%m/%Y às %H:%M" %>.</span><br />
+      Cadastro confirmado há <%= time_ago_in_words(u.updated_at) %>.
+    </li>
+  <% end -%>
+  </ol>
+  </div>
+</div>
+</div><!-- wrapper -->
+
+<div class="grid_6 alpha">
+  <div class="resumo_de_atividades">
+  <p class="resumo_titulo">Últimos comentários</p>
+  <ol>
+  <% for c in @ultimos_comentarios -%>
+    <li class="<%= c.tipo %>">
+      <%
+			  tmp = auto_link(simple_format(escape_once(c.body)), :urls, :target => '_blank') do |text|
+          truncate(text, :length => 25)
+			  end
+			-%>
+			<div class="text"><%= tmp.html_safe -%></div>
+      <span class="cadastro_em">Postado por <%= link_to c.user.nome, perfil_url(:id => c.user.id), :target => "_blank" %> em <%= l c.created_at, :format => :short %><br />
+      <% topico = Comment.find_commentable('Topico', c.commentable_id) %>
+                                <span class="<%= topico.display_name.downcase %>"><%= topico.display_name %>:</span> <%= link_to(topico.titulo, topico_url(:topico_slug => topico.to_param), :target => "_blank") %>
+      </span>
+    </li>
+  <% end -%>
+  </ol>
+  <p class="mais"><%= link_to "Mais comentários...", admin_comentarios_path -%></p>
+  </div>
+</div>
+
+<div class="grid_6 omega">
+  <div class="resumo_de_atividades">
+  <p class="resumo_titulo">Últimos usuários logados</p>
+  <ol>
+  <% for l in @ultimos_logins -%>
+    <li>
+      <span class="<%= l.user.type.to_s.underscore %>"><span class="tipo"><%= l.user.nome_do_tipo %></span></span>
+      <%= link_to "#{l.user.nome}", perfil_url(l.user), :target => "_blank" %><br />
+      <span class="gray">Último login em <%= l l.created_at, :format => "%d/%m/%Y às %H:%M" %> (há <%= time_ago_in_words(l.created_at) %>).</span>
+    </li>
+  <% end -%>
+  </ol>
+  </div>
+</div>
+
+<style type="text/css" media="screen">
+.wrapper {
+  margin-bottom:20px;
+}
+img.tag_image {
+  position:relative;
+  top:5px;
+}
+.resumo_de_atividades {
+  border:5px solid #CCCCCC;
+  padding:10px;
+}
+p.resumo_titulo {
+  font-weight:bold;
+  margin:0 0 2px 0;
+}
+.resumo_de_atividades p.mais {
+  text-align:right;
+  margin:0;
+}
+.resumo_de_atividades ol {
+  margin:0 0 0 20px;
+}
+.resumo_de_atividades ol li {
+  margin:20px 0;
+}
+.tipo {
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 11px;
+  color:#fff;
+}
+span.gray { color:#aaa; }
+span.proposta { color:#82CC40; }
+span.problema { color:#F38077; }
+
+li div.text p { margin:0; }
+li.ideia div.text { background-color: #F6E172; }
+li.comentario div.text { background-color: #809FFF; }
+li.pergunta div.text { background-color: #F1C4BD; }
+li.resposta div.text { background-color: #89CE7E; }
+</style>

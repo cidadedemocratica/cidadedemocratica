@@ -1,0 +1,22 @@
+<ul class="sans-bullets bem-distribuidos">
+  
+  <fieldset class="grupo-simples">
+    <legend>Fórmula da Relevância</legend>
+    <p><strong>Atenção:</strong> alterações na fórmula são recalculadas uma vez ao dia, às 02:30.</p>
+    <li>
+      <%= label_tag "Peso dos comentários" %>
+      <%= text_field_tag "settings[topicos_relevancia_peso_comentarios]", @settings["topicos_relevancia_peso_comentarios"], :size => 3 -%>
+      <p class="dica">Use apenas números, separe decimais com ponto (.)</p>
+    </li>
+    <li>
+      <%= label_tag "Peso dos apoios" %>
+      <%= text_field_tag "settings[topicos_relevancia_peso_apoios]", @settings["topicos_relevancia_peso_apoios"], :size => 3 -%>
+      <p class="dica">Use apenas números, separe decimais com ponto (.)</p>
+    </li>
+    <li>
+      <%= label_tag "Peso dos seguidores" %>
+      <%= text_field_tag "settings[topicos_relevancia_peso_seguidores]", @settings["topicos_relevancia_peso_seguidores"], :size => 3 -%>
+      <p class="dica">Use apenas números, separe decimais com ponto (.)</p>
+    </li>
+  </fieldset>
+</ul>

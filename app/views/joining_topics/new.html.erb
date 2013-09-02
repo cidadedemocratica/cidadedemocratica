@@ -1,0 +1,40 @@
+<% title "Sugerir união de #{@topico.display_name}s" %>
+
+<div class="topico topico_main <%= @topico.display_name.underscore %>">
+  <p class="tipo_topico"><%= @topico.display_name %></p>
+
+  <div class="titulo">
+  <h2><%= @topico.titulo %></h2>
+  </div>
+</div>
+
+<div class="section_title">
+  <h2 class="title">Sugerir união de <%= @topico.display_name %>s</h2>
+  <p>Escolha abaixo <%= @topico.artigo_definido %> <%= @topico.display_name.downcase %> que você deseja unir.</p>
+</div>
+
+<div class="rounded">
+  <ul class="topicos_list grid_12">
+    <% @joining_related.each do |topico| %>
+    <li class="topico <%= topico.display_name.underscore %>">
+      <div class="botao_de_acao">
+        <%= form_for @joining_topic do |f| %>
+          <%= hidden_field_tag "joining_topic[topicos_from_attributes][][id]", @topico.id %>
+          <%= hidden_field_tag "joining_topic[topicos_from_attributes][][id]", topico.id %>
+          <%= f.button raw("<i class='btn-icon-union'></i>") + 'Unir a esta proposta' %>
+        <% end %>
+      </div>
+      <p class="titulo">
+        <%= link_to topico.titulo, topico_path(:topico_slug => topico.to_param),
+              :title => topico.titulo,
+              :target => "_blank"
+        %>
+      </p>
+      <p class="tags">
+        <%= topico.tags.collect{|t| link_to(t.name, topicos_path(:tag_id => t.id),
+                                                      :title => "Veja demais #{topico.nome_do_tipo} de '#{t.name}'") }.join(", ").html_safe %>
+      </p>
+    </li>
+    <% end %>
+  </ul>
+</div>

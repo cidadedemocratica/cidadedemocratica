@@ -1,0 +1,5 @@
+<div id="novo_comentario" style="display: none">
+  <%= form_for :comment, :url => processar_comment_path do |f| -%>
+    <%= render :partial => "comments/form", :locals => { :f => f } %>
+  <% end %>
+</div>

@@ -1,0 +1,52 @@
+<%= error_messages_for :local %>
+
+<fieldset>
+  <ol>
+    <li id="li_local_estado">
+      <%= hidden_field_tag "local[pais_id]", 1 %>
+      <%= label_tag :estado, "Estado" %>
+      <%= select_estado(local, :cidade_corrente => @cidade_corrente) %>
+    </li>
+    <li id="li_local_cidade">
+      <%= label_tag :cidade, "Cidade" %>
+      <%= select_cidade(local, :cidade_corrente => @cidade_corrente) %>
+      <%= image_tag("spinners/spinner.gif", :id => "spinner_cidade", :style => "display:none;") %>
+    </li>
+    <li id="li_local_bairro">
+      <%= label_tag :bairro, "Bairro" %>
+      <%= select_bairro(local, :cidade_corrente => @cidade_corrente, :first_option => " ") %>
+      <%= image_tag("spinners/spinner.gif", :id => "spinner_bairro", :style => "display:none;") -%>
+    </li>
+    <li id="li_local_cep">
+      <%= label_tag :cep, "CEP" %>
+      <%= text_field :local, :cep, :size => 10 %>
+      <span class="ajuda">opcional. Ex.: 13000-150</span>
+    </li>
+  </ol>
+</fieldset>
+
+<%= observe_field(:estado_id,
+                  :update => "local_cidade_id",
+                  :url => cidades_options_for_select_path,
+                  :with => "estado_id",
+                  :before => "$('spinner_cidade').show();$('spinner_bairro').show();",
+                  :complete => "mudaBairroEmCascata();$('spinner_cidade').hide();"
+                  ) -%>
+<%= observe_field(:local_cidade_id,
+                  :update => "local_bairro_id",
+                  :url => bairros_options_for_select_path(:first_option => " "),
+                  :with => "cidade_id",
+                  :before => "$('spinner_bairro').show();",
+                  :complete => "$('spinner_bairro').hide();"
+                 ) -%>
+
+<script type="text/javascript" charset="utf-8">
+function mudaBairroEmCascata(){
+  new Ajax.Updater('local_bairro_id','/locais/bairros_options_for_select',
+  { asynchronous:true, evalScripts:true,
+    onComplete:function(request){
+      $('spinner_bairro').hide();
+    },
+    parameters:'cidade_id='+encodeURIComponent($('local_cidade_id').value)+ '&authenticity_token=' + encodeURIComponent('<%= form_authenticity_token %>')});
+}
+</script>

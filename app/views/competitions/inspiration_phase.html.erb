@@ -1,0 +1,42 @@
+<div class="grid_16 alpha omega">
+  <div class="grid_11 alpha competition_full">
+    <%= render :partial => 'competition_banner' %>
+
+    <ul id="breadcrumb" class="clearfix">
+      <li>
+        <h1>Inspirações</h1>
+      </li>
+    </ul>
+
+    <% if @inspirations.present? %>
+      <%= render "inspirations/inspirations", :inspirations => @inspirations %>
+    <% else %>
+      <div class="rounded">
+        <p>Este concurso não possui nenhuma inspiração.</p>
+        <% if @competition.inspirations_allowed? %>
+          <p>Seja o primeiro!</p>
+          <p>Que iniciativas podem inspirar os participantes nesse concurso?<br />Traga imagens, sons e texto. Seja visual.</p>
+          <p>Clique no botão <%= link_to "Inspirar", new_competition_inspiration_path(@competition), :class => "btn btn-pink btn-mini" %> e participe deste concurso.
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="grid_5 omega sidebar">
+    <% if @competition.inspirations_allowed? %>
+      <%= link_to "Inspirar", new_competition_inspiration_path(@competition), :class => "btn btn-pink btn-large" %>
+      <p>Mande uma inspiração para este concurso.</p>
+    <% end %>
+
+    <div class="resumo rounded clearfix">
+      <%= remaining_days_countdown_in :inspiration_phase %>
+      <p class="qtd"><%= @competition.inspirations.count %></p>
+      <p class="sobre">inspirações</p>
+      <p class="qtd"><%= @competition.participants_count %></p>
+      <p class="sobre">participantes</p>
+      <%= render "navigation_links", :competition => @competition %>
+    </div>
+
+    <%= render "commom_sidebar" %>
+  </div>
+</div>

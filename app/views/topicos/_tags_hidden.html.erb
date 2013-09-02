@@ -1,0 +1,7 @@
+<li class="tag_edit">
+  <span><%= tag_name %></span>
+  <%= link_to_function(image_tag("icones/cancel.png"), nil, :title => "Excluir a tag '#{tag_name}'") do |page|
+        page << "Element.remove( $(Event.element(event)).up('li') )"
+      end %>
+<%= hidden_field_tag "tag[name][]", tag_name %>
+</li>

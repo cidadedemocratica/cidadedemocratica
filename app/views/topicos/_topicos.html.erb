@@ -1,0 +1,28 @@
+<% if topicos and not (topicos.empty?) -%>
+  <ul class="topicos_list">
+  <% topicos.each do |topico| %>
+    <li id="topico_<%= topico.id %>" class="rounded">
+      <%= topico(topico, options) %>
+    </li>
+  <% end -%>
+  </ul>
+
+  <% if options[:paginate] %>
+    <%= will_paginate topicos %>
+  <% end %>
+
+<% else -%>
+  <!-- EMPTY DESIGN -->
+  <p class="no_topicos rounded rounded_beige">
+     <br />
+     Ainda não há questões cadastradas.<br />
+     <span class="call2action">Seja o primeiro a inserir uma!</span><br />
+     <% if params[:controller] == "competitions" %>
+     <span class="hint">Use o botão "Nova Proposta" logo acima.
+     <% else %>
+     <span class="hint">Use os botões no topo à direita:<br />
+     &#8220;Aponte um problema&#8221; e
+     &#8220;Crie uma proposta&#8221;.</span>
+     <% end %>
+  </p>
+<% end -%>

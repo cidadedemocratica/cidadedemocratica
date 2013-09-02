@@ -1,0 +1,16 @@
+Seu cadastro foi registrado com sucesso.
+
+E-mail: <%= @email %>
+
+Para confirmar seu e-mail e ativar seu cadastro, acesse:
+
+<%= confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>
+
+Dica: guarde este e-mail com seus dados de seu login para futuras consultas.
+
+Obrigado.
+
+..........................................................................
+
+Cidade Democrática: www.cidadedemocratica.org.br
+Apóie, colabore, aponte problemas e crie propostas para uma cidade melhor

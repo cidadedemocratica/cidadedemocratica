@@ -1,0 +1,35 @@
+/* Tabs
+------------------------------------------------------------------------------
+*/
+
+h1.especial {
+  margin:0 0 10px 0;
+  float:left;
+}
+ul.subsection_tabs {
+  border-right:1px solid #CCCCCC;
+  clear:both;
+  list-style-image:none;
+  list-style-position:outside;
+  list-style-type:none;
+  margin:0 0 5px;
+  padding:0;
+  height:300px;
+}
+ul.subsection_tabs li.tab {
+  margin:0 0 10px 0;
+  text-align:right;
+}
+ul.subsection_tabs li.tab a.active {
+  background-color:#DDDDDD;
+  -moz-border-radius-topleft:8px;
+  -moz-border-radius-bottomleft:8px;
+}
+ul.subsection_tabs li.tab a {
+  background-color:#FFFFFF;
+  color:#666666;
+  display:block;
+  padding:5px 15px 5px 0;
+  font-weight:bold;
+  text-decoration:none;
+}

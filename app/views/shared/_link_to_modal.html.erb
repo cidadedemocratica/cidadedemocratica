@@ -1,0 +1,4 @@
+<%= link_to title, url, :id => link_id %>
+<script type="text/javascript">
+  new Control.Modal("<%= link_id %>", { <%= options.join(", ") -%> });
+</script>

@@ -1,0 +1,32 @@
+<div id="filtro_de_<%= nome_do_filtro.remover_acentos.downcase.gsub(" ", "_") %>" class="filtro">
+  <p class="nome"><%= nome_do_filtro %></p>
+  <ul class="<% if options[:expandido] %>expandido<% else %>normal<% end %>">
+<% links.each do |link| -%>
+    <li><%= link %></li>
+<% end -%>
+  </ul>
+  <% if not options[:expandido] and (links.size > options[:numero_de_links]) -%>
+  <%= link_to_function("Mais (+)", "mostrarFiltroCompleto('filtro_de_#{nome_do_filtro.remover_acentos.downcase.gsub(" ", "_")}')", :class => "ver_mais") %>
+  <% end -%>
+</div>
+
+<script type="text/javascript">
+function mostrarFiltroCompleto(id_do_filtro) {
+  $$('#' + id_do_filtro + ' ul').each(function(ul, i) {
+    if (ul.hasClassName('normal')) {
+      ul.removeClassName('normal');
+      ul.addClassName('expandido');
+      $$('#' + id_do_filtro + ' .ver_mais').each(function(link, i) {
+        link.innerHTML = "Menos (-)"
+      });
+    }
+    else {
+      ul.removeClassName('expandido');
+      ul.addClassName('normal');
+      $$('#' + id_do_filtro + ' .ver_mais').each(function(link, i) {
+        link.innerHTML = "Mais (+)"
+      });
+    }
+  });
+}
+</script>

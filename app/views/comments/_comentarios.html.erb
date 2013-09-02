@@ -1,0 +1,15 @@
+<% if @comentarios and not @comentarios.empty? -%>
+<ul class="comentarios">
+  <% for @comentario in @comentarios -%>
+  <li id="comentario_<%= @comentario.id %>" class="<%= @comentario.tipo %> rounded">
+    <%= comentario(@comentario) %>
+  </li>
+  <% end -%>
+</ul>
+<% else %>
+<p class="no_comments rounded rounded_beige">
+  Ainda não foram feitos comentários.<br />
+  <span class="call2action">Seja o primeiro, comente já!</span><br />
+  <span class="hint">Clique no botão &#8220;Comente&#8221; acima e saia escrevendo.</span>
+</p>
+<% end -%>

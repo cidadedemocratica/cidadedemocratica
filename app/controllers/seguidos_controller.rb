@@ -1,0 +1,3 @@
+class SeguidosController < ApplicationController
+
+end

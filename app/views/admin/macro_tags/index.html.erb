@@ -1,0 +1,30 @@
+<h1>Macro Tags</h1>
+
+<p>
+  <%= link_to "Nova macro tag", new_admin_macro_tag_path %>
+</p>
+
+
+<table class="crud">
+  <tr>
+    <th>Id</th>
+    <th>Título</th>
+    <th>Tags</th>
+    <th>Ações</th>
+    <th></th>
+  </tr>
+
+  <% @macro_tags.each do |macro_tag| %>
+    <tr>
+      <td><%= macro_tag.id %></td>
+      <td><%= macro_tag.title %></td>
+      <td><%= macro_tag.tag_list %></td>
+      <td>
+        <%= link_to 'Editar', edit_admin_macro_tag_path(macro_tag) %> <br />
+        <%= link_to 'Excluir', admin_macro_tag_path(macro_tag), :method => :delete, :confirm => "Você tem certeza que deseja excluir #{macro_tag.title}?" %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= will_paginate(@macro_tags) %>

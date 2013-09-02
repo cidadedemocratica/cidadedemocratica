@@ -1,0 +1,74 @@
+<%= form_for resource, :as => resource_name, :url => registration_path(resource_name) do |f| %>
+  <fieldset>
+    <ol>
+      <li>
+        <%= f.label :email, "E-mail", :for => "cad_user_email" %>
+        <%= f.text_field :email, :class => "texto", :id => "cad_user_email" %>
+      </li>
+      <li>
+        <%= f.label :password, "Senha", :for => "cad_user_pass" %>
+        <%= f.password_field :password, :class => "texto", :id => "cad_user_pass" %>
+      </li>
+      <li>
+        <%= f.label :password_confirmation, "Confirmação da senha" %>
+        <%= f.password_field :password_confirmation, :class => "texto" %>
+      </li>
+      <% if user_signed_in? and current_user.admin? -%>
+      <li>
+        <%= f.label :type, "Tipo de usuário" %>
+        <%= select_tag "user[type]", options_for_select(User::TYPES) %>
+      </li>
+      <% end -%>
+      <li>
+        <%= f.submit "Cadastrar", :class => "btn btn-mini" %>
+      </li>
+      <li>
+        <%= link_to_function "Quero cadastrar minha Empresa, minha ONG, sou um Gestor Público ou outro...", "$('form_solicitacao').show()" %>
+      </li>
+    </ol>
+  </fieldset>
+<% end %>
+
+<div id="form_solicitacao" style="display:none">
+  <%= form_remote_tag :url => solicitar_cadastro_entidade_url do |f| -%>
+  <p>Para inscrever uma ONG, EMPRESA, GESTOR PÚBLICO ou PODER PÚBLICO solicite um cadastro através do formulário abaixo.</p>
+  <p>Este tipo de perfil exige validação por documentos. Alguém da equipe do Cidade Democrática entrará em contato em breve.</p>
+  <fieldset>
+    <ol>
+      <li>
+        <%= label :email, "Seu Nome" %>
+        <%= text_field :solicitante, :nome, :class => "texto" %>
+      </li>
+      <li>
+        <%= label :email, "Seu E-mail" %>
+        <%= text_field :solicitante, :email, :class => "texto" %>
+      </li>
+      <li>
+        <%= label :nome, "Nome da Entidade" %>
+        <%= text_field :solicitante, :entidade, :class => "texto" %>
+      </li>
+	  <li>
+		<%= label :type, "Tipo de usuário" %>
+        <%= select :solicitante, :type, [[ "Gestor público", "gestor_publico" ],
+                                         [ "Parlamentar", "parlamentar"],
+                                         [ "ONG", "ong" ],
+                                         [ "Empresa", "empresa" ],
+                                         [ "Poder público", "poder_publico" ],
+                                         [ "Movimento", "movimento"],
+                                         [ "Conferência", "conferencia"],
+                                         [ "Igreja", "igreja"],
+                                         [ "Universidade", "universidade"]] %>
+	  </li>
+      <li>
+        <%= submit_to_remote "solicitar",
+                             "Solicitar cadastro especial",
+                              :url => solicitar_cadastro_entidade_url,
+                              :html => {
+                                :class => 'btn btn-mini'
+                              }
+                              -%>
+      </li>
+    </ol>
+  </fieldset>
+  <% end %>
+</div>

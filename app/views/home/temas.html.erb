@@ -1,0 +1,51 @@
+<h1>Temas</h1>
+<p>Seu tema começa com...
+<% @links.each do |letra| -%>
+  <%= link_to(letra, temas_url(:starts_with => letra)) %> |
+<% end -%>
+
+<div class="wrapper linha_fina" id="div_wrapper_<%= @starts_with %>">
+  <p class="first_letter"><%= link_to_function@starts_with.upcase,
+    "$('div_wrapper_#{@starts_with}').addClassName('linha_fina');" +
+      visual_effect(:toggle_blind, "engloba_#{@starts_with}", :duration => 0.5) %></p>
+  <ul class="tag_list" id="engloba_<%= @starts_with %>">
+  <% @tags.each_with_index do |tag, i| -%>
+    <li><%= link_to "#{tag.name}", {
+                      :controller => "topicos",
+                      :action => "index",
+                      :topico_type => "topicos",
+                      :tag_id => tag.id
+                     },
+      :title => "Ver tópicos do tema '#{tag.name}'" %> 
+      <span class="count"><%= tag.taggings_count %></span>
+    </li>
+  <% end -%>
+  </ul>
+  <%= will_paginate @tags %>
+</div>
+
+<style type="text/css" media="screen">
+.linha_fina {
+  border-top:1px dotted #009BCA;
+  width:800px;
+}
+p.first_letter {
+  margin:0 0 2px 0;
+  font-weight:bold;
+  font-size:18px;
+  width:350px;
+  float:left;
+}
+div.wrapper {
+  float:left;
+  width:800px;
+}
+ul.tag_list {
+  width: 450px;
+  float:left;
+  background-color:#AEDBDE;
+}
+ul.tag_list li.tag {
+  margin:2px 0;
+}
+</style>

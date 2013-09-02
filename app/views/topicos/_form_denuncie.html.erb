@@ -1,0 +1,37 @@
+<%= form_tag topico_denunciar_url(:topico_slug => @topico.to_param), :onSubmit => "return validarDenuncia(this)" do %>
+<fieldset>
+  <ol>
+    <li>
+      <%= label_tag :titulo, "Explique sua denúncia" %>
+      <span class="ajuda">O que está errado em <b><%= @topico.titulo %></b>? Há algum comentário inapropriado? Detalhe sua reclamação para que ela possa ser bem compreendida.</span><br />
+      <%= text_area_tag "denuncia[descricao]", nil, :rows => 5, :class => "denuncia descricao" %>
+    </li>
+    <li>
+      <%= label_tag :nome, "Seu nome" %>
+      <% nome = user_signed_in? ? current_user.nome : "" -%>
+      <span class="ajuda">Identifique-se. Só assim podemos saber quem está fazendo as devidas reclamações.</span><br />
+      <%= text_field_tag "denuncia[nome_on_screen]", nome, :class => "denuncia nome", :disabled => "disabled" %>
+      <%= hidden_field_tag "denuncia[nome]", nome %>
+    </li>
+    <li>
+      <%= label_tag :email, "Seu email" %>
+      <% email = user_signed_in? ? current_user.email : "" -%>
+      <span class="ajuda">Informe-nos seu email para que possamos entrar em contato e mantê-lo informado.</span><br />
+      <%= text_field_tag "denuncia[email_on_screen]", email, :class => "denuncia email", :disabled => "disabled" %>
+      <%= hidden_field_tag "denuncia[email]", email %>
+    </li>
+    <li>
+      <%= submit_tag "Denunciar!" %>
+    </li>
+  </ol>
+</fieldset>
+<% end %>
+<style type="text/css" media="screen">
+.denuncia {
+  font-size: 14px;
+  width: 420px;
+}
+.email, .nome {
+  width: 260px;
+}
+</style>

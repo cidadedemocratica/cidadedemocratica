@@ -1,0 +1,29 @@
+<h2>Ajuste seu avatar, <%= @user.nome %>!</h2>
+
+<div id="imagem_original" class="grid_10 alpha"><%= image_tag(@user.imagem.public_filename(:preresize), :id => "avatar") %></div>
+
+<%= form_tag :controller => "avatar", :action => "resize" do %>
+<div id="previewWrapper" class="grid_6 omega">
+  <h4>Dicas para ajustar seu avatar</h4>
+  <div class="rounded rounded_beige">
+    <p class="instrucoes">
+       1. Selecione, na imagem à esquerda, a área que você deseja mostrar de sua foto;
+          toda a região iluminada (mais clara) comporá a foto de seu perfil público.</p>
+    <p class="instrucoes">
+       2. Abaixo, na imagem pequena, veja como ficará seu avatar;
+          ele será usado em sua ficha de cidadão por todo o site.
+          </p>
+    <p class="instrucoes" style="margin-bottom:20px">3. Ao concluir, clique no botão <b>Salvar</b>.</p>
+
+    <p class="resultado">Resultado final = </p>
+    <div id="previewArea"></div>
+  </div>
+    <%= submit_tag "Salvar", :class => "btn btn-mini" %>
+    <%= hidden_field_tag "x1" %>
+    <%= hidden_field_tag "y1" %>
+    <%= hidden_field_tag "x2" %>
+    <%= hidden_field_tag "y2" %>
+    <%= hidden_field_tag "width" %>
+    <%= hidden_field_tag "height" %>
+</div>
+<% end %>

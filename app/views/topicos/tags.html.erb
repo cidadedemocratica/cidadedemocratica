@@ -1,0 +1,66 @@
+<% title "Editar Tags de '#{@topico.titulo}'" -%>
+<%= error_messages_for :topico,
+                       :header_message => "Opa!" -%>
+<h2>Editar Tags de <span class="<%= @topico.display_name.downcase %>"><%= @topico.titulo %></span></h2>
+
+<%= form_for :topico, :action => "tags" do |f| %>
+<div class="grid_8 alpha">
+<fieldset id="linha_direita">
+  <ol>
+    <li>
+      <%= label_tag :tags, "Para inserir Tags..." %>
+      <span class="ajuda">
+        Indique os <b>temas</b> relacionados a <%= @topico.nome_do_tipo(:possessivo => true) %>, separando-os com <b>vírgula</b>.
+      </span><br/>
+      <%= text_field_with_auto_complete :topico, :tags_com_virgula,
+                                        {
+                                          :class => "tags texto",
+                                          :size => 50,
+                                          :autocomplete => "off"
+                                        },
+                                        {
+                                          :url => auto_complete_responder_tags_path,
+                                          :tokens => ",",
+                                          :min_chars => 2,
+                                          :param_name => "tag"
+                                        } %>
+      <%= submit_to_remote "inserir_btn",
+                           "Inserir",
+                           :url => {
+                              :action => "tags",
+                              :topico_slug => @topico.to_param
+                            } %>
+    </li>
+    <li>
+      <span class="ajuda">
+        Ou escolha entre os <b>temas mais populares</b> (basta clicar):
+      </span><br/>
+      <div id="populares" class="cloud">
+        <% tag_cloud_contexto(@tags) do |tag, c| -%>
+          <span class="<%= c %>"><%= link_to_remote tag.name, :url => {
+                                                                :action => "tags_by_link",
+                                                                :topico_slug => @topico.to_param,
+                                                                :tag_name => tag.name
+                                                               } %></span>
+        <% end -%>
+      </div>
+    </li>
+  </ol>
+</fieldset>
+</div>
+<div class="grid_8 omega">
+  <p>Estas são as tags (i.e. os <b>temas</b>) de <%= @topico.nome_do_tipo(:possessivo => true) %>.<br />
+     Remova e insira (usando o campo ao lado) como achar necessário .<br />
+     Ao final, clique no botão &quot;Salvar&quot;
+  </p>
+  <ul id="all_tags">
+  <% @topico.tags.each do |tag| -%>
+  <%= render :partial => "tags_hidden",
+             :locals => {
+               :tag_name => tag.name
+             } %>
+  <% end -%>
+  </ul>
+  <%= submit_tag "Salvar" %> ou <%= link_to "Cancelar", :action => "show", :slug => @topico.to_param %>
+</div>
+<% end %>

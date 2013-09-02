@@ -1,0 +1,22 @@
+<div class"grid_16 alpha omega clearfix">
+  <div class="grid_11 alpha">
+    <div class="rounded">
+      <h3>Nova Inspiração para o concurso</h3><h2><%= @competition.title %></h2>
+      <p>Que iniciativas podem inspirar os participantes nesse concurso? Traga imagens, sons e texto. Seja visual.</p>
+      <%= simple_form_for [@competition, @inspiration], :html => { :multipart => true} do |f| %>
+        <%= f.input :title %>
+        <%= f.input :description %>
+        <%= f.input :image, :as => :file %>
+        <%= f.button :submit, "Enviar inspiração", :class => "btn-mini" %> ou <%= link_to "Cancelar" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="grid_5 omega sidebar">
+    <div class="resumo rounded clearfix">
+      <p class="qtd"><%= @competition.remaining_days_in_current_phase %></p>
+      <p class="sobre">dias restantes</p>
+      <p class="qtd"><%= @competition.inspirations.count %></p>
+      <p class="sobre">inspirações</p>
+    </div>
+  </div>
+</div>

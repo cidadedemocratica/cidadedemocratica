@@ -1,0 +1,31 @@
+<% title "União de #{@author_topico.display_name}s" %>
+<div class="section_title"><h2 class="title">União de Propostas</h2></div>
+<%= render :partial => 'steps_edit' %>
+
+<div class="grid_16 alpha omega rounded clearfix">
+  <div class="topicos_list">
+
+    <div class="grid_8 alpha topico <%= @author_topico.display_name.underscore %>">
+      <h3>Seu título</h3>
+      <p class="titulo"><%= link_to @author_topico.titulo, topico_path(@author_topico), :target => "_blank" %></p>
+    </div>
+    <div class="grid_8 omega topico <%= @coauthor_topico.display_name.underscore %>">
+      <h3>Outro título</h3>
+      <p class="titulo"><%= link_to @coauthor_topico.titulo, topico_path(@coauthor_topico), :target => "_blank" %></p>
+    </div>
+  </div>
+
+  <%= error_messages_for :joining_title %>
+  <h4>Novo título</h4>
+  <%= form_for @joining_topic, :url => title_update_joining_topic_path do |f| %>
+    <fieldset>
+      <ol>
+        <li>
+          <span class="ajuda">Escreva uma única frase que resuma a questão. <b>Evite</b> mencionar o local (há uma etapa para a localização).</span><br />
+          <%= f.text_field :title, :rows => 2 %>
+        </li>
+      </ol>
+    </fieldset>
+    <%= f.submit "Continuar >", :class => 'btn btn-mini f_right' %>
+  <% end %>
+</div>

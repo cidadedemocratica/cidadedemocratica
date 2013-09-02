@@ -1,0 +1,10 @@
+<%= error_messages_for :imagem,
+                       :header_message => "Opa!" %>
+<p>
+  <%= f.label :uploaded_data, "Imagem" %><br/>
+  <%= f.file_field :uploaded_data %>
+</p>
+<p id="legenda">
+  <%= f.label :legenda, "Legenda (opcional)" %><br/>
+  <%= f.text_field :legenda %>
+</p>

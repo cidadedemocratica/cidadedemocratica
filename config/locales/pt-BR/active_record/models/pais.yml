@@ -1,0 +1,6 @@
+"pt-BR":
+  activerecord:
+    models:
+      pais:
+        one: País
+        other: Países

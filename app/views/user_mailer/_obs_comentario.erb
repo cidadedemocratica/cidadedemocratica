@@ -1,0 +1,4 @@
+<%= atividade.user.nome %> <%= tipo_do_comentario(atividade) -%>, há <%= distance_of_time_in_words_to_now(atividade.created_at) %>, n<%= topico.nome_do_tipo(:artigo => :definido) %> "<%= topico.titulo %>":
+<%= truncate(atividade.body, :length => 65) %>
+Mais em: http://www.cidadedemocratica.org.br/topico/<%= topico.to_param %>
+<%= quebra %>

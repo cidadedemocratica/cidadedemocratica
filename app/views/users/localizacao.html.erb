@@ -1,0 +1,10 @@
+<h1>Perfil de <%= @user.nome %></h1>
+<h2>Indique estado, cidade e bairro em que está localizado.</h2>
+
+<%= form_for :local, :url => {:controller => "users", :action => "localizacao"} do |f| -%>
+  <%= render :partial => "local/form_local",
+             :locals => { :f => f,
+                          :local => @user.local } %>
+<p><%= submit_tag "Salvar" %></p>
+
+<% end %>

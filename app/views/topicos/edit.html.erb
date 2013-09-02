@@ -1,0 +1,13 @@
+<% title "#{@topico.display_name}: #{@topico.titulo.nome_proprio}" %>
+<div class="novo_topico">
+    <h2>Editar "<%= link_to @topico.titulo, topico_url(:topico_slug => @topico.to_param) %>"</h2>
+    <div class="rounded clearfix">
+      <div class="grid_11">
+        <%= form_for :topico, :url => salvar_topico_url(:topico_slug => @topico.to_param) do |f| -%>
+          <%= render :partial => "form_topico", :locals => { :f => f, :topico => @topico } %>
+
+          <%= submit_tag "Atualizar", :class => 'btn btn-mini' %> ou <%= link_to 'cancelar', topico_url(:topico_slug => @topico.to_param) %>
+        <% end %>
+      </div>
+    </div>
+</div>

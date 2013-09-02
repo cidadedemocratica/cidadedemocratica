@@ -1,0 +1,31 @@
+<div class="content container_16">
+  <ul id="links_no_topo" class="clearfix">
+<% if user_signed_in? -%>
+  <li><%= "Olá, #{current_user.nome.split.first.capitalize rescue "Novo Usuário"}!" %></li>
+  <% if current_user.admin? -%>
+    <li><%= link_to "Administrar", admin_url %></li>
+    <li><%= link_to "Novo admin", admin_new_root_path %></li>
+    <li><%= link_to "Cadastrar usuário", new_user_registration_url %></li>
+  <% end -%>
+    <li class="meu_perfil">
+      <%= link_to "Minhas Opções &#9660;".html_safe, perfil_path(current_user) %>
+      <ul>
+        <li><%= link_to "Meu Observatório", observatorio_path %></li>
+        <li><%= link_to "Meu Perfil", perfil_path(current_user) %></li>
+        <li><%= link_to "Avatar", new_avatar_path %></li>
+        <li><%= link_to "Meus Dados", edit_user_path %></li>
+        <li><%= link_to "Trocar senha", new_password_path(current_user) %></li>
+      </ul>
+    </li>
+    <li class="meu_perfil">
+      <%= link_to "Associar conta &#9660;".html_safe, perfil_path(current_user) %>
+      <ul>
+        <li><%= link_to "Facebook", user_omniauth_authorize_path(:facebook) %></li>
+      </ul>
+    </li>
+    <li><%= link_to "Sair", destroy_user_session_path, :method => :delete %></li>
+<% else -%>
+    <li>Novo por aqui? <%= link_to "Registre-se", new_user_registration_url %> ou faça <%= link_to "Login", new_user_session_url %>.</li>
+<% end -%>
+  </ul>
+</div>

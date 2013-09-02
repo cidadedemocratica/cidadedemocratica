@@ -1,0 +1,45 @@
+<div id="filtros">
+  <h3>Filtrar</h3>
+
+  <%= filtro("Estado",
+             @estados.collect { |estado_abrev, name, total|
+               link_to_topicos_with_context "#{name} (#{total})",
+                                            :estado_abrev => estado_abrev.downcase,
+                                            :cidade_slug => nil,
+                                            :bairro_id => nil
+             },
+             :expandido => true) if @estados.present? %>
+
+  <%= filtro("Cidade",
+             @cidades.collect { |estado_abrev, cidade_slug, name, total|
+               link_to_topicos_with_context "#{name} (#{total})",
+                                            :estado_abrev => estado_abrev.downcase,
+                                            :cidade_slug => cidade_slug,
+                                            :bairro_id => nil
+             },
+             :expandido => true) if @cidades.present? %>
+
+  <%= filtro("Bairro",
+             @bairros.collect { |estado_abrev, cidade_slug, bairro_id, name, total|
+               link_to_topicos_with_context "#{name} (#{total})",
+                                            :estado_abrev => estado_abrev.downcase,
+                                            :cidade_slug => cidade_slug,
+                                            :bairro_id => bairro_id
+             },
+             :expandido => true) if @bairros.present? %>
+
+  <%= filtro("Proponente",
+             @topicos_user_stats.collect { |type, total|
+               link_to_topicos_with_context("#{type.underscore.pluralize.humanize.gsub(/(publicos)/,'públicos')} (#{total})",
+                                            { :user_type => type.to_s.underscore.pluralize.downcase },
+                                            :class => "#{type.to_s.underscore.downcase}")
+             }) if @topicos_user_stats.present? %>
+
+  <%= filtro("Tipo",
+             @topicos_stats.collect { |type, total|
+               link_to_topicos_with_context("#{type} (#{total})",
+                                            { :topico_type => type.pluralize.downcase },
+                                            :class => type.downcase)
+             }) if @topicos_stats.present? %>
+
+</div> <!-- filtros -->

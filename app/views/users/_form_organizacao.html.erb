@@ -1,0 +1,34 @@
+<div class="grid_16 alpha omega">
+  <p>Todos os dados abaixo devem obrigatoriamente ser preenchidos (exceto aqueles indicados como opcionais).</p>
+  <div class="rounded clearfix">
+    <div class="grid_5 alpha">
+      <h3>Dados básicos</h3>
+      <%= render :partial => "form_organizacao_dados_obrigatorios",
+                 :locals => { :f => f } %>
+    </div>
+    <div class="grid_6">
+      <h3>Contato</h3>
+      <%= render :partial => "form_user_dados_complementares",
+                 :locals => { :f => f } %>
+    </div>
+    <div class="grid_4 omega rounded rounded_beige">
+      <h3>Por que preencher isto?</h3>
+      <p>As informações ao lado servem para identificarmos você no Cidade Democrática.<br />
+         Elas também permitem que outras pessoas saibam quem você é - e como contactá-lo para aprofundar as discussões iniciadas aqui.</p>
+      <p>Portanto, preencha com cuidado e exatidão os dados solicitados.</p>
+    </div>
+
+    <div class="grid_16 alpha omega">
+      <div class="grid_5 omega">
+        <h3>Localização</h3>
+        <%= render :partial => "locais/form_local",
+                   :locals => { :local => @local } %>
+      </div>
+      <div class="grid_10 alpha">
+        <h3>Descrição</h3>
+        <%= render :partial => "form_user_dados_descricao",
+                   :locals => { :f => f } %>
+      </div>
+    </div>
+  </div>
+</div>

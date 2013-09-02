@@ -1,0 +1,16 @@
+Olá <%= @joining_topic.author.nome %>,
+
+Antes de aprovar a união das suas propostas, o outro autor sugeriu algumas mudanças:
+
+<%= @suggestion %>
+
+--
+
+Faça as mudanças que você achar pertinente e depois envie novamente para avaliação do outro autor.
+<%= preview_joining_topic_url(@joining_topic) %>
+
+<% if @date.present? %>
+Não se esqueça, você tem até o dia <%= l @date %> para que a união seja aceita.
+<% end %>
+
+<%= rodape %>

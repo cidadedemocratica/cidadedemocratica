@@ -1,0 +1,190 @@
+<% title "#{@topico.display_name}: #{@topico.titulo.nome_proprio}" %>
+
+  <div class="grid_12 alpha">
+    <div id="topico" class="topico topico_main <%= @topico.display_name.underscore %> clearfix">
+      <%= render :partial => "divulgacao_chamada" if flash[:notice] and flash[:notice].include?("Congrat") %>
+
+      <p class="tipo_topico"><%= @topico.display_name %></p>
+
+      <div class="titulo">
+        <h2><%= @topico.titulo %></h2>
+      </div>
+
+      <div class="bar">
+        <p class="local">
+          <%= descrever_locais(@topico.locais) %>
+          <%= link_to("[Editar]", { :controller => "topicos",
+                                    :action => "localizacao",
+                                    :topico_slug => @topico.to_param },
+                                  :title => "Editar localização do tópico",
+                                  :class => "edit_lnk") if (user_signed_in? and ((@topico.user == current_user) or current_user.admin?)) -%>
+        </p>
+        <p class="tags">
+          <%= @topico.tags.collect{|t| link_to(t.name, { :action => "index",
+                                                         :tag_id => t.id,
+                                                         :topico_type => @topico.type.downcase.pluralize },
+                                                         :title => "Veja demais #{@topico.nome_do_tipo} de '#{t.name}'") }.join(", ").html_safe %>
+          <%= link_to("[Editar]", { :action => "tags",
+                                    :topico_slug => @topico.to_param },
+                                  :title => "Editar tags do tópico",
+                                  :class => "edit_lnk") if (user_signed_in? and ((@topico.user == current_user) or current_user.admin?)) -%>
+
+        </p>
+      </div>
+      <div class="conteudo rounded clearfix">
+        <div class="perfil_topico">
+          <%= ficha_do_usuario(@topico.user) %>
+          <%= ficha_do_usuario(@joining.coauthor) if show_coauthor? %>
+        </div>
+        <div class="descricao">
+          <%
+            tmp = auto_link(simple_format(escape_once(@topico.descricao)), :urls, :target => "_blank" ) do |text|
+              truncate(text, :length => 25)
+            end
+          -%>
+          <%= tmp.html_safe %>
+          <% if @topico.pode_editar? and is_owner_or_admin? @topico %>
+            <%= link_to "[Editar proposta]", {  :controller => "topicos",
+                                                :action => "edit",
+                                                :topico_slug => @topico.to_param },
+                                                :class => "edit_lnk" -%>
+          <% end %>
+          <div class="opcoes">
+            <% if not @links.empty? or is_owner_or_admin? @topico -%>
+              <h3 class="title">
+                Links relacionados:
+                <% if is_owner_or_admin? @topico %>
+                  <%= link_to " [+Links]", :controller => "links", :action => "index", :topico_slug => @topico.to_param %>
+                <% end %>
+              </h3>
+              <% if @links and not @links.empty? -%>
+                <ul class="links">
+                  <% @links.each do |l| %>
+                    <li><%= link_to l.nome.capitalize, l.url, {:target => "blank"} %></li>
+                  <% end %>
+                </ul>
+              <% else %>
+              <p>Adicione links para a sua proposta no link acima.</p>
+              <% end %>
+            <% end %>
+
+            <% if not @topico.imagens.empty? or is_owner_or_admin? @topico -%>
+              <h3 class="title">
+                Fotos:
+                <% if is_owner_or_admin? @topico %>
+                  <%= link_to " [+Fotos]", :controller => "imagens", :action => "index", :topico_slug => @topico.to_param %>
+                <% end %>
+              </h3>
+              <% if @topico.imagens and not @topico.imagens.empty? -%>
+                <ul class="photos">
+                  <% for imagem in @topico.imagens %>
+                    <li><%= link_to image_tag(imagem.public_filename(:small)), imagem.public_filename, :title => imagem.legenda, :rel => "lightbox[galeria]", :class => "thumb" %></li>
+                  <% end %>
+                </ul>
+              <% else %>
+              <p>Adicione fotos para a sua proposta no link acima.</p>
+              <% end %>
+            <% end %>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <%= render :partial => "content_buttons" %>
+
+    <h3 class="pink">
+      Comentários
+      <% if @comentarios.present? %>
+        <%= link_to_function "[+]",
+                        visual_effect(:toggle_blind, "comentarios_estatisticas", :duration => 1),
+                        :id => "link_comentarios_estatisticas" %>
+      <% end %>
+    </h3>
+    <%= comentarios_estatisticas @comentarios_all, @topico %>
+    <% if joining_topico_to? %>
+      <div class="joining_comments rounded rounded_beige">
+        <p>Este tópico é fruto de uma união e os comentários foram mantidos nos tópicos originais:</p>
+        <ul class="topics">
+          <li><%= link_to @joining.author_topico.titulo, topico_path(@joining.author_topico) %></li>
+          <li><%= link_to @joining.coauthor_topico.titulo, topico_path(@joining.coauthor_topico) %></li>
+        </ul>
+      </div>
+    <% end %>
+    <% if @comentarios.present? or @topico.comments_allowed? %>
+      <%= comentarios @comentarios %>
+      <%= will_paginate @comentarios %>
+    <% else %>
+      <p class="rounded rounded_beige">Este tópico não teve comentários.</p>
+    <% end %>
+  </div><!-- content grid_12 -->
+
+  <div class="grid_4 omega sidebar">
+    <%= render :partial => "shared/action_buttons" %>
+    <% if @topico.competition.present? %>
+      <%= render :partial => "splash_competition" %>
+    <% end %>
+
+    <%= render :partial => "joining_info" %>
+
+    <%= render :partial => "support_buttons" %>
+
+    <div id="resumo_de_atividades" class="resumo clearfix rounded">
+      <p class="qtd"><%= @topico.comments_count %></p>
+      <p class="sobre"><%= pluralize_without_count(@topico.comments_count, "Comentário", "Comentários") %></p>
+
+      <p class="qtd"><%= @topico.seguidores_count %></p>
+      <p class="sobre"><%= pluralize_without_count(@topico.seguidores_count, "Segue", "Seguem") %></p>
+
+      <% if @topico.can_be_supported? %>
+        <p class="qtd"><%= @topico.adesoes_count %></p>
+        <p class="sobre"><%= pluralize_without_count(@topico.adesoes_count, "Apoia", "Apoiam") %></p>
+      <% end %>
+
+      <% unless @topico.competition.present? %>
+        <p class="qtd"><%= distance_of_time_in_words_to_now(@topico.created_at).gsub(/aproximadamente/, "") %></p>
+        <p class="sobre">Criado</p>
+      <% end %>
+
+      <% unless @topico.competition.present? %>
+        <p class="qtd">
+        <% if @topico.ultima_atividade %>
+          <%= distance_of_time_in_words_to_now(@topico.ultima_atividade.created_at).gsub(/aproximadamente/, "") %>
+        <% else %>
+          ---
+        <% end %>
+        </p>
+        <p class="sobre">Última atividade</p>
+      <% end %>
+    </div>
+
+    <% if @topico.can_be_supported? %>
+      <%= render :partial => "adesoes_lista",
+                 :locals => {
+                 :usuarios => @topico.usuarios_que_aderem,
+                 :topico => @topico
+                } -%>
+    <% end %>
+
+    <h3><%= pluralize(@topicos_relacionados.length, "tópico relacionado", "tópicos relacionados") %></h3>
+    <div id="topicos_relacionados" class="rounded rounded_beige">
+      <%= render :partial => "topicos_relacionados",
+                 :locals => { :topicos_relacionados => @topicos_relacionados } %>
+    </div>
+    <!-- topicos_relacionados -->
+
+    <div id="denuncie">
+      <h3>Denuncie <%= image_tag("icones/denuncie.png") %></h3>
+      <p class="rounded rounded_beige"><b>Você achou que <%= @topico.nome_do_tipo(:demonstrativo => true) %> ou algum comentário é inapropriado?</b><br />
+         Então comunique-se conosco e faça já sua denúncia para a equipe do <b>cidade democrática</b>!
+        <% if user_signed_in? -%>
+        <%= link_to_modal_box "Denunciar", topico_denunciar_url(:topico_slug => @topico.to_param) %>
+        <% else -%>
+        <%= link_to_function "Denunciar", "alert('Cadastre-se já (ou efetue seu login) e faça sua denúncia: recurso exclusivo aos usuários do site.')" %>
+        <% end -%>
+        </p>
+    </div>
+    <!-- denuncie -->
+
+  </div><!-- sidebar -->

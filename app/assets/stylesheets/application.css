@@ -1,0 +1,38 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+
+ *= require 960/reset
+ *= require 960/960
+ *= require 960/text
+
+ *= require layout
+
+ *= require components/avatar_upload
+ *= require components/cloud
+ *= require components/competitions
+ *= require components/flash
+ *= require components/forms
+ *= require components/icons
+ *= require components/inspirations
+ *= require components/lightbox
+ *= require components/listas
+ *= require components/modalbox
+ *= require components/prizes
+ *= require components/topicos
+ *= require components/users
+ *= require components/will_paginate
+
+ *= require pages/competitions
+ *= require pages/home
+ *= require pages/imagens
+ *= require pages/inspirations
+ *= require pages/joining_topics
+ *= require pages/links
+ *= require pages/observatorios
+ *= require pages/topicos
+ *= require pages/users
+
+*/
+

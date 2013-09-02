@@ -1,0 +1,20 @@
+<fieldset class="dados_obrigatorios">
+  <ol>
+    <li>
+      <%= f.label :nome, "Nome" %>
+      <%= f.text_field :nome, :class => "texto" %>
+    </li>
+    <li>
+      <%= f.label :sexo, "Sexo" %>
+      <%= f.radio_button :sexo, "m", :class => "radio" %> masculino<br />
+      <%= f.radio_button :sexo, "f", :class => "radio" %> feminino<br />
+    </li>
+    <li>
+      <%= f.label :aniversario, "Data de nascimento" %>
+      <%= f.date_select :aniversario, :order => [ :day, :month, :year ],
+                      :start_year => 1920,
+                      :end_year => 1.year.ago.year,
+                      :default => 18.years.ago %>
+    </li>
+  </ol>
+</fieldset>

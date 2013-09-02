@@ -1,0 +1,19 @@
+<h2>Avatar de <%= @user.nome %></h2>
+
+<div style="float:left; margin-right:10px">
+  <%= perfil_avatar(@user, :version => :small) %>
+</div>
+
+<% if @user.imagem -%>
+<p>Esse é seu avatar padrão.<br />
+   <%= link_to image_tag("icones/delete.png")+" remover esse avatar (i.e. usar avatar padrão)?",
+            {
+              :controller => "avatar",
+              :action => "destroy"
+            },
+            :confirm => "Remover o avatar atual e retornar ao avatar padrão?" %></p>
+<% else -%>
+<p>Esse é seu avatar padrão.<br />
+   Personalize já seu avatar!</p>
+<% end -%>
+<%= render :partial => "novo_avatar" %>

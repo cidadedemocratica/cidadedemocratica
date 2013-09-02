@@ -1,0 +1,27 @@
+<% case @topico.type %>
+  <% when "Problema" %>
+    <h2>Aponte um problema</h2>
+  <% when "Proposta" %>
+    <% unless @competition %>
+    <h2>Faça sua proposta</h2>
+    <% else %>
+    <h2>Faça sua proposta para o concurso<br> <%= @competition.title %></h2>
+    <p>Case você deseje criar uma proposta que não pertence a este concurso, <%= link_to "clique aqui", novo_topico_path(:type => "proposta") %>.</p>
+    <% end %>
+<% end %>
+
+<%= render :partial => "topicos/passos_para_novo_topico" %>
+
+<div class="clearfix novo_topico">
+  <div class="grid_16 alpha omega" id="form_novo_topico">
+    <div class="rounded clearfix">
+      <%= form_for :topico, :url => localizar_novo_topico_path do |f| -%>
+        <%= render :partial => "form_topico", :locals => { :f => f } %>
+        <%= submit_tag "Continuar >", :id => "bot_continuar", :class => "btn btn-mini clearfix" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="grid_5 omega">
+    &nbsp;
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<% title "Criar observatório" %>
+<h1>Configurar observatório</h1>
+<%= error_messages_for :observatorio %>
+<%= form_tag criar_observatorio_url do %>
+  <%= render :partial => "form" %>
+  <div>
+    <%= submit_tag "Salvar", :class => 'btn' %> ou
+    <%= link_to "Cancelar", observatorio_url %>
+  </div>
+<% end %>

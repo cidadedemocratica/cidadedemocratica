@@ -1,0 +1,36 @@
+<div id="seletor_de_local_<%= d %>" class="seletor_de_local">
+  <%= link_to_function image_tag("icones/delete.png"),
+                       "$('seletor_de_local_#{d}').remove();",
+                       :title => "Remover este local das regiões observadas" %>
+  <%= hidden_field_tag "local[#{d}][pais_id]", 1 %>
+  <%= select_tag "local[#{d}][estado_id]", "<option></option>#{estados_options}".html_safe  %>
+  <span id="spinner_<%= d %>" class="spinner" style="display: none;"><%= image_tag("spinners/spinner.gif") %></span>
+  <%= select_tag "local[#{d}][cidade_id]", "<option></option>#{cidades_options}".html_safe, :class => "cidade" %>
+  <%= link_to_function "Escolher um bairro",
+                       "$('local_#{d}_seletor_de_bairro').show(); $('link_escolher_#{d}_seletor_de_bairro').hide();",
+                       :id => "link_escolher_#{d}_seletor_de_bairro",
+                       :style => (bairro_id ? "display: none;" : "" ) %>
+  <span id="local_<%= d %>_seletor_de_bairro"<% if !bairro_id %> style="display: none;"<% end %>>
+    <%= select_tag "local[#{d}][bairro_id]", "<option></option>#{bairros_options}".html_safe, :class => "bairro" %>
+    <%= link_to_function "Quero em toda a cidade",
+                         "$('local_#{d}_seletor_de_bairro').hide(); $('local_#{d}_bairro_id').selectedIndex = -1; $('link_escolher_#{d}_seletor_de_bairro').show();",
+                         :id => "link_fechar_#{d}_seletor_de_bairro" %>
+  </span>
+  <%= observe_field "local_#{d}_estado_id",
+                    :update => "local_#{d}_cidade_id",
+                    :url => {
+                      :controller => "locais",
+                      :action => "cidades_options_for_select"
+                    },
+                    :with => "estado_id",
+                    :before => "$('spinner_#{d}').show();",
+                    :complete => "$('spinner_#{d}').hide(); $('local_#{d}_cidade_id').selectedIndex = -1; $('local_#{d}_bairro_id').selectedIndex = -1;" -%>
+  <%= observe_field "local_#{d}_cidade_id",
+                    :update => "local_#{d}_bairro_id",
+                    :url => {
+                      :controller => "locais",
+                      :action => "bairros_options_for_select"
+                    },
+                    :with => "cidade_id",
+                    :complete => "$('local_#{d}_bairro_id').selectedIndex = -1;" -%>
+</div>

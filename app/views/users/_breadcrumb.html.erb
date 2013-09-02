@@ -1,0 +1,64 @@
+<ul id="breadcrumb" class="clearfix">
+  <li>
+    <h1><%= link_to_usuarios_with_context "Usuários",
+                                          :estado_abrev => nil,
+                                          :cidade_slug => nil,
+                                          :bairro_id => nil,
+                                          :user_type => nil %></h1>
+  </li>
+<% if params[:user_type] and @users.present? -%>
+  <li>
+    <span class="separador">&raquo;</span>
+    <h2>
+      <%= link_to_usuarios_with_context @users.first.nome_do_tipo.pluralize,
+                                          :action => "index",
+                                          :estado_abrev => nil,
+                                          :cidade_slug => nil,
+                                          :bairro_id => nil,
+                                          :user_type => params[:user_type] %>
+    </h2>
+  </li>
+<% end %>
+<% if @estado %>
+  <li>
+    <span class="separador">&raquo;</span>
+    <h2 class="localizacao">
+      <%= link_to_usuarios_with_context @estado.abrev.upcase,
+                                        :action => "index",
+                                        :estado_abrev => @estado.slug,
+                                        :cidade_slug => nil,
+                                        :bairro_id => nil,
+                                        :user_type => params[:user_type] %>
+    </h2>
+  </li>
+<% end %>
+
+<% if @cidade -%>
+  <li>
+    <span class="separador">&raquo;</span>
+    <h3 class="localizacao">
+      <%= link_to_usuarios_with_context @cidade.nome,
+                                        :action => "index",
+                                        :estado_abrev => @cidade.estado.slug,
+                                        :cidade_slug => @cidade.slug,
+                                        :bairro_id => nil,
+                                        :user_type => params[:user_type] %>
+    </h3>
+  </li>
+<% end %>
+
+<% if @bairro -%>
+  <li>
+    <span class="separador">&raquo;</span>
+    <h4 class="localizacao">
+      <%= link_to_usuarios_with_context @bairro.nome,
+                                        :action => "index",
+                                        :estado_abrev => @bairro.cidade.estado.slug,
+                                        :cidade_slug => @bairro.cidade.slug,
+                                        :bairro_id => @bairro.id,
+                                        :user_type => params[:user_type] %>
+    </h4>
+  </li>
+<% end %>
+
+</ul> <!-- breadcrumb -->

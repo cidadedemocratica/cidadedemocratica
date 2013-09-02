@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Relatório de atividades</title>
+  <%= stylesheet_link_tag "report_base" %>
+</head>
+<body>
+  <%= image_tag "logo-cidade-democratica.png" %>
+
+  <h1 class="main_title">Relatório de atividades</h1>
+
+  <div class="manifesto">
+    <h2 class="subtitle">Período</h2>
+    <p><%= l @report.from, :format => :long %> a <%= l @report.to, :format => :long %></p>
+
+    <h2 class="subtitle">Tags analisadas</h2>
+    <p><%= @report.tags.join(", ") %></p>
+
+    <% if @report.competition %>
+      <h2 class="subtitle">Concurso</h2>
+      <p><%= @report.competition %></p>
+    <% end %>
+
+    <h2 class="subtitle">Território</h2>
+    <%= "<p>Cidade(s): #{@report.cities.join(", ")}</p>".html_safe if @report.cities %>
+    <%= "<p>Estado(s): #{@report.states.join(", ")}</p>".html_safe if @report.states %>
+    <%= "<p>Em todo o país</p>".html_safe if not @report.cities and not @report.states %>
+  </div>
+
+  <script src="https://www.google.com/jsapi"></script>
+  <script>
+    google.load("visualization", "1", {packages:["corechart"]});
+  </script>
+
+  <%= render "base_summary" %>
+  <%= render "base_locals" %>
+  <%= render "base_topics" %>
+  <%= render "base_users" %>
+</body>
+</html>

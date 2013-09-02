@@ -1,0 +1,18 @@
+<div id="chamada_para_divulgacao">
+  <h5>Parabéns! <%= @topico.nome_do_tipo(:possessivo => true).capitalize -%> foi cadastrad<%= @topico.artigo_definido -%> com sucesso!</h5>
+  <p>Divulgue agora seu tópico em diversos canais da web. Ao aumentar a visibilidade, o debate se intensifica e todos ganham com isso.</p>
+  <%= render :partial => "divulgacao_addthis", 
+             :locals => { 
+               :mostrar => true,
+               :name_suffix => "_for_flash_message"
+              } -%>
+  <p style="margin-bottom:0;">Você também pode:</p>
+  <ol>
+    <li>Inserir fotos que ilustrem <%= @topico.nome_do_tipo(:artigo_definido => true) -%> aqui descrit<%= @topico.artigo_definido -%>.</li>
+    <li>Relacionar links de informações importantes a respeito <%= @topico.nome_do_tipo(:demonstrativo => true) -%></li>
+  </ol>
+  <p class="fechar">
+    <%= link_to_function "Fechar [x]", 
+                         visual_effect(:slide_up, "chamada_para_divulgacao", :duration => 1), 
+                         :id => "lnk_fechar" -%></p>
+</div>

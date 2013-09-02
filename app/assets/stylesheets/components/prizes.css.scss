@@ -1,0 +1,21 @@
+.prizes_list {
+  h3 {
+    margin: 5px 0 10px 0;
+  }
+  .prize {
+    margin-bottom: 20px;
+  }
+  .topico {
+    margin-bottom: 20px;
+  }
+  .prize_panel {
+    margin-bottom: 5px;
+    .offered {
+      float: right;
+    }
+    .description {
+      display: block;
+      margin-right: 130px;
+    }
+  }
+}

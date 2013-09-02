@@ -1,0 +1,22 @@
+<h1>Complete seu cadastro!</h1>
+
+<%= error_messages_for :user_dado %>
+<%= form_for :user_dado, :url => "/completar_cadastro" do |f| -%>
+<p><%= label_tag 'email' %><br/>
+<b><%= @user.email %></b></p>
+
+<p><%= label_tag 'nome' %><br/>
+<%= f.text_field :nome %></p>
+
+<p><%= label_tag 'sexo' %><br/>
+<%= f.radio_button :sexo, 'm' %> masculino <br />
+<%= f.radio_button :sexo, 'f' %> feminino <br /></p>
+
+<p><%= label_tag 'aniversario', 'Aniversário' %><br/>
+<%= f.date_select :aniversario, :order => [:day, :month, :year], 
+                                :start_year => 1920, 
+                                :end_year => 1.year.ago.year,
+                                :default => 18.years.ago %></p>
+
+<p><%= submit_tag 'Salvar' %></p>
+<% end -%>

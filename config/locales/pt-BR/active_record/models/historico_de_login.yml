@@ -1,0 +1,11 @@
+'pt-BR':
+  activerecord:
+    models:
+      historico_de_login:
+        one: Histórico de Login
+        other: Histórico de Logins
+    attributes:
+      historico_de_login:
+        ip: IP
+        user: Usuário
+        created_at: Quando

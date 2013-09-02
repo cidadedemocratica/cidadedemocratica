@@ -1,0 +1,57 @@
+<h1>Comentários</h1>
+<p>
+  <%#= link_to "Criar novo usuário", new_user_registration_url, :target => "_blank" %>
+</p>
+<table class="crud">
+  <tr>
+    <th class="id">ID</th>
+    <th>Tipo</th>
+    <th>E-mail</th>
+    <th colspan="2">Ações</th>
+  </tr>
+<% for c in @comments %>
+  <tr>
+    <td class="id"><%= c.id %></td>
+    <td class="tipo <%= c.tipo %>"><%= image_tag("icones/#{c.tipo}.png") %></td>
+    <td class="<%= c.tipo %>">
+      <%
+			  tmp = auto_link(simple_format(escape_once(c.body)), :urls, :target => '_blank') do |text|
+          truncate(text, :length => 25)
+			  end
+			-%>
+			<div class="text"><%= tmp.html_safe -%></div>
+      <span class="cadastro_em">Postado por <%= link_to c.user.nome, perfil_url(:id => c.user.id), :target => "_blank" %> em <%= l c.created_at, :format => :short %><br />
+      <% topico = Comment.find_commentable('Topico', c.commentable_id) %>
+                                <span class="<%= topico.display_name.downcase %>"><%= topico.display_name %>:</span> <%= link_to(topico.titulo, topico_url(:topico_slug => topico.to_param), :target => "_blank") %>
+      </span>
+    </td>
+    <td>
+      <%= link_to "Remover", admin_comentario_path(c.id), :confirm => "Tem certeza?", :method => :delete %><br />
+    </td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @comments %>
+
+<style type="text/css" media="screen">
+
+.id { width: 36px; }
+.tipo { width: 40px; }
+.tipo .nome {
+  background-color: #ccc;
+  color: #666;
+  font-size: 11px;
+  font-family:Verdana, sans-serif;
+  padding: 2px 5px;
+  text-transform: lowercase;
+}
+.status { width: 16px; }
+.cadastro_em { font-size: 11px; color: #999; }
+span.proposta { color:#82CC40; }
+span.problema { color:#F38077; }
+
+td.ideia div.text { background-color: #F6E172; }
+td.comentario div.text { background-color: #809FFF; }
+td.pergunta div.text { background-color: #F1C4BD; }
+td.resposta div.text { background-color: #89CE7E; }
+</style>

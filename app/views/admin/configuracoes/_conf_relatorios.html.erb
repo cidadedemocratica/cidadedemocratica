@@ -1,0 +1,19 @@
+<ul class="sans-bullets bem-distribuidos">
+  <fieldset class="grupo-simples">
+    <legend>Resumo</legend>
+    <li>
+      <%= label_tag "Nuvem de conceitos (termos excluídos)" %>
+      <%= text_area_tag "settings[relatorios_termos_excluidos]", @settings["relatorios_termos_excluidos"], :cols => 80, :rows => 5 -%>
+      <p class="dica">Separe as palavras com vírgulas</p>
+    </li>
+  </fieldset>
+  
+  <fieldset class="grupo-simples">
+    <legend>Territórios</legend>
+    <li>
+      <%= label_tag "Número de territórios relevantes a serem detalhados" %>
+      <%= text_field_tag "settings[relatorio_n_territorios_relevantes]", @settings["relatorio_n_territorios_relevantes"], :size => 3 -%>
+      <p class="dica">Use apenas números</p>
+    </li>
+  </fieldset>
+</ul>

@@ -1,0 +1,26 @@
+<p class="ajuda">
+  Estes dados estarão <b>visíveis</b> em seu perfil.<br />
+  Ou seja, telefone, fax, email público e site <b>serão divulgados</b>.
+  </p>
+<fieldset class="dados_complementares">
+  <ol>
+    <li style="float:left;margin-right:30px">
+      <%= f.label :fone, "Telefone" %>
+      <%= f.text_field :fone, :class => "texto", :maxlength => 14 %>
+      <p class="ajuda">Informe o DDD.<br />Ex: (11) 8765-4321</p>
+    </li>
+    <li>
+      <%= f.label :fone, "Fax" %>
+      <%= f.text_field :fax, :class => "texto", :maxlength => 14 %>
+      <p class="ajuda">Informe o DDD.<br />Ex: (11) 8765-4321</p>
+    </li>
+    <li>
+      <%= f.label :email, "E-mail público de contato" %>
+      <%= f.text_field :email_de_contato, :class => "texto" %>
+    </li>
+    <li>
+      <%= f.label :site_url, "Site, blog etc." %>
+      <%= f.text_field :site_url, :class => "texto" %>
+    </li>
+  </ol>
+</fieldset>

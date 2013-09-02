@@ -1,0 +1,25 @@
+"pt-BR":
+  activerecord:
+    models:
+      topico:
+        one: Tópico
+        other: Tópicos
+    errors:
+      models:
+        topico:
+          attributes:
+            descricao:
+              blank: "não pode ser vazia"
+    attributes:
+      topico:
+        titulo: Título
+        descricao: Descrição
+        competition: Concurso
+        type: Tipo
+        adesoes_count: Apoios
+        comments_count: Comentários
+        seguidores_count: Seguidores
+        created_at: Criado em
+        updated_at: Atualizado em
+        user_id: Usuário
+        competition_id: Concurso

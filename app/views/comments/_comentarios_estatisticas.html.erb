@@ -1,0 +1,17 @@
+<% if comentarios and not comentarios.empty? -%>
+<div id="comentarios_estatisticas" class="clearfix rounded rounded_beige" style="display: none">
+  <ul>
+  <% comentarios.group_by(&:tipo).each do |tipo, comentarios_agrupados| -%>
+    <li><%= image_tag("icones/#{tipo}.png") %> <%= pluralize(comentarios_agrupados.size, tipo) %></li>
+  <% end -%>
+    <li><b><%= pluralize(comentarios.size, "discussão", "discussões") %></b></li>
+    <li><i>em <%= distance_of_time_in_words_to_now(topico.created_at) %></i></li>
+  </ul>
+  
+  <div id="temperatura">
+    <p>Fez-se o primeiro comentário <%= distance_of_time_in_words(topico.created_at, comentarios.last.created_at).gsub(/aproximadamente/,'cerca de') %> depois do tópico criado.</p>
+    <p>O último comentário foi feito há <%= distance_of_time_in_words_to_now(comentarios.first.created_at) %>.</p>
+    <p>Em média, <%= comentarios_estatisticas_media_por_tempo(topico.created_at, comentarios.size) %>.</p>
+  </div>
+</div>
+<% end -%>

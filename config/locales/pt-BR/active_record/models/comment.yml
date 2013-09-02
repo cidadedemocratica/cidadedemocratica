@@ -1,0 +1,12 @@
+'pt-BR':
+  activerecord:
+    models:
+      comment:
+        one: Comentário
+        other: Comentários
+    attributes:
+      comment:
+        body: Texto
+        user: Usuário
+        created_at: Criado em
+        updated_at: Alterado em

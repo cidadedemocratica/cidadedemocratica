@@ -1,0 +1,39 @@
+<div class="grid_5 alpha">
+  <div class="fazer_login rounded">
+    <h2>Fazer login</h2>
+    <p style="margin-bottom: 40px;">Digite e-mail, senha e entre!</p>
+    <%= render :partial => "users/form_login" %>
+  </div>
+</div>
+
+<div class="grid_6">
+  <div class="rounded cadastrar">
+    <h2>Cadastrar</h2>
+    <p>Digite e-mail, senha e confirme. Você receberá mais instruções em sua caixa de e-mails.</p>
+    <%= render :partial => "users/form_cadastro" %>
+  </div>
+</div>
+
+<div class="grid_5 omega">
+  <%= render :partial => "sessions/aviso_guardamos" %>
+  <%= error_messages_for :user,
+                         :header_message => "Opa!" %>
+  <% unless user_signed_in? %>
+    <%= link_to "Entrar com o Facebook", user_omniauth_authorize_path(:facebook), :class => "facebook_login" %>
+  <% end %>
+
+  <div class="rounded">
+    <ul id="lista_login">
+      <li><%= image_tag("login_pobrema.gif") %><br />
+				Reporte problemas de sua cidade</li>
+      <li><%= image_tag("login_poprosta.gif") %><br />
+				Proponha sugestões para problemas coletivos</li>
+      <li><%= image_tag("login_positivo.gif") %><br />
+				Apóie soluções, opine!</li>
+      <li><%= image_tag("login_ideia.gif") %><br />
+				Contribua com ideias, responda perguntas chaves</li>
+      <li><%= image_tag("login_foto.gif") %><br />
+				Localize, fotografe, documente suas ações</li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,173 @@
+/* Tags
+------------------------------------------------------------------------------
+*/
+
+a, a:visited {
+  color: blue;
+}
+
+/* Cabeçalho
+------------------------------------------------------------------------------
+*/
+
+#cabecalho {
+  position: relative;
+  background-color: #0A759E;
+  height: 85px;
+  color: white;
+}
+
+#cabecalho h1 {
+  padding: 15px 0 0 0;
+}
+
+#cabecalho p {
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+#cabecalho h1,
+#cabecalho p {
+  margin: 0;
+}
+
+#menu {
+  background-color: #EAE3C5;
+  margin-bottom: 20px;
+}
+
+#menu a,
+#menu a:visited {
+  text-decoration: none;
+}
+
+/* Mensagem sobre erro de validação.
+------------------------------------------------------------------------------
+*/
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+.fieldWithErrors label {
+  color: white;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid #D72A2A;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #FFE9E9;
+}
+
+#errorExplanation h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #D72A2A;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+#errorExplanation ul {
+  margin: 0;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+  margin-left: 30px;
+  margin-bottom: 10px;
+}
+
+/* Mensagens de sucesso, aviso e erro.
+------------------------------------------------------------------------------
+*/
+
+.notice, .error, .warning, .info {
+  line-height: 1.5em;
+  margin: 0 auto 5px;
+}
+
+.notice {
+  border: 2px solid #9c9;
+  background: #E2F9E3;
+  color: #060;
+}
+
+.error {
+  border: 2px solid #c68484;
+  background: #FCC;
+  color: #c00;
+}
+
+.warning {
+  border: 2px solid #dd0;
+  background: #FFC;
+  color: #000;
+}
+
+.info {
+  border: 2px solid #82c2d4;
+  background: #EBF5F8;
+  color: #000;
+}
+
+#flash_message p {
+  padding: 10px;
+  margin: 0;
+}
+
+#flash_message {
+  margin-bottom: 20px;
+}
+
+.flash {
+  margin: 0 0 2px 0; padding: 0;
+}
+
+/* Tabs e seus elementos
+------------------------------------------------------------------------------
+*/
+
+fieldset.grupo-simples {
+  border:1px dotted #aaa;
+  padding:0 0 0 10px;
+}
+fieldset.grupo-simples legend {
+  margin:0;
+  padding:0 10px;
+}
+
+fieldset.grupo-simples ul li label {
+  display:inline;
+}
+
+ul.sans-bullets {
+  list-style:none;
+}
+
+ul.bem-distribuidos {
+  margin:0;
+}
+ul.bem-distribuidos li {
+  margin:10px 0;
+}
+
+li.voando {
+  float: left;
+  width: 150px;
+}
+
+/* Clear fix hack
+------------------------------------------------------------------------------
+*/
+
+.clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+/* Hides from IE-mac \*/
+* html .clearfix { height: 1%; }
+/* End hide from IE-mac */

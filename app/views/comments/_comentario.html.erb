@@ -1,0 +1,33 @@
+<% pode_editar_comentario = (user_signed_in? and (current_user == @comentario.user) and ((Time.now - @comentario.created_at) < 15.minutes)) -%>
+<div class="assunto"><a name="<%= @comentario.id %>" />
+  <%= ficha_do_usuario(@comentario.user) if @comentario.user -%>
+  <div class="comentario_topico <%= @comentario.tipo %> clearfix">
+    <p class="identificador">
+      <%= link_to image_tag("icones/delete.png", :class => "my_icon"),
+                  { :controller => "admin/comentarios",
+                    :action => "destroy",
+                    :id => @comentario.id,
+                    :topico_id => @topico.id },
+                  :title => "Administrador: Remover comentário",
+                  :confirm => "Deseja mesmo remover este comentário (id = #{@comentario.id})?",
+                  :method => :delete if (user_signed_in? and current_user.admin?) -%>
+      Deixou um<%= (@comentario.tipo=="ideia" or @comentario.tipo=="pergunta" or @comentario.tipo=="resposta") ? "a" : "" %> <b><%= @comentario.tipo.gsub(/comentario/, "comentário") %></b>
+      em <%= l @comentario.created_at, :format => "%d/%m/%Y" %> (há <%= distance_of_time_in_words_to_now(@comentario.created_at) %>)
+      <%= image_tag("icones/#{@comentario.tipo}.png", :class => "my_icon") %>
+      <%= tag("br")+content_tag(:span, "Clique aqui, em até 15min., para ajustar sua contribuição", :id => "clique_aqui_#{@comentario.id}") if pode_editar_comentario -%>
+    </p>
+    <div class="simple_format">
+      <%
+        tmp = auto_link(simple_format(escape_once(@comentario.body)), :urls, :target => "_blank") do |text|
+          truncate(text, :length => 25)
+        end
+      -%>
+      <span id="texto_do_comentario_<%= @comentario.id %>"><%= tmp.html_safe -%></span>
+      <% if pode_editar_comentario -%>
+      <script type="text/javascript" charset="utf-8">
+        new Ajax.InPlaceEditor('texto_do_comentario_<%= @comentario.id %>', '/comments/set_comentario_body/<%= @comentario.id %>', {cancelText:'Cancelar', clickToEditText:'Clique para editar', externalControl:'clique_aqui_<%= @comentario.id %>', okText:'Salvar', rows:4, savingText:'Salvando...', onComplete: function() { location.href='/topico/<%= @topico.to_param %>'; } })
+      </script>
+      <% end -%>
+    </div>
+  </div>
+</div>

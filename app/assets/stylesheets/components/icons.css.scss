@@ -1,0 +1,115 @@
+.facebook_login {
+  display: block;
+  line-height: 46px;
+  width: 280px;
+  margin-bottom: 20px;
+  background: image-url("facebook_login.png");
+  text-indent: -9000px;
+  &:hover {
+    background-position: 0 -47px;
+  }
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  margin-top: 1px;
+  *margin-right: .3em;
+  line-height: 14px;
+  vertical-align: text-top;
+  background-image: image-url("glyphicons.png");
+  background-position: 14px 14px;
+  background-repeat: no-repeat;
+  float: left;
+}
+
+.icon-ask {
+  background-position: -194px -923px;
+}
+
+.icon-check {
+  background-position: -290px -970px;
+}
+
+.icon-print-shoes {
+  background-position: -50px -1542px;
+}
+
+.icon-idea {
+  background-position: -193px -297px;
+}
+.icon-plus-sign {
+  background-position: -3px -923px;
+}
+
+.icon-minus-sign {
+  background-position: 2px -46px;
+}
+
+.icon-search {
+  background-position: -343px -103px;
+}
+
+.icon-comment {
+  background-position: -243px -1163px;
+}
+
+.icon-thumbs-up {
+  background-position: -147px -1643px;
+}
+
+.icon-thumbs-down {
+  background-position: -120px -144px;
+}
+
+.icon-hand-right {
+  background-position: -144px -144px;
+}
+
+.icon-hand-left {
+  background-position: -168px -144px;
+}
+
+.icon-hand-up {
+  background-position: -192px -144px;
+}
+
+.icon-hand-down {
+  background-position: -216px -144px;
+}
+
+.icon-male {
+  background-position: -355px -90px;
+}
+
+.icon-female {
+  background-position: -445px -90px;
+}
+
+[class^="btn-icon-"],
+[class*=" btn-icon-"] {
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  margin-top: 1px;
+  *margin-right: .3em;
+  margin-right: .3em;
+  line-height: 14px;
+  vertical-align: text-top;
+  background-image: image-url("glyphicons-blue.gif");
+  background-repeat: no-repeat;
+  background-position: 14px 14px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  float: left;
+  display: inline-block;
+}
+.btn-icon-follow {background-position: -47px -1537px;}
+.btn-icon-hand-up {background-position: -145px -1633px;}
+.btn-icon-megaphone {background-position: -242px -1680px;}
+.btn-icon-arroba {background-position: -195px -1680px;}
+.btn-icon-hand-clap {background-position: -336px -770px;}
+.btn-icon-union {background-position: -434px -386px;}

@@ -1,0 +1,55 @@
+<div class="section">
+  <h2 class="title">Territórios</h2>
+  <p>Veja os territórios mais relevantes e um resumo das atividades de cada um.</p>
+
+  <h3 class="subtitle">Territórios com mais atividade</h3>
+  <table class="crud">
+    <tr>
+      <th>Territorio</th>
+      <th>Total</th>
+    </tr>
+    <tr>
+      <td><b>Em todo o recorte</b></td>
+      <td><b><%= @activities_stats["total"] %> atividades</b></td>
+    </tr>
+    <% @locals.each do |local, data| %>
+      <tr>
+        <td><%= local %></td>
+        <td><%= data["total"] %> atividades (<%= number_to_percentage(data["total"].to_f / @activities_stats["total"] * 100, :precision => 1) %>)</td>
+      </tr>
+    <% end %>
+  </table>
+
+  <% @locals.each do |local, data| -%>
+    <h3 class="subtitle">Atividades de <%= local %></h3>
+    <table class="crud">
+      <tr>
+        <th>Atividades</th>
+        <th width="250">Propostas e Problemas</th>
+        <th>Apoios</th>
+        <th>Seguidores</th>
+        <th>Comentários</th>
+        <th width="250">Pessoas e Entidades</th>
+      </tr>
+      <tr>
+        <td><%= data["total"] %></td>
+        <td>
+          Total: <%= data["topicos_count"] %><br>
+          Propostas: <%= data["propostas_count"] %><br>
+          Problemas: <%= data["problemas_count"] %><br>
+
+          <%= pie_graph({ "Propostas" => data["propostas_count"],
+                          "Problemas" => data["problemas_count"] }) %>
+        </td>
+        <td><%= data["adesoes_count"] %></td>
+        <td><%= data["seguidos_count"] %></td>
+        <td><%= data["comments_count"] %></td>
+        <td>
+          <%= data["users_stats"].map { |name, count| "#{name.capitalize}: #{count}" }.join("<br>").html_safe %>
+          <%= pie_graph(data["users_stats"].reject { |k| k == "total" }) %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+
+</div>

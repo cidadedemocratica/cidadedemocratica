@@ -1,0 +1,16 @@
+Olá <%= @user.nome %>,
+
+<%= @comment.user.nome %> deixou o seguinte comentário n<%= @topico.nome_do_tipo(:artigo => :definido) %> "<%= @topico.titulo %>":
+
+<%= @comment.body %>
+
+Conheça o perfil de <%= @comment.user.nome %> em:
+http://www.cidadedemocratica.org.br/perfil/<%= @comment.user.id.to_s %>
+
+Registrado em <%=l @comment.created_at, :format => "%d de %B de %y às %H:%M" %>.
+<% if @topico.is_seguido(@user) -%>
+
+Você recebeu este e-mail pois está seguindo <%= @topico.nome_do_tipo(:demonstrativo => true) %>.
+
+<% end -%>
+<%= rodape %>

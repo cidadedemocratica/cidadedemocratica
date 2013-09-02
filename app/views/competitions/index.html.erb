@@ -1,0 +1,19 @@
+<% if @running_competitions.size > 0 %>
+<div class="competitions_list">
+  <h1 class="title">Concursos ativos</h1>
+  <ul class="running_competitions">
+    <%= render :partial => "competitions/running_competitions",
+      :collection => @running_competitions, :as => :competition %>
+  </ul>
+</div>
+<% end %>
+
+<% if @finished_competitions.size > 0 %>
+<div class="competitions_list">
+  <h1 class="title">Concursos concluídos</h1>
+  <ul class="finished_competitions">
+    <%= render :partial => "competitions/finished_competitions",
+      :collection => @finished_competitions, :as => :competition %>
+  </ul>
+</div>
+<% end %>

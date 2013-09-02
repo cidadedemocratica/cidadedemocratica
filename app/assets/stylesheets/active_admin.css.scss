@@ -1,0 +1,77 @@
+// SASS variable overrides must be declared before loading up Active Admin's styles.
+//
+// To view the variables that Active Admin provides, take a look at
+// `app/assets/stylesheets/active_admin/mixins/_variables.css.scss` in the
+// Active Admin source.
+//
+// For example, to change the sidebar width:
+// $sidebar-width: 242px;
+
+// Active Admin's got SASS!
+@import "active_admin/mixins";
+@import "active_admin/base";
+
+// Overriding any non-variable SASS must be done after the fact.
+// For example, to change the default status-tag color:
+//
+//   body.active_admin {
+//      .status_tag { background: #6090DB; }
+//   }
+//
+// Notice that Active Admin CSS rules are nested within a
+// 'body.active_admin' selector to prevent conflicts with
+// other pages in the app. It is best to wrap your changes in a
+// namespace so they are properly recognized. You have options
+// if you e.g. want different styles for different namespaces:
+//
+// .active_admin       applies to any Active Admin namespace
+// .admin_namespace    applies to the admin namespace (eg: /admin)
+// .other_namespace    applies to a custom namespace named other (eg: /other)
+
+@import "chosen";
+
+body.active_admin {
+  .fieldset_panel {
+    margin-bottom: 20px;
+  }
+
+  // active tags
+  .active_tags {
+    .macro_tags_buttons {
+      padding-top: 0;
+      input:first-child {
+        margin-left: 20%;
+      }
+    }
+    .tags {
+      width: 78%;
+      height: 200px;
+    }
+    .tags_tools {
+      padding-top: 0;
+    }
+    .tags_buttons, .tags_count {
+      margin-left: 20%;
+    }
+    &.loading {
+      opacity: .4;
+    }
+  }
+
+  // chosen
+  .input_chosen {
+    width: 76%;
+  }
+  .chzn-container-multi .chzn-choices {
+    border: 1px solid #c9d0d6;
+    @include rounded;
+    background: white;
+  }
+  .chzn-container-multi .chzn-choices input:focus {
+    @include no-shadow;
+  }
+  .chzn-container-active .chzn-choices {
+    border: 1px solid #99a2aa;
+    @include shadow(0,0,4px,#99a2aa);
+  }
+}

@@ -1,0 +1,21 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=960, initial-scale=1.0">
+<%= csrf_meta_tag %>
+
+<%= display_meta_tags %>
+
+<title><%= title "Cidade Democrática" %></title>
+
+<link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon" />
+
+<%= stylesheet_link_tag "application" %>
+<%= javascript_include_tag "application" %>
+
+<% if action_name == "resize" %>
+  <%= javascript_include_tag "resize" %>
+  <%= stylesheet_link_tag "cropper/cropper" %>
+<% end %>
+
+<% if controller_name == "users" and (action_name == "show" or action_name == "show_ning") -%>
+  <link rel="alternate" type="application/rss+xml" title="<%= @user.nome %> atividades" href="<%= perfil_url(@user)+'.rss' %>" />
+<% end -%>

@@ -1,0 +1,20 @@
+<li class="competition running_competition rounded clearfix">
+  <div class="locais"><%= descrever_locais(competition.locais) %></div>
+  <h3><%= link_to competition.title, competition_path(competition) %></h3>
+  <div class="competition_summary">
+    <%= image_tag competition.image.url(:small), :class => "thumb" %>
+    <div class="description">
+      <p><%= truncate(competition.short_description, :length => 200) %></p>
+      <%= link_to "Ver mais", competition_path(competition), :class => "link_mini" %>
+    </div>
+  </div>
+  <%= render "competitions/phases", :competition => competition, :active_phase => competition.current_phase %>
+  <div class="resumo resumo_de_atividades_active clearfix">
+    <p class="qtd"><%= competition.remaining_days %></p>
+    <p class="sobre">dias restantes</p>
+    <p class="qtd"><%= competition.proposals.count %></p>
+    <p class="sobre">propostas</p>
+    <p class="qtd"><%= competition.participants_count %></p>
+    <p class="sobre">participantes</p>
+  </div>
+</li>

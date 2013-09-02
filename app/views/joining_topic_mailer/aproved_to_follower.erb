@@ -1,0 +1,9 @@
+Olá <%= @user.nome %>,
+
+As propostas <%= @joining_topic.author_topico.titulo %> [<%= topico_url(@joining_topic.author_topico) %>] e <%= @joining_topic.coauthor_topico.titulo %> [<%= topico_url(@joining_topic.coauthor_topico) %>] foram unidas.
+
+Agora, juntas elas estão mais fortes, convidamos você a conhecer a nova proposta "<%= @joining_topic.title %>".
+
+<%= topico_url(@joining_topic.topico_to) %>
+
+<%= rodape %>

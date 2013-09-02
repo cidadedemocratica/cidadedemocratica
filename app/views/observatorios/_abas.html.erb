@@ -1,0 +1,11 @@
+<ul class=" clearfix tabs_secondary">
+  <li><%= link_to "Propostas e problemas (#{@topicos_count})",
+                  observatorio_url(:page => nil),
+                  :class => action_name == "index" ? "active" : "" %></li>
+  <li><%= link_to "Comentários (#{@comentarios_count})",
+                  observatorio_comentarios_url(:page => nil),
+                  :class => action_name == "comentarios" ? "active" : "" %></li>
+  <li><%= link_to "Apoios (#{@apoios_count})",
+                  observatorio_apoios_url(:page => nil),
+                  :class => action_name == "apoios" ? "active" : "" %></li>
+</ul>

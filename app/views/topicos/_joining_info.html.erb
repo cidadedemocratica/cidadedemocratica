@@ -1,0 +1,18 @@
+<% if @joining %>
+  <% if joining_topico_to? %>
+    <h3>Unidos somos fortes!</h3>
+    <div id="resumo_de_atividades" class="clearfix rounded rounded_beige">
+      Esta <%= @topico.display_name.downcase %> é fruto da união de
+      <%= link_to @joining.author_topico.titulo, topico_path(@joining.author_topico) %> com
+      <%= link_to @joining.coauthor_topico.titulo, topico_path(@joining.coauthor_topico) %>.
+    </div>
+  <% else %>
+    <h3>Esta <%= @topico.display_name.downcase %> foi unid<%= @topico.artigo_definido %>!</h3>
+    <div id="resumo_de_atividades" class="clearfix rounded rounded_beige">
+      Esta <%= @topico.display_name.downcase %> foi unid<%= @topico.artigo_definido %> com 
+      <%= link_to outer_topico_joined.titulo, topico_path(outer_topico_joined) %>
+      para gerar <%= @topico.artigo_definido %> <%= @topico.display_name.downcase %>
+      <%= link_to @joining.topico_to.titulo, topico_path(@joining.topico_to) %>.
+    </div>
+  <% end %>
+<% end %>

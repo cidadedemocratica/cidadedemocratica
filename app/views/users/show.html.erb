@@ -1,0 +1,36 @@
+<h3 class="atividades_titulo">Atividades recentes</h3>
+
+<ul id="lapelas_atividades_recentes_perfil" class="tabs_secondary">
+  <%= content_tag :li, :class => ("selected" if @atividades_type == :resumo) do
+    link_to "Resumo", perfil_path(@user)
+  end %>
+
+  <%= content_tag :li, :class => ("selected" if @atividades_type == :propostas) do
+    link_to "Propostas", perfil_propostas_path(@user)
+  end %>
+
+  <%= content_tag :li, :class => ("selected" if @atividades_type == :problemas) do
+    link_to "Problemas", perfil_problemas_path(@user)
+  end %>
+  <%= content_tag :li, :class => ("selected" if @atividades_type == :comments) do
+    link_to "Comentários", perfil_comentarios_path(@user)
+  end %>
+
+  <%= content_tag :li, :class => ("selected" if @atividades_type == :adesoes) do
+    link_to "Apoios", perfil_apoios_path(@user)
+  end %>
+
+  <%= content_tag :li, :class => ("selected" if @atividades_type == :seguidos) do
+    link_to "Seguindo", perfil_seguindo_path(@user)
+  end %>
+</ul>
+
+<% if @atividades %>
+  <p id="atividades_count"><%= atividades_count @atividades, @atividades_type %></p>
+  <ul id="atividades" class="feed_medium">
+    <% for atividade in @atividades -%>
+      <%= descreve(atividade, @user, nil) %>
+    <% end %>
+  </ul>
+<% end %>
+<%= will_paginate @atividades rescue nil %>

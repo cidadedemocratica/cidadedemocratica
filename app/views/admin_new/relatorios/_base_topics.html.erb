@@ -1,0 +1,28 @@
+<div class="section topicos_list">
+  <% @topics.each do |type, group| %>
+    <h2 class="title"><%= type.capitalize %> com mais relevância</h2>
+    <p>Veja <%= type %> mais relevantes criadas pelos usuários e seu resumo.</p>
+    <% group.each do |data| %>
+      <%= topico(data["model"]) %>
+      <table class="crud">
+        <tr>
+          <th>Atividades</th>
+          <th>Apoios</th>
+          <th>Seguidores</th>
+          <th>Comentários</th>
+          <th width="250">Pessoas e Entidades</th>
+        </tr>
+        <tr>
+          <td><%= data["total"] %></td>
+          <td><%= data["adesoes_count"] %></td>
+          <td><%= data["seguidos_count"] %></td>
+          <td><%= data["comments_count"] %></td>
+          <td>
+            <%= data["users_stats"].map { |name, count| "#{name.capitalize}: #{count}" }.join("<br>").html_safe %>
+            <%= pie_graph(data["users_stats"].reject { |k| k == "total" }) %>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  <% end %>
+</div>

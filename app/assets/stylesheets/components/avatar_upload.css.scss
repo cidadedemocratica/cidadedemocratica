@@ -1,0 +1,15 @@
+/* Upload de avatar
+--------------------------- */
+body.avatar_new .dica_upload {
+  margin-top: 25px;
+}
+
+#previewWrapper p.resultado {
+  float:left;
+  font-weight:bold;
+  margin:15px 5px 0 0;
+}
+#previewArea {
+  margin:0 0 20px 0;
+}
+#imagem_original {overflow: auto; max-height: 500px;}

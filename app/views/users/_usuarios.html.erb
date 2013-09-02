@@ -1,0 +1,10 @@
+<ul class="usuarios lista_sem_bullets">
+<% if usuarios and !usuarios.empty? and usuarios.size > 0 -%>
+   <%  usuarios = usuarios.sort_by { rand } %>
+   <% usuarios.each do |usuario| -%>
+  <li><%= ficha_do_usuario(usuario, options[:ficha_do_usuario_options]) %></li>
+<% end -%>
+<% else -%>
+  <li><%= options[:vazio] %></li>
+<% end -%>
+</ul>

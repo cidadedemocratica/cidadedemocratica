@@ -1,0 +1,44 @@
+<%= error_messages_for :comment %>
+
+<%= hidden_field_tag "topico_id", @topico.id %>
+<%= hidden_field_tag "comment[tipo]", "comentario", :id => "comment_tipo" %>
+<%= hidden_field_tag "comment[parent_id]", :parent_id if params[:parent_id] %>
+
+<div id="comentario_colorido" class="comentario">
+  <div id="menu_tipo_comentario">
+  <%= link_to_function ("Comentário " + image_tag("icones/comment.png", :class => "my_icon")).html_safe,
+                       "$('comment_tipo').value='comentario';$('comentario_colorido').writeAttribute('class', 'comentario');removeAtivos($$('a.link_menu'));$('link_comentario').addClassName('ativo');$('frase').innerHTML='Deixe seu comentário, de forma a acrescentar opiniões e/ou informações à discussão.'",
+                       :id => "link_comentario",
+                       :class => "link_menu ativo" %>
+  <%= link_to_function ("Pergunta " + image_tag("icones/interrogation.png", :class => "my_icon")).html_safe,
+                       "$('comment_tipo').value='pergunta';$('comentario_colorido').writeAttribute('class', 'pergunta');removeAtivos($$('a.link_menu'));$('link_pergunta').addClassName('ativo');$('frase').innerHTML='Faça uma pergunta que vise ao esclarecimento dos pontos em discussão.'",
+                       :id => "link_pergunta",
+                       :class => "link_menu" %>
+  <%= link_to_function ("Resposta " + image_tag("icones/tick.png", :class => "my_icon")).html_safe,
+                       "$('comment_tipo').value='resposta';$('comentario_colorido').writeAttribute('class', 'resposta');removeAtivos($$('a.link_menu'));$('link_resposta').addClassName('ativo');$('frase').innerHTML='Responda com clareza a duvidas e perguntas em foco neste espaço.'",
+                       :id => "link_resposta",
+                       :class => "link_menu" %>
+  <%= link_to_function ("Idéia " + image_tag("icones/lightbulb.png", :class => "my_icon")).html_safe,
+                       "$('comment_tipo').value='ideia';$('comentario_colorido').writeAttribute('class', 'ideia');removeAtivos($$('a.link_menu'));$('link_ideia').addClassName('ativo');$('frase').innerHTML='Incremente a discussão com novas idéias e soluções.'",
+                       :id => "link_ideia",
+                       :class => "link_menu" %>
+  </div>
+
+  <div class="conteudo">
+    <p id="frase">
+      Deixe seu comentário, de forma a acrescentar opiniões e/ou informações à discussão.
+    </p>
+    <p>
+      <%= f.text_area :body %>
+    </p>
+    <p class="action"><%= submit_tag "Publicar", :class => "btn btn-mini" %> ou <%= link_to_function "Cancelar", "Effect.BlindUp('novo_comentario')" %></p>
+  </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+  function removeAtivos(elem) {
+    //alert(elem);
+    elem.each(function(n){
+      n.removeClassName('ativo')
+    })
+  }
+</script>

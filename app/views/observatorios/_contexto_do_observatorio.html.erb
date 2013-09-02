@@ -1,0 +1,39 @@
+<div class="contexto_do_observatorio">
+  <h3 class="nome">Contexto</h3>
+  <p class="link"><%= link_to "[Editar]", editar_observatorio_url %></p>
+  <div class="rounded rounded_beige">
+<!-- LOCAIS -->
+    <p class="locais"><strong>Onde</strong></p>
+<% if !@observatorio.locais.empty? %>
+    <ul>
+<% @observatorio.locais.each do |local| -%>
+      <li>
+<% if local.tem_bairro? -%>
+        <%= local.bairro.nome %>, <%= local.bairro.cidade.nome %> - <%= local.bairro.cidade.estado.abrev %>
+<% elsif local.tem_cidade? -%>
+        <%= local.cidade.nome %> - <%= local.cidade.estado.abrev %>
+<% elsif local.tem_estado? -%>
+        <%= local.estado.abrev %>
+<% end -%>
+      </li>
+<% end %>
+    </ul>
+<% else -%>
+    <p>Todo o site</p>
+<% end -%>
+
+<!-- TAGS:temas -->
+    <p class="tags"><strong>Temas</strong></p>
+<% if !@observatorio.tags.empty? -%>
+    <ul>
+<% @observatorio.tags.all(:order => "tags.name ASC").each do |tag| -%>
+      <li>
+        <%= tag.name %>
+      </li>
+<% end -%>
+    </ul>
+<% else %>
+    <p>Todos os temas</p>
+<% end %>
+  </div>
+</div> <!-- contexto_do_observatorio -->

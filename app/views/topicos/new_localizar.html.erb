@@ -1,0 +1,12 @@
+<%= error_messages_for :topico, :header_message => "Opa!" -%>
+<h1>Localize</h1>
+<%= render :partial => "topicos/passos_para_novo_topico" %>
+
+<%= form_for :topico, :url => criar_topico_path, :id => "form_locals" do |f| %>
+  <%= hidden_field_tag :type, params[:type] %>
+  <%= f.hidden_field :competition_id %>
+  <%= f.hidden_field :titulo %>
+  <%= f.hidden_field :descricao %>
+  <%= f.hidden_field :tags_com_virgula %>
+  <%= render :partial => "topicos/location/form" %>
+<% end %>

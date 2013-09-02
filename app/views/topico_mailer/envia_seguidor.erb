@@ -1,0 +1,14 @@
+Olá <%= @seguidor.nome %>!
+
+<%= @objeto.user.nome %> <%= @verbo %> <%= @topico.nome_do_tipo(:artigo => :definido) %> "<%= @topico.titulo %>" no CidadeDemocrática:
+<% if @objeto.instance_of?(Comment) %>
+<%= @objeto.body %>
+<% end %>
+Registrado em <%=l @objeto.created_at, :format => "%d de %B de %y às %H:%M" %>.
+
+Conheça o perfil de <%= @objeto.user.nome %> em:
+http://www.cidadedemocratica.org.br/perfil/<%= @objeto.user.id.to_s %>
+
+Nota: Você recebeu este email por seguir o tópico.
+
+<%= rodape %>

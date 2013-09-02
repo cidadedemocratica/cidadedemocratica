@@ -1,0 +1,12 @@
+<%= semantic_form_for [:attribute_author_update, :admin_new, @joining_topic] do |f| %>
+  <%= f.inputs 'Autor' do %> 
+    <%=
+      f.input :author, :as => 'select', :collection => {
+        @joining_topic.topicos_from[0].user.nome => @joining_topic.topicos_from[0].user.id,
+        @joining_topic.topicos_from[1].user.nome => @joining_topic.topicos_from[1].user.id
+      }
+    %>
+    <li><b>Ao salvar, um e-mail irá notificar o autor para que ele crie o tópico unificado.</b></li>
+  <% end %>
+  <%= f.actions %>
+<% end %>

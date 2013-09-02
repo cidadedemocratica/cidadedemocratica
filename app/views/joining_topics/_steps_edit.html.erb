@@ -1,0 +1,15 @@
+<ul id="passos" class="clearfix">
+  <li class="<%= controller.action_name == 'preview' ? 'corrente' : 'normal' %>">
+    <h3>Enontre as sinergias</h3>
+    <p class="descricao_passos">Avalie de acordo com o resultado esperado.</p>
+  </li>
+  <li class="<%= controller.action_name == 'title_edit' ? 'corrente' : 'normal' %>">
+    <h3>Sugira um novo título</h3>
+    <p class="descricao_passos">Procure utilizar palavras que preservem a essência de cada proposta.</p>
+  </li>
+
+  <li class="<%= controller.action_name == 'description_edit' ? 'corrente' : 'normal' %>">
+    <h3>Sugira uma nova descrição</h3>
+    <p class="descricao_passos">Procure contemplar o que cada proposta tem de melhor.</p>
+  </li>
+</ul>

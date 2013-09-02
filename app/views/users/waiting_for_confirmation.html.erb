@@ -1,0 +1,42 @@
+<h2>Falta pouco para você participar do Cidade Democrática...</h2>
+<div class="grid_16 espacado">
+  <div class="grid_8 alpha">
+    <%= image_tag("aguard_confirm/aguardando_conf_1.jpg", :class => "confirmacao") %>
+  </div>
+  <div class="grid_7 omega">
+    <h3>1. Acesse seu email</h3>
+    <p>Enviamos um email de confirmação para sua caixa postal. <br />
+       Portanto, vá até sua caixa de email.</p>
+  </div>
+</div>
+
+<div class="grid_16 espacado">
+  <div class="grid_8 alpha">
+    <%= image_tag("aguard_confirm/aguardando_conf_2.jpg", :class => "confirmacao") %>
+  </div>
+  <div class="grid_7 omega">
+    <h3>2. Abra a mensagem</h3>
+    <p>Procure entre suas mensagens o email do Cidade Democrática.</p>
+    <p><b>Atenção</b>: verifique também sua caixa de <b>spam</b>, o email pode ter caído lá.</p>
+  </div>
+</div>
+
+<div class="grid_16 espacado">
+  <div class="grid_8 alpha">
+    <%= image_tag("aguard_confirm/aguardando_conf_3.jpg", :class => "confirmacao") %>
+  </div>
+  <div class="grid_7 omega">
+    <h3>3. Clique no link de confirmação</h3>
+    <p>Leia com atenção nosso email. Verifique seu login e senha e...</p>
+    <p><b>mais importante</b>, clique no link para ativar sua conta e completar seu cadastro<%= link_to '!', @confirmation_link, :style => 'text-decoration: none; color: black;cursor:default;' %></p>
+  </div>
+</div>
+
+<style type="text/css" media="screen">
+.espacado {
+  margin:0 0 20px 0;
+}
+img.confirmacao {
+  border:1px solid #2CB3BC;
+}
+</style>

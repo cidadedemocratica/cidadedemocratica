@@ -1,0 +1,2 @@
+<%= "<option value=\"\">#{options[:first_option]}</option>".html_safe if options[:first_option] %>
+<%= options_for_select(my_collection.collect { |x| [ x.nome, x.id ] }, options[:selected] ) %>

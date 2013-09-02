@@ -1,0 +1,21 @@
+#inspiration_description,
+.inspirations_new form textarea {
+  width: 97%;
+  height: 200px;
+  padding: 10px;
+  resize: none;
+}
+.inspirations_new form input[type="text"] {
+  width: 97%;
+}
+.required.control-label,
+.inspirations_new form label {
+  display: block;
+  color: #00b0d9;
+  font-weight: bold;
+  font-size: 16px;
+}
+#inspiration_image,
+.inspirations_new form input, .inspirations_new form textarea {
+  margin-bottom: 20px;
+}

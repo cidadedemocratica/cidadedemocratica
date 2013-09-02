@@ -1,0 +1,10 @@
+"pt-BR":
+  activerecord:
+    models:
+      estado:
+        one: Estado
+        other: Estados
+    attributes:
+      estado:
+        abrev: Abreviatura
+        nome: Nome

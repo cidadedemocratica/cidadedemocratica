@@ -1,0 +1,9 @@
+<div class="grid_4 omega sidebar">
+  <h3>Mais informações sobre</h3>
+  <h4><%= @competition.title %></h4>
+  <ul class="rounded">
+    <li><%= link_to "Prêmios", prizes_competition_path(@competition) %></li>
+    <li><%= link_to "Regulamento", regulation_competition_path(@competition) %></li>
+    <li><%= link_to "Parceiros", partners_competition_path(@competition) %></li>
+  </ul>
+</div>

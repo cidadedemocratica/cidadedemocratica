@@ -1,0 +1,36 @@
+<div class="grid_16 alpha omega">
+  <div class="grid_11 alpha competition_full">
+    <%= render "competition_banner" %>
+
+    <ul id="breadcrumb" class="clearfix">
+      <li>
+        <h1>Prêmios</h1>
+      </li>
+    </ul>
+
+    <% if @prizes.size > 0 %>
+      <div class="topicos_list prizes_list">
+        <% @prizes.each do |prize| %>
+          <div class="rounded prize">
+            <h3><%= prize.name %></h3>
+            <div class="topico proposta clearfix">
+              <% if prize.winning_topic %>
+                <%= topico(prize.winning_topic) %>
+              <% end %>
+            </div>
+            <%= render 'prize_panel', :prize => prize %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+    <div class="rounded rounded_beige">
+      <p>Nossa equipe está definindo os ganhadores. Em breve você conhecerá o resultado deste concurso.</p>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="grid_5 omega sidebar">
+    <%= render "proposals_resume", :phase => :announce_phase %>
+    <%= render "commom_sidebar" %>
+  </div>
+</div>

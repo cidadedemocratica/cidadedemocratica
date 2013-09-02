@@ -1,0 +1,10 @@
+<% title "Meu observatório" %>
+<% if user_signed_in? -%>
+  <% if current_user.observatorios.empty? -%>
+    <%= render :partial => "empty_design_logado" %>
+  <% else -%>
+    <%= render :partial => "lista_de_topicos" %>
+  <% end -%>
+<% else -%>
+  <%= render :partial => "empty_design_nao_logado" %>
+<% end -%>

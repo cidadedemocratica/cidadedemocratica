@@ -1,0 +1,5 @@
+<%=
+  (tags).map do |tag|
+    content_tag :a, tag, :href => "#", :onclick => "acrescentaTagComVirgula('#{tag}'); return false"
+  end.join(", ").html_safe
+%>

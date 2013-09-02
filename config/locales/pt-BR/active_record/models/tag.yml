@@ -1,0 +1,11 @@
+"pt-BR":
+  activerecord:
+    models:
+      tag:
+        one: Tag
+        other: Tags
+    attributes:
+      tag:
+        name: Nome
+        count: Total de usos
+        join: Unir

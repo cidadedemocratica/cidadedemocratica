@@ -1,0 +1,9 @@
+"pt-BR":
+  errors:
+    messages:
+      carrierwave_processing_error: falhou em ser processado
+      carrierwave_integrity_error: não é um tipo de arquivo permitido
+      extension_white_list_error: "Não é permitido subir arquivos com as extenções: %{extension}, extenções permitidas: %{allowed_types}"
+      rmagick_processing_error: "Erro ao manipular imagem com rmagick: %{e}"
+      mime_types_processing_error: "Erro ao manipular imagem com MIME::Types: %{e}"
+      mini_magick_processing_error: "Erro ao manipular imagem com MiniMagick: %{e}"

@@ -1,0 +1,18 @@
+<h2>Perfil de <%= @user.nome %></h2>
+
+<%= error_messages_for :user_dado %>
+
+<%= form_for :user_dado,  :url => {:controller => "users", :action => "save"} do |f| -%>
+  <% if @user.pessoa? or @user.admin? %>
+    <%= render :partial => "users/form_pessoa",
+               :locals => { :f => f } %>
+  <% else -%>
+    <%= render :partial => "users/form_organizacao",
+               :locals => { :f => f } %>
+  <% end -%>
+
+  <p>
+    <%= submit_tag "Salvar", :class => "btn btn-mini" %> ou
+    <%= link_to "Voltar", :back %>
+  </p>
+<% end -%>

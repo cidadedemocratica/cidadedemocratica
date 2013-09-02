@@ -1,0 +1,22 @@
+
+<div class="grid_16">
+  <div class="rounded clearfix">
+    <ul id="ambitos">
+      <li id="nacional" class="ambito_desativado"><%= image_tag("locais_ambitos/ambito_nacional.png") %><%= link_to_function "Nacional", "mostrarAmbito('nacional')" %></li>
+      <li id="estadual" class="ambito_desativado"><%= image_tag("locais_ambitos/ambito_estadual.png") %><%= link_to_function "Estadual", "mostrarAmbito('estadual')" %></li>
+      <li id="municipal" class="ambito_desativado"><%= image_tag("locais_ambitos/ambito_municipal.png") %><%= link_to_function "Municipal", "mostrarAmbito('municipal')" %></li>
+      <li id="local" class="ambito_desativado"><%= image_tag("locais_ambitos/ambito_local.png") %><%= link_to_function "Local", "mostrarAmbito('local')" %></li>
+    </ul>
+    <div id="localizacao_seletores">
+      <%= render :partial => "topicos/location/select_country" %>
+      <%= render :partial => "topicos/location/select_states" %>
+      <%= render :partial => "topicos/location/select_cities" %>
+      <%= render :partial => "topicos/location/select_neighbourhood" %>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag "app/location" %>
+<script>
+  mostrarAmbito("<%= local_ambito %>");
+</script>

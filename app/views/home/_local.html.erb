@@ -1,0 +1,30 @@
+<form action="<%= topicos_path %>">
+  <fieldset>
+    <ol>
+      <li>
+        <%= label_tag("local[estado_id]", "Estado") %>
+        <%= select_tag("local[estado_id]",
+                       options_from_collection_for_select(Estado.order("nome"), "id", "nome"),
+                       :prompt => "Todos os estados") %>
+      </li>
+      <li>
+        <%= label_tag("local[cidade_id]", "Cidade") %>
+        <%= select_tag("local[cidade_id]",
+                       nil,
+                       :prompt => "Todas as cidades") %>
+        <%= image_tag("spinners/spinner.gif", :id => "local_spinner", :style => "display:none;") %>
+      </li>
+      <li>
+        <%= button_tag("ir", :class => "btn btn-mini") %>
+      </li>
+    </ol>
+  </fieldset>
+</form>
+
+<%= observe_field(:local_estado_id,
+                  :update => "local_cidade_id",
+                  :url => cidades_options_for_select_path(:first_option => "Todas as cidades"),
+                  :with => "estado_id",
+                  :before => "$('local_spinner').show()",
+                  :complete => "$('local_spinner').hide()"
+                ) %>

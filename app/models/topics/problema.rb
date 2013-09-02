@@ -1,0 +1,2 @@
+class Problema < Topico
+end

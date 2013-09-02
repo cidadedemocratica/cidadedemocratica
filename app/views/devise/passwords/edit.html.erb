@@ -1,0 +1,31 @@
+<div class="grid_8 alpha">
+  <div class="rounded">
+    <h2>Mude sua senha!</h2>
+    <%= form_for resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put } do |f| -%>
+    <%= f.hidden_field :reset_password_token %>
+    <fieldset>
+      <ol>
+        <li>
+          <%= f.label :password, "Nova senha" %>
+          <%= f.password_field :password, :class => "texto" %>
+        </li>
+        <li>
+          <%= f.label :password_confirmation, "Confirmação da nova senha" %>
+          <%= f.password_field :password_confirmation, :class => "texto" %>
+        </li>
+      </ol>
+    </fieldset>
+    <p><%= f.submit "Salvar", :class => "btn btn-mini" %></p>
+    <% end -%>
+  </div>
+</div>
+<div class="grid_8 omega">
+  <div class="rounded rounded_beige">
+    <%= error_messages_for resource, :header_message => "Opa!" %>
+    <h3>Você está aqui para trocar sua senha</h3>
+    <p>1. Digite uma nova senha no campo ao lado.<br />
+       2. Confirme-a.<br />
+       3. Salve e faça seu login em seguida!</p>
+   </div>
+</div>
+

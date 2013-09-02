@@ -1,0 +1,18 @@
+<ul class="sans-bullets bem-distribuidos">
+  
+  <fieldset class="grupo-simples">
+    <legend>Fórmula da Relevância</legend>
+    <p><strong>Atenção:</strong> alterações na fórmula são recalculadas uma vez ao dia, às 02:30.</p>
+    <li>
+      <%= label_tag "Fórmula" %>
+      <%= text_area_tag "settings[localizacao_formula_relevancia]", @settings["localizacao_formula_relevancia"], :cols => 80, :rows => 2 -%>
+      <p class="dica">Variáveis disponíveis:<br />
+      <b>topicos_count</b> = Total de tópicos em uma localidade (estado, cidade, bairro)<br />
+      <b>topicos_relevancias_sum</b> = Soma das relevâncias dos tópicos de uma localidade (estado, cidade, bairro)<br />
+      <b>users_count</b> = Total de usuários em uma localidade (estado, cidade, bairro)<br />
+      <b>users_relevancias_sum</b> = Soma das relevâncias dos usuários de uma localidade (estado, cidade, bairro)<br />
+      Ex.: 3 * topicos_relevancias_sum + 2 * users_relevancias_sum
+      </p>
+    </li>
+  </fieldset>
+</ul>

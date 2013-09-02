@@ -1,0 +1,35 @@
+<div id="rodape">
+  <div class="container_16">
+    <div class="grid_5">
+      <blockquote class="phrase">
+        O <b>Cidade Democrática</b> é uma plataforma de participação política para criação de soluções inovadoras a partir da inteligência coletiva.
+      </blockquote>
+    </div>
+    <div class="sponsors">
+      <h3>Parceiros</h3>
+      <ul>
+        <li><%= link_to image_tag("parceiros/logo-avina.jpg", :alt =>"Avina"), "http://www.avina.net/por", :target => "blank" %></li>
+        <li><%= link_to image_tag("parceiros/logo-ibm.jpg", :alt =>"IMB"), "http://www.ibm.com/br/pt", :target => "blank" %></li>
+        <li><%= link_to image_tag("parceiros/logo-omidyar-network.jpg", :alt =>"Omidyar Network"), "http://www.omidyar.com", :target => "blank" %></li>
+      </ul>
+    </div>
+    <div class="grid_16 tail">
+      <h3 id="logo_rodape">Cidade Democrática</h3>
+      <ul class="menu">
+        <li><%= link_to "Home", "/" %></li>
+        <li><%= link_to "Registre-se", new_user_registration_url %></li>
+        <li><%= link_to "Concursos", competitions_path %></li>
+        <li><%= link_to "Comunidade", usuarios_path %></li>
+        <li><%= link_to "Quem Somos", static_page_path(:quem_somos) %></li>
+        <li><%= link_to "Como Funciona", static_page_path(:como_funciona) %></li>
+        <li><%= link_to "Ajuda", static_page_path(:ajuda) %></li>
+        <li><%= link_to "Blog", "http://blog.cidadedemocratica.org.br/", :target => "blank" %></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<%= render :partial => "layouts/rodape_modal_automatico" %>
+
+<%= render :partial => "layouts/scripts/facebook" %>
+<%= render :partial => "layouts/scripts/google_analytics" if Rails.env == "production" %>

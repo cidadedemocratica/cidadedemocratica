@@ -1,0 +1,15 @@
+"pt-BR":
+  activerecord:
+    models:
+      competition_prize:
+        one: Prêmio
+        other: Prêmios
+    attributes:
+      competition_prize:
+        name: Nome
+        description: Descrição
+        competition: Concurso
+        offerer: Ofertante
+        offerer_id: Ofertante
+        winning_topic: 'Tópico Vencedor'
+        winning_topic_id: 'Tópico Vencedor'

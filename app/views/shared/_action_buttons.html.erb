@@ -1,0 +1,32 @@
+<% if @topico.present? and @topico.competition.present? %>
+  <!-- competition proposal -->
+  <% if @topico.competition.proposals_allowed? %>
+    <ul id="bots_acao" class="span4">
+      <li>
+        <%= link_to "Crie uma<br> proposta".html_safe,
+                    new_competition_proposal_path(@topico.competition),
+                    :id => "link_nova_proposta",
+                    :class => "botao",
+                    :title => "Crie uma proposta" %>
+      </li>
+    </ul>
+  <% end %>
+<% else %>
+  <ul id="bots_acao" class="span4">
+    <!-- all others -->
+    <li>
+      <%= link_to "Aponte um<br> problema".html_safe,
+                  novo_topico_url(:type => "problema"),
+                  :id => "link_novo_problema",
+                  :class => "botao",
+                  :title => "Aponte um problema" %>
+    </li>
+    <li>
+      <%= link_to "Crie uma<br> proposta".html_safe,
+                  novo_topico_url(:type => "proposta"),
+                  :id => "link_nova_proposta",
+                  :class => "botao",
+                  :title => "Crie uma proposta" %>
+    </li>
+  </ul>
+<% end %>

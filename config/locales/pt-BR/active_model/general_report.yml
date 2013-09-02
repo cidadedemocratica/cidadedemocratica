@@ -1,0 +1,11 @@
+"pt-BR":
+  activemodel:
+    attributes:
+      general_report:
+        from: 'De'
+        to: 'Até'
+        competition_id: 'Concurso'
+        country_ids: 'Países'
+        state_ids: 'Estados'
+        city_ids: 'Cidades'
+        tag_ids: 'Tags'

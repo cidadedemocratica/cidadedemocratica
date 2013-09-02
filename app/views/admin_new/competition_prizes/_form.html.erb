@@ -1,0 +1,16 @@
+<%= semantic_nested_form_for([:admin_new, @competition, @competition_prize], :multipart => true) do |f| %>
+  <%= f.inputs 'Dados Básicos' do %>
+    <%= f.input :name %>
+    <%= f.input :offerer_id, :as => :select, :collection => @competition_prize.offerer ? { @competition_prize.offerer.nome => @competition_prize.offerer.id } : {},
+        :input_html => { 'data-placeholder' => 'Pesquisar Usuário por nome.', :class => 'input_chosen input_chosen_user' } %>
+
+    <%= f.input :description %>
+
+    <%= f.input :winning_topic_id, :member_label => :titulo, :as => :select, :collection => @competition.proposals %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :input %>
+    <%= f.action :cancel, :as => :link, :label => 'Cancelar', :wrapper_html => { :class => 'cancel' } %>
+  <% end %>
+<% end %>

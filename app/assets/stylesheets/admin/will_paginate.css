@@ -1,0 +1,73 @@
+.pagination {
+  padding: 3px;
+  margin: 3px;
+}
+.pagination a {
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  border: 1px solid #aaaadd;
+  text-decoration: none;
+  color: #000099;
+}
+.pagination a:hover, .pagination a:active {
+  border: 1px solid #239BC7;
+  color: #000;
+}
+.pagination span.current {
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  border: 1px solid #239BC7;
+  font-weight: bold;
+  background-color: #239BC7;
+  color: #FFF;
+}
+.pagination span.disabled {
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  border: 1px solid #eee;
+  color: #ddd;
+}
+
+
+
+/* Todo o bloco de paginacao. */
+.pages {
+  border-top: 1px solid #999999;
+  font-size: 9pt;
+  margin-top: 10px;
+  padding: 8px 0;
+}
+
+/* Todos os links, incluindo <<, >> e paginas. */
+.pages a {
+  background: #FFFFFF none repeat scroll 0%;
+  border: 1px solid #DDDDDD;
+  padding: 2px 6px;
+  text-decoration: none;
+}
+
+.pages a:hover {
+  background: #67C3E4 none repeat scroll 0%;
+  border-color: #239BC7;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+/* Botoes >> e <<. */
+.next a, .prev a {
+  font-weight: bold;
+  border: 2px solid #DDDDDD;
+}
+
+/* Pagina atua. */
+.current {
+  padding: 2px 6px;
+  font-weight: bold;
+  font-size: 120%;
+  color: #239BC7;
+}
+
+/* Janela e quantidade de itens: (X-Y de Z). */
+.pages .overview {
+  color: #239BC7;
+}

@@ -1,0 +1,20 @@
+<div class="grid_10 alpha static_page">
+  <h2>Olá <%= current_user.nome %>, configure o seu observatório</h2>
+
+  <div class="rounded">
+    <p>Acompanhe com seu <strong>observatório</strong> o que acontece nos <strong>temas</strong> e nas <strong>regiões</strong> que mais lhe interessam.</p>
+    <p>Criar seu observatório é simples:</p>
+    <ol>
+      <li>Defina os temas e as regiões de seu interesse</li>
+      <li>Acompanhe num mesmo lugar propostas, problemas, comentários e apoios</li>
+      <li>Receba semanalmente as novidades por e-mail</li>
+    </ol>
+    <br />
+    <div class="action">
+      <%= link_to "Criar", novo_observatorio_url, :class => "btn" %>
+    </div>
+  </div>
+</div>
+<div class="grid_6 omega">
+	<%= image_tag('binoculo.jpg')%>
+</div>

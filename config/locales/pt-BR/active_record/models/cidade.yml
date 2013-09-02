@@ -1,0 +1,9 @@
+"pt-BR":
+  activerecord:
+    models:
+      cidade:
+        one: Cidade
+        other: Cidades
+    attributes:
+      cidade:
+        nome: Nome

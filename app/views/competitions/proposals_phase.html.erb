@@ -1,0 +1,16 @@
+<div class="grid_16 alpha omega">
+  <div class="grid_11 alpha competition_full">
+    <%= render :partial => 'competition_banner' %>
+    <%= render :partial => 'proposals_list' %>
+  </div>
+
+  <div class="grid_5 omega sidebar">
+    <% if @competition.proposals_allowed? %>
+      <%= link_to "Propor!", new_competition_proposal_path(@competition), :class => "btn btn-blue btn-large" %>
+      <p>Mande uma proposta para este concurso.</p>
+    <% end %>
+
+    <%= render "proposals_resume", :phase => :proposals_phase %>
+    <%= render "commom_sidebar" %>
+  </div>
+</div>

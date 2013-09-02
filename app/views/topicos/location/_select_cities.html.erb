@@ -1,0 +1,111 @@
+<div id="seletor_de_cidades" class="escondido">
+  <p>
+    <b>a) Escolha o estado primeiramente;</b><br />
+    <b>b) Inclua apenas as cidades referentes a seu tópico.</b>
+  </p>
+  <div id="estado_wrapper">
+    <%= select :estado_municipal, :id, [["escolha um estado...", nil]] + @estados_to_select.collect { |e| ["#{e.abrev} - #{e.nome}", e.id] },
+      :selected => @estados_id_selected.first %>
+    <%= observe_field "estado_municipal_id",
+                      :url => {
+                        :controller => "locais",
+                        :action => "cidades_li_for_ul"
+                      },
+                      :with => "'estado_id='+value+'&cidades_selecionadas='+concatenarInputValue($$(\".hidden_cidades_selecionadas\"))+'&'",
+                      :before => "$('municipal_spinner').show();",
+                      :complete => "$('municipal_spinner').hide();" -%>
+  </div>
+
+  <p id="label_municipal">Cidades disponíveis <span style="margin-left:153px">Cidades incluídas</span></p>
+
+  <span id="municipal_spinner" style="display: none;"><%= image_tag("spinners/spinner.gif") %></span>
+  <ul class="cidades_a_selecionar spinner" id="ul_cidades">
+    <% @cidades_to_select.each do |cidade| %>
+      <%= render :partial => "locais/li_cidades",
+        :locals => {
+          :cidade => cidade,
+          :selecionada => @cidades_id_selected.include?(cidade.id)
+      } %>
+    <% end %>
+  </ul>
+
+  <ul class="cidades_selecionadas">
+    <% @cidades_selected.each do |local| %>
+      <li id="cidades_selecionadas_<%= local.cidade.id %>">
+        <a href="#" title="" onclick="removerCidade('<%= local.cidade.nome %>, <%= local.cidade.nome %>', '<%= local.pais_id %>', '<%= local.estado_id %>', '<%= local.cidade_id %>'); return false;" class="remover">
+          <img src="/assets/icones/delete.png" width="16" height="16" alt="Remover" />
+        </a>
+        <%= local.cidade.nome %>, <%= local.estado.abrev %>
+        <input type="hidden" name="locais[][pais_id][<%= local.pais_id %>][estado_id][<%= local.estado_id %>][cidade_id][]" class="hidden_cidades_selecionadas" value="<%= local.cidade_id %>" />
+      </li>
+    <% end %>
+  </ul>
+
+  <p><%= submit_tag "Continuar &raquo;".html_safe, :id => "bot_continuar", :class => "btn btn-mini btn-primary" %></p>
+</div>
+
+<style type="text/css" media="screen">
+#seletor_de_cidades input.procurar {
+  width: 222px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  border-color: #ABADB3 #E3E9EF #E3E9EF #ABADB3;
+  border-style: solid;
+  border-width: 1px;
+  padding: 5px;
+  margin: 0 0 10px 0;
+}
+
+#seletor_de_cidades .cidades_a_selecionar,
+#seletor_de_cidades .cidades_selecionadas {
+  height: 248px; /* + 2px das bordas = 250px */
+  width: 223px; /* + 2px das bordas = 225px */
+  overflow: auto;
+  padding: 5px;
+  border: 1px solid #CCC;
+  float: left;
+}
+#seletor_de_cidades .cidades_selecionadas {
+  margin: 0 0 0 20px;
+  background-color:#ffc;
+}
+
+#seletor_de_cidades .cidades_a_selecionar li,
+#seletor_de_cidades .cidades_selecionadas li {
+  list-style: none;
+  margin: 0;
+  font-size: 12px;
+}
+
+#seletor_de_cidades .cidades_a_selecionar li a.incluir,
+#seletor_de_cidades .cidades_selecionadas li a.remover {}
+
+#seletor_de_cidades .cidades_a_selecionar li img,
+#seletor_de_cidades .cidades_selecionadas li img {
+  vertical-align: middle;
+  margin: 0 5px 0 0;
+}
+
+#seletor_de_cidades .cidades_a_selecionar li.selecionada img {
+  opacity: 0.35;
+  filter: alpha(opacity=35);
+}
+
+#seletor_de_cidades .cidades_a_selecionar li.selecionada {
+  color: #CCC;
+}
+p#label_municipal {
+  font-size:11px;
+  color:#666;
+  margin:0;
+}
+#municipal_spinner {
+  position:relative;
+  left:-330px;
+  border:2px solid #ddd;
+  padding:20px 10px 10px;
+}
+#municipal_spinner img {
+  width:24px;
+}
+</style>

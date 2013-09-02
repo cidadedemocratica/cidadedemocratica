@@ -1,0 +1,54 @@
+<ul id="comentar_ou_fazer_campanha" class="clearfix">
+  <% if not @from_joining and @topico.comments_allowed? %>
+  <li>
+    <div id="botao_de_comentar" class="botao_de_acao">
+      <%= link_to_function(raw("<i class='btn-icon-megaphone'></i>") + "Comente",
+                           visual_effect(:toggle_blind, "novo_comentario", :duration => 1)) %>
+    </div>
+  </li>
+  <% end %>
+
+  <!-- topico in competition -->
+  <% if @topico.competition.present? %>
+    <% if @topico.can_be_supported? %>
+      <li>
+        <div id="botao_de_apoiar" class="botao_de_acao">
+          <%= link_to(raw("<i class='btn-icon-hand-up'></i>") + (@topico.is_apoiado(current_user) ? "Deixe de apoiar" : "Apoie!"),
+                      aderir_path(@topico)) %>
+        </div>
+      </li>
+    <% end %>
+    <% if @topico.can_be_joined?  %>
+      <li>
+        <div id="botao_de_unir" class="botao_de_acao">
+          <%= link_to(raw("<i class='btn-icon-union'></i>") + 'Sugira uma União',
+                new_joining_topic_path(:topico_id => @topico.id)
+              ) %>
+        </div>
+      </li>
+    <% end %>
+  <!-- topico simples -->
+  <% else %>
+    <li>
+      <div id="botao_de_campanha" class="botao_de_acao">
+        <%= link_to_function(raw("<i class='btn-icon-arroba'></i>") + "Faça uma campanha",
+                             visual_effect(:toggle_blind, "divulgacao", :duration => 0.6)) %>
+      </div>
+    </li>
+  <% end %>
+</ul>
+
+<!-- faça uma campanha - addthis -->
+<% unless @topico.competition.present? %>
+<div class="grid_12 alpha omega">
+  <%= render :partial => "divulgacao_addthis",
+             :locals => {
+               :mostrar => false,
+               :name_suffix => ""
+             } -%>
+</div>
+<% end -%>
+
+<div class="grid_12 alpha omega">
+  <%= render :partial => "comments/novo_comentario" %>
+</div>

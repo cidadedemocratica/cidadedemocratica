@@ -1,0 +1,20 @@
+description "Resque worker configuration. Run with ID"
+
+start on (local-filesystems and net-device-up IFACE=eth0)
+stop on shutdown
+
+respawn
+respawn limit 5 20
+
+instance $ID
+
+script
+  HOME_DIR=/home/cidadedemocratica
+  APP_ROOT=$HOME_DIR/apps/cidadedemocratica/current
+  PIDFILE=$HOME_DIR/apps/cidadedemocratica/shared/pids/resque-$ID.pid
+  LOGFILE=$HOME_DIR/apps/cidadedemocratica/shared/log/resque-$ID.log
+  echo $$ > $PIDFILE
+  chown cidadedemocratica:cidadedemocratica $PIDFILE
+  chown cidadedemocratica:cidadedemocratica $LOGFILE
+  exec su -c "export PATH=$HOME_DIR/.rbenv/shims:$HOME_DIR/.rbenv/bin:$PATH; cd $APP_ROOT; bundle exec rake environment resque:work QUEUE=* RAILS_ENV=production PIDFILE=$PIDFILE >> $LOGFILE 2>&1" cidadedemocratica
+end script

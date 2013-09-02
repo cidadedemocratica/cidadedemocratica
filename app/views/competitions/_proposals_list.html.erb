@@ -1,0 +1,51 @@
+<ul id="breadcrumb" class="clearfix">
+  <li>
+    <h1>
+      <%= link_to_competition_with_context "Propostas", :tag_id => nil %>
+    </h1>
+  </li>
+  <% if @tag %>
+    <li>
+      <span class="separador">&raquo;</span>
+      <h2 class="tag">
+        <%= link_to_competition_with_context @tag.name %>
+      </h2>
+    </li>
+  <% end %>
+</ul>
+
+<div id="contador_e_ordenador" class="clearfix rounded rounded_beige">
+  <ul id="ordenador">
+    <li>
+      <%= link_to_competition_with_context "Relevância", :order => "relevancia" %>
+    </li>
+    <li>
+      <%= link_to_competition_with_context "Recentes", :order => "recentes" %>
+    </li>
+    <li>
+      <%= link_to_competition_with_context "Mais comentários", :order => "mais_comentarios" %>
+    </li>
+    <% if @phase != :proposals_phase %>
+      <li>
+        <%= link_to_competition_with_context "Mais apoios", :order => "mais_apoios" %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<% if @proposals.present? %>
+  <%= topicos(@proposals, {
+                            :titulo_max_chars => 58,
+                            :mostrar_local => true,
+                            :show_supports => @phase != :proposals_phase,
+                            :paginate => true
+                          })%>
+<% else %>
+  <div class="rounded">
+    <p>Este concurso não possui nenhuma proposta.</p>
+    <% if @competition.proposals_allowed? %>
+      <p>Seja o primeiro!</p>
+      <p>Clique no botão <%= link_to "Propor!", new_competition_proposal_path(@competition), :class => "btn btn-blue btn-mini" %> e participe deste concurso.
+    <% end %>
+  </div>
+<% end %>

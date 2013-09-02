@@ -1,0 +1,103 @@
+
+/* Breadcrumb
+-----------------------------------------------------------------------------
+*/
+
+#breadcrumb {
+  line-height: 30px;
+  margin: 5px 0 5px 0;
+  padding: 0 10px;
+}
+
+#breadcrumb h1,
+#breadcrumb h2,
+#breadcrumb h3,
+#breadcrumb h4 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 0 5px;
+  line-height: 30px!important;
+  display: inline;
+  letter-spacing: -0.05em;
+}
+#breadcrumb h1 {margin:0!important; padding-left: 0;}
+#breadcrumb li {
+  float: left;
+  display: inline;
+  list-style: none;
+  margin: 0 15px 0 0;
+}
+#breadcrumb img {
+  line-height: 30px;
+  vertical-align: top;
+  width: 22px;
+}
+
+#breadcrumb .separador {
+  color: #009BCA;
+  font-size: 18px;
+}
+
+/* Contador e ordenador
+-----------------------------------------------------------------------------
+*/
+
+#contador_e_ordenador {
+  margin: 0 0 20px 0;
+}
+
+#contador_e_ordenador p {
+  margin:0;
+  display:block;
+  width:120px;
+  font-size:11px;
+  font-weight:bold;
+}
+
+#contador_e_ordenador p,
+#contador_e_ordenador ul {
+  margin: 0;
+}
+#contador {
+  width: 100px;
+  float: right;
+  text-align: right;
+  display: inline;
+  margin: 0;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+#contador .total {
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 2px;
+}
+
+#ordenador {
+  float: left;
+  display: inline;
+  line-height: 20px;
+}
+
+#ordenador li {
+  list-style: none;
+  float: left;
+  display: inline;
+  margin: 0 1px 0 0;
+}
+
+#ordenador li a {
+  display: block;
+  padding: 2px 5px 3px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+}
+
+#ordenador li a.selected,
+#ordenador li a:hover {
+  background-color: #16B4E6;
+  color: #FFF;
+  text-decoration: none;
+}

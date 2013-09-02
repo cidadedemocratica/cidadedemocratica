@@ -1,0 +1,24 @@
+<div id="passos" class="grid_16 alpha omega clearfix">
+  <ul>
+    <li class="<%= @step == 'description' ? "corrente" : "normal" %>">
+    <% case @topico.type %>
+      <% when "Problema" %>
+        <h3>Descreva o problema</h3>
+        <p class="descricao_passos">Dê um título curto para seu problema, que o descreva brevemente e delimite seu(s) tema(s).</p>
+      <% when "Proposta" %>
+        <h3>Faça sua proposta</h3>
+        <p class="descricao_passos">Dê um título curto para sua proposta, que a descreva brevemente e delimite seu(s) tema(s).</p>
+    <% end %>
+    </li>
+
+    <li class="<%= @step == 'localization' ? "corrente" : "normal" %>">
+      <h3>Localize</h3>
+      <p class="descricao_passos">Indique a área de cobertura do tópico.</p>
+    </li>
+
+    <li>
+      <h3>Divulgue</h3>
+      <p class="descricao_passos">Não basta criar: é preciso divulgar. Aqui você ganha uma mãozinha.</p>
+    </li>
+  </ul>
+</div>

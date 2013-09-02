@@ -1,0 +1,23 @@
+Desenvolvedores:
+  - Mário de Souza Neto <msneto@yahoo.com>
+  - Alexandre Piccolo <alexandrepiccolo@gmail.com>
+  - Marcos Lopes <marcosmlopes01@gmail.com>
+
+Design:
+  - Alex Leão <alexleao@gmail.com>
+
+Versão 2.0:
+  - Codeminer 42
+    - Fabio Akita <fabio.akita@codeminer42.com>
+    - Jean Carlo Emer <jean.emer@codeminer42.com>
+    - Juan Ibiapina <juanibiapina@gmail.com>
+
+  - Atualizações Principais:
+    - Sistema de Concursos
+    - Novo Layout
+    - Otimizações (Cache, queries de banco, etc)
+    - Atualização de Ruby 1.8.7 para Ruby 2.0.0
+    - Atualização de Rails 2.3 para Rails 3.2
+    - Remoção de gems antigas por novas (restful_authentication por devise, por exemplo)
+    - Remoção de diversas falhas de segurança
+    - Adição de suíte mínima de specs (antes tinha zero)

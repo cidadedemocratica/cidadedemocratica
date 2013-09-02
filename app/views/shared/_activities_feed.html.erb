@@ -1,0 +1,8 @@
+<% if activities.present? %>
+  <h3>Feeds</h3>
+  <ul id="activity_feed" class="feed">
+    <% for activity in activities -%>
+      <%= activity_feed activity %>
+    <% end %>
+  </ul>
+<% end %>

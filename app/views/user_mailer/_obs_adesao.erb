@@ -1,0 +1,3 @@
+<%= atividade.user.nome %> apoiou <%= atividade.topico.display_name %> "<%= atividade.topico.titulo %>", há <%= distance_of_time_in_words_to_now(atividade.created_at) %>:
+Mais em: http://www.cidadedemocratica.org.br/topico/<%= atividade.topico.to_param %>
+<%= quebra %>

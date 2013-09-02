@@ -1,0 +1,44 @@
+<%= form_for :configuracoes, :url => { :action => "salvar" } do |f| %>
+<div class="grid_12 alpha omega">
+  <div class="grid_10 alpha">
+    <h1>Configurações</h1>
+  </div>
+  <div class="grid_2 omega">
+    <p class="form_button"><%= f.submit "Salvar" %></p>
+  </div>
+</div>
+
+<div class="grid_2 alpha">
+  <ul id="tabs_configuracoes" class="subsection_tabs">
+    <li class="tab"><a href="#one">Geral do sistema</a></li>
+    <li class="tab"><a href="#two">Relatório</a></li>
+    <li class="tab"><a href="#three">Tópico</a></li>
+    <li class="tab"><a href="#four">Usuário</a></li>
+    <li class="tab"><a href="#five">Localização</a></li>
+    <li class="tab"><a href="#six">Tag</a></li>
+    <li class="tab"><a href="#seven">Emails</a></li>
+  </ul>
+</div>
+
+<div class="grid_10 omega">
+  <div id="one"><%= render :partial => "conf_gerais" %></div>
+  <div id="two"><%= render :partial => "conf_relatorios" %></div>
+  <div id="three"><%= render :partial => "conf_topicos" %></div>
+  <div id="four"><%= render :partial => "conf_usuarios" %></div>
+  <div id="five"><%= render :partial => "conf_localizacoes" %></div>
+  <div id="six"><%= render :partial => "conf_tags" %></div>
+  <div id="seven"><%= render :partial => "conf_emails" %></div>
+</div>
+<% end %><!-- FORM -->
+
+<hr />
+<p><%= link_to_function "Parâmetros de configuração", "$('all_settings').toggle()" %></p>
+<ul id="all_settings" style="display:none">
+<% @settings.each do |s| -%>
+<li><%= s[0].to_s %> = <%= s[1].to_s %></li>
+<% end -%>
+</ul>
+
+<script type="text/javascript" charset="utf-8">
+new Control.Tabs('tabs_configuracoes');  
+</script>

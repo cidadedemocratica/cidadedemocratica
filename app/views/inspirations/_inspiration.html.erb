@@ -1,0 +1,9 @@
+<li id="inspiration_<%= inspiration.id %>" class="inspiration clearfix rounded">
+  <h3><%= inspiration.title %></h3>
+  <p>
+    <%= image_tag inspiration.image.url(:small) %>
+    <%= link_to "Por #{inspiration.user.nome.nome_proprio}", perfil_path(inspiration.user), :class => "link_mini" %> <br />
+    <%= auto_link(simple_format(inspiration.description)).html_safe %>
+    <span class="link_mini"> (Há <date><%= time_ago_in_words(inspiration.created_at) %>)</date></span></p>
+  </p>
+</li>

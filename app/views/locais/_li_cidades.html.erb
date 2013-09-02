@@ -1,0 +1,12 @@
+<% if cidade -%>
+  <% if selecionada -%>
+    <li id="cidades_a_selecionar_<%= cidade.id %>" class="selecionada">
+    <%= image_tag("icones/add.png", :alt => "Incluir", :title => "Incluir") %>
+  <% else -%>
+    <li id="cidades_a_selecionar_<%= cidade.id %>">
+    <%= link_to_function(image_tag("icones/add.png", :alt => "Incluir", :title => "Incluir"),
+                         "incluirCidade('#{cidade.nome}, #{cidade.estado.abrev}', 1, #{cidade.estado_id}, #{cidade.id})", :class => "incluir") %>
+  <% end -%>
+  <%= cidade.nome %>, <%= cidade.estado.abrev %>
+  </li>
+<% end -%>

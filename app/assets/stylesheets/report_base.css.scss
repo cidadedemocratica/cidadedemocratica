@@ -1,0 +1,115 @@
+body {
+  font-family: "Myriad Pro", Arial, Helvetica, sans-serif;
+  width: 940px;
+  padding: 30px 0;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+.clearfix {
+  overflow: hidden;
+}
+
+@import "components/topicos";
+@import "components/users";
+
+.main_title {
+  padding-top: 30px;
+}
+.title {
+  color: #333;
+  border-bottom: 2px solid #999;
+}
+.subtitle {
+  color: #3875D7;
+  border-bottom: 1px solid #999;
+  font-size: 16px;
+  line-height: 1.2;
+}
+.subtitle span {
+  color: #333;
+}
+.manifesto .subtitle {
+  margin-bottom: 4px;
+}
+
+/* table crud */
+table.crud {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+table.crud th {
+  text-align: left;
+  background-color: #F5F5F5;
+  padding: 6px 4px 2px 4px;
+}
+
+table.crud td {
+  padding: 10px;
+  border-top: 1px solid #EAEAEA;
+  vertical-align: baseline;
+}
+
+/* graph and cloud */
+.graph, .cloud {
+  padding-bottom: 30px;
+}
+
+.graph_contaniner {
+  height: 300px;
+}
+table .graph_contaniner {
+  height: 120px;
+}
+p.lnk_mostrar_dados {
+  font-size: 11px;
+  margin-bottom: 10px;
+}
+
+.cloud .cloud_1 {
+  font-size: 80%;
+}
+.cloud .cloud_2 {
+  font-size: 90%;
+}
+.cloud .cloud_3 {
+  font-size: 100%;
+}
+.cloud .cloud_4 {
+  font-size: 110%;
+}
+.cloud .cloud_5 {
+  font-size: 120%;
+}
+
+/* topico and user */
+.topico {
+  margin-bottom: 10px;
+}
+.topico .edit_link, .topico .remove_link {
+  display: none;
+}
+
+.ficha_do_usuario_full {
+  margin-bottom: 10px;
+}
+.ficha_do_usuario_full .perfil,
+.ficha_do_usuario_full .resumo,
+.ficha_do_usuario_full .tags {
+  float: left;
+}
+.ficha_do_usuario_full .resumo {
+  width: 250px;
+  margin: 0 0 0 10px;
+}
+.ficha_do_usuario_full .resumo p {
+  margin: 0;
+}
+.ficha_do_usuario_full .tags {
+  width: 450px;
+}

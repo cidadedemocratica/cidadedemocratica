@@ -1,0 +1,20 @@
+<%= semantic_form_for(:topico, :url => { :action => :update_competition }, :method => :put) do |f| %>
+
+  <%= f.inputs "Concurso" do %>
+    <% f.input :competition_id, :as => :select, :collection => Competition.all %>
+  <% end %>
+
+  <%= f.inputs "Alterar em #{@topicos.count} tópicos" do %>
+    <% @topicos.each_with_index do |topico, i| %>
+      <li>
+        <%= "#{topico.id}. #{topico.titulo}" %>
+        <%= hidden_field_tag("ids[]", topico.id) %>
+      </li>
+    <% end %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :input, :label => "Alterar para todos os tópicos acima" %>
+    <%= f.action :cancel, :as => :link, :label => "Cancelar", :wrapper_html => { :class => "cancel" } %>
+  <% end %>
+<% end %>

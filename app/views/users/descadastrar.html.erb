@@ -1,0 +1,15 @@
+<h2>Deseja mesmo se descadastrar?</h2>
+<p><b>Atenção: Se confirmada, essa operação não tem volta.</b></p>
+<p>Ao confirmar seu descadastro, clicando &quot;Sim&quot; no botão abaixo,<br />
+   você bloqueará todas as suas informações inseridas por você no<br />
+   <b>Cidade Democrática</b>. Não será possível, portanto, efetuar seu<br />
+   <i>login</i> e/ou editar qualquer outra informação após essa confirmação.<br />
+
+   Caso não tenha certeza, basta clicar em &quot;Não&quot;.</p>
+<div class="descadastro_resposta">
+  <%= link_to "Sim", confirma_descadastro_url,
+                    :confirm => "Essa é sua última chance de repensar este ato.\nTem certeza que deseja realmente se descadastrar?",
+                    :class => "sim resposta rounded" %>
+  <%= link_to "Não", perfil_url(@user),
+                    :class => "nao resposta rounded" %>
+</div>

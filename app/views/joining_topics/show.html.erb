@@ -1,0 +1,102 @@
+<div class="section_title">
+  <h2 class="title">Junto você fica mais forte</h2>
+  <p>Veja os novos títulos, descrição, lista de territórios e palavras-chave.</p>
+</div>
+
+<div class="grid_12 alpha">
+  <div class="topico topico_main <%= @author_topico.display_name.underscore %>">
+    <p class="tipo_topico"><%= @author_topico.display_name %></p>
+
+    <div class="titulo">
+      <h2><%= @joining_topic.title or "Título não definido" %></h2>
+    </div>
+
+    <div class="bar">
+      <p class="local">
+        <%= descrever_locais(@joining_topic.locais) %>
+      </p>
+      <p class="tags">
+        <%= @joining_topic.tags.collect{|t| link_to(t.name, topicos_path({
+                                                              :tag_id => t.id,
+                                                              :topico_type => @author_topico.type.downcase.pluralize }),
+                                                              :title => "Veja demais #{@author_topico.nome_do_tipo} de '#{t.name}'") }.join(", ").html_safe %>
+      </p>
+    </div>
+
+    <div class="conteudo rounded clearfix">
+      <div class="perfil_topico">
+        <%= ficha_do_usuario(@joining_topic.author) -%>
+        <%= ficha_do_usuario(@joining_topic.coauthor) -%>
+      </div>
+      <div class="descricao">
+        <%=
+          description = @joining_topic.description ? @joining_topic.description : "Descrição não definida"
+          auto_link(simple_format(escape_once(description)), :urls, :target => "_blank" ) do |text|
+            truncate(text, :length => 25)
+          end
+        -%>
+        <div class="opcoes">
+          <% unless @joining_topic.links.empty? -%>
+            <h3 class="title">Links relacionados:</h3>
+            <ul class="links">
+              <% @joining_topic.links.each do |link| %>
+                <li><%= link_to link.nome.capitalize, link.url, {:target => "blank"} %></li>
+              <% end %>
+            </ul>
+          <% end %>
+
+          <% unless @joining_topic.imagens.empty? -%>
+            <h3 class="title">Fotos:</h3>
+            <ul class="photos">
+              <% @joining_topic.imagens.each do |imagem| %>
+                <li><%= link_to image_tag(imagem.public_filename(:small)), imagem.public_filename, :title => imagem.legenda, :rel => "lightbox[galeria]", :class => "thumb" %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="grid_4 omega">
+  <div class="rounded rounded_beige highlight">
+    <% if @joining_topic.rejected_phase? %>
+      Esta proposta foi <b>rejeitada</b> pelo co-autor.
+    <% elsif @joining_topic.aproved_phase? %>
+      Esta proposta foi <b>aceita</b> pelo co-autor.
+    <% elsif @joining_topic.expired? %>
+      <span class="error">O <b>prazo</b> para sugerir união acabou.</span>
+    <% elsif @joining_topic.author_phase? %>
+      Esta proposta está aguardando a interação do <b>autor</b>.
+    <% elsif @joining_topic.pending_phase? %>
+      Esta proposta está aguardando a aprovação do <b>co-autor</b>.
+    <% end %>
+  </div>
+
+  <% if @joining_topic.can_be_evaluated? and (current_user.admin? or @joining_topic.is_coauthor?(current_user)) %>
+    <div class="rounded clearfix">
+      <h3 class="pink">Sugerir alteração</h3>
+      <%= form_for @joining_topic, :url => suggest_joining_topic_path do |f| %>
+        <fieldset>
+          <ol>
+            <li>
+              <span>Caso você queira sugerir alguma alteração nessa união, mande uma mensagem para o autor.</span><br />
+              <%= text_area_tag "joining_topic[suggestion]", nil, :rows => 8 %>
+            </li>
+          </ol>
+        </fieldset>
+        <%= f.submit "Sugerir alteração >", :class => 'btn btn-mini f_right' %>
+      <% end %>
+    </div>
+    <div class="actions">
+      <%= form_for @joining_topic, :url => aprove_joining_topic_path do |f| %>
+        <%= f.submit "Aceitar união", :class => "btn" %>
+      <% end %>
+      <%= form_for @joining_topic, :url => reject_joining_topic_path do |f| %>
+        <%= f.submit "Rejeitar união", :class => "btn btn-pink" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+

@@ -1,0 +1,26 @@
+<%= form_for resource, :as => resource_name, :url => session_path(resource_name) do |f| -%>
+  <fieldset>
+    <ol>
+      <li>
+        <%= f.label :email, "E-mail" %>
+        <%= f.text_field :email, :class => "texto" %>
+      </li>
+      <li>
+        <%= f.label :password, "Senha" %>
+        <%= f.password_field :password, :class => "texto" %>
+      </li>
+      <% if devise_mapping.rememberable? %>
+      <li style="height: 47px; line-height: 47px;">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me, "Lembre de mim", :class => "checkbox" %>
+      </li>
+      <% end %>
+      <li>
+        <%= f.submit "Entrar", :class => "btn btn-mini" %>
+      </li>
+      <li>
+      <%= link_to "Esqueci minha senha.", new_password_path(resource_name) %>
+      </li>
+    </ol>
+  </fieldset>
+<% end -%>

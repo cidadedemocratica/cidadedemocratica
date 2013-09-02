@@ -1,0 +1,19 @@
+<% title "União de #{@author_topico.display_name}s" %>
+<div class="section_title"><h2 class="title">União de Propostas</h2></div>
+<%= render :partial => 'steps_edit' %>
+
+<div class="grid_16 alpha omega rounded clearfix">
+  <div class="topicos_list">
+    <div class="grid_8 alpha">
+      <h3><%= @author_topico.nome_do_tipo(:possessivo => true).capitalize %></h3>
+      <%= render :partial => "topico", :locals => { :topico => @author_topico } %>
+    </div>
+    
+    <div class="grid_8 omega">
+      <h3><%= @coauthor_topico.nome_do_tipo(:indefinido => true).capitalize %></h3>
+      <%= render :partial => "topico", :locals => { :topico => @coauthor_topico } %>
+    </div>
+  </div>
+
+  <p class="f_right"><%= link_to 'Continuar >', title_edit_joining_topic_path(@joining_topic), :class => "btn btn-mini" %></p>
+</div>

@@ -1,0 +1,31 @@
+<% title "Editar imagens - #{h(@topico.titulo)}" %>
+<h2>
+  Imagens de 
+ "<%= link_to @topico.titulo, topico_url(:topico_slug => @topico.to_param) %>"
+</h2>
+<div class="rounded clearfix">
+<% if @imagens and not @imagens.empty? -%>
+<ul class="clearfix">
+  <% for imagem in @imagens -%>
+  <li>
+    <div class="imagem">
+      <div class="moldura"><%= link_to image_tag(imagem.public_filename(:small)), imagem.public_filename, :rel => "lightbox[galeria]" %></div>
+      <p class="legenda"><%= truncate(imagem.legenda, :length => 30) %></p>
+      <p class="remover">
+        <%= link_to image_tag("icones/delete.png"),
+                    { :controller => "imagens",
+                      :action => "destroy",
+                      :id => imagem.id,
+                      :topico_slug => @topico.to_param
+                    },
+                    :confirm => "Tem certeza?" %>
+      </p>
+    </div>
+  </li>
+  <% end -%>
+</ul>
+<% else -%>
+<p>Ainda não há imagens. Suba já a primeira!</p>
+<% end -%>
+<%= render :partial => "nova_imagem" %>
+</div>

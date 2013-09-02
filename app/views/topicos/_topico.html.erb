@@ -1,0 +1,53 @@
+<div class="topico <%= topico.display_name.downcase %> clearfix">
+  <%= ficha_do_usuario(topico.user) %>
+  <% cache_unless_admin ["topico", topico.id, topico.updated_at, options] do %>
+    <div class="detalhes">
+      <p class="titulo">
+          <%= link_to image_tag("icones/application_edit.png"),
+                      editar_topico_path(topico),
+                      :class => "edit_link" if (user_signed_in? and current_user.admin?) -%>
+
+          <%= link_to image_tag("icones/delete.png"),
+                      admin_topico_path(topico.id),
+                      :class => "remove_link",
+                      :title => "Administrador: Remover tópico #{topico.titulo}",
+                      :confirm => "Deseja mesmo remover \"#{topico.titulo} (id = #{topico.id})\" ?",
+                      :method => :delete if (user_signed_in? and current_user.admin?) -%>
+
+          <%= link_to truncate(topico.titulo, :length => options[:titulo_max_chars]),
+                      topico_path(topico),
+                      :title => topico.titulo %>
+      </p>
+      <% if options[:mostrar_local] -%>
+      <p class="local">
+        <%= descrever_locais(topico.locais) %>
+      </ptopico>
+      <% end -%>
+      <p class="tags">
+        <!-- TODO: trazer as tags de cada tópico já no include -->
+        <% tags_arr = [] -%>
+        <% topico.tags.find(:all).each do |t| -%>
+          <% if options[:link_in_tags] -%>
+            <% tags_arr << link_to_topicos_with_context(t.name,
+                                                        {
+                                                          :topico_type => topico.type.downcase.pluralize,
+                                                          :tag_id => t.id
+                                                        },
+                                                        :title => "Filtre por #{t.name}") -%>
+          <% else -%>
+            <% tags_arr << t.name -%>
+          <% end -%>
+        <% end -%>
+        <%= tags_arr.join(", ").html_safe %>
+      </p>
+      <% if options[:mostrar_atividades] -%>
+      <p class="atividades">
+        <% if options[:show_supports] -%>
+        <span class="numero_apoio"><span><%= topico.adesoes_count %></span> <%= pluralize_without_count(topico.usuarios_que_aderem.size, "Apoio", "Apoios") %></span>
+        <% end %>
+        <span class="numero_comentario"><span><%= topico.comments_count %></span> <%= pluralize_without_count(topico.comments_count, "Comentário", "Comentários") %></span>
+      </p>
+      <% end -%>
+    </div>
+  <% end %>
+</div>

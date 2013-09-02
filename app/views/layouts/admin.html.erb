@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Cidade Democrática - Administração - <%= controller.controller_name.humanize %></title>
+  <%= csrf_meta_tag %>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+
+<%= javascript_include_tag "admin/admin" %>
+<%= stylesheet_link_tag    "admin" %>
+</head>
+<body>
+<div id="cabecalho">
+  <div class="container_12">
+    <div class="grid_12">
+      <div class="grid_12 alpha omega">
+        <h1>
+          Cidade Democrática
+        </h1>
+        <p>
+          Administração
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="menu" class="clearfix">
+  <div class="container_12">
+    <div class="grid_12">
+      <%= render :partial => "layouts/admin/navegacao" %>
+    </div>
+  </div>
+</div>
+<div class="container_12">
+  <div id="principal" class="grid_12">
+    <%= flash_message %>
+    <%= yield %>
+  </div>
+</div>
+</body>
+</html>

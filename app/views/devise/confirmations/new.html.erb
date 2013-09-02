@@ -1,0 +1,17 @@
+<div class="grid_16 alpha">
+  <div class="rounded">
+    <h2>Reenviar email de confirmação</h2>
+    <%= form_for resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post } do |f| -%>
+    <fieldset>
+      <ol>
+        <li>
+          <%= f.label :email, "Email:" %>
+          <%= f.text_field :email, :class => "texto" %>
+        </li>
+      </ol>
+    </fieldset>
+    <p><%= submit_tag "Me reenvie instruções para confirmar minha conta.", :class => "btn btn-mini" %></p>
+    <% end -%>
+  </div>
+</div>
+

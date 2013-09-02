@@ -1,0 +1,11 @@
+Olá <%= @topico.user.nome %>!
+
+<%= @adesao.user.nome %> <%= @verbo %> <%= @topico.nome_do_tipo(:artigo => :definido) %> "<%= @topico.titulo %>" no Cidade Democrática.
+Ação registrada em <%=l @adesao.created_at, :format => "%d de %B de %y às %H:%M" %>.
+
+Conheça o perfil de <%= @adesao.user.nome %> em:
+http://www.cidadedemocratica.org.br/perfil/<%= @adesao.user.id.to_s %>
+
+-----------------------------------
+Cidade Democrática
+www.cidadedemocratica.org.br

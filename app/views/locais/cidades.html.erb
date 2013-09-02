@@ -1,0 +1,48 @@
+<h2>Estados e Cidades</h2>
+<p>Escolha aqui seu estado...
+<% @estados.each do |estado| -%>
+  <% if estado == @estado %>
+    <%= estado.abrev %> |
+  <% else %>
+    <%= link_to("#{estado.abrev}", cidades_url(:estado_id => estado.id) ) -%> |
+  <% end %>
+<% end -%>
+
+<div class="clearfix linha_fina" id="div_wrapper_<%= @estado.id %>">
+<p class="estados">
+<%= link_to "#{@estado.abrev}", topicos_path({
+            :estado_abrev => "#{@estado.abrev.downcase}"}),
+            :title => "Ver tópicos do estado '#{@estado.nome}'" %>
+</p>
+<ul class="estados" id="estado_<%= @estado.id %>">
+<% for cidade in @cidades -%>
+  <li><%= link_to cidade.nome, topicos_path({
+                  :estado_abrev => "#{cidade.estado.abrev.downcase}",
+                  :cidade_slug => "#{cidade.slug}" }),
+                  :title => "Ver tópicos da cidade '#{cidade.nome}'" %></li>
+<% end -%>
+</ul>
+<%= will_paginate @cidades %>
+</div>
+<p>&nbsp;</p>
+<p>Não encontrou sua cidade em nossa lista? Faça já <%= link_to "sua sugestão", :controller => "home", :action => "fale_conosco" %> para incrementarmos o Cidade Democrática</p>
+
+<style type="text/css" media="screen">
+.linha_fina {
+  border-top:1px dotted #009BCA;
+  width:800px;
+}
+.estados {
+  width:400px;
+  float:left;
+}
+p.estados {
+  margin: 0 0 2px 0;
+}
+ul.estados {
+  background-color:#AEDBDE;
+}
+span.ver_cidades {
+  font-size:11px;
+}
+</style>

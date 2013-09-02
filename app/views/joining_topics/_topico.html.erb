@@ -1,0 +1,19 @@
+<div class="topico <%= topico.display_name.underscore %>">
+  <%= ficha_do_usuario(topico.user) %>
+  <div class="detalhes">
+    <p class="titulo"><%= link_to topico.titulo, topico_path(topico), :target => "_blank" %></p>
+    <p class="tags">
+      <%= topico.tags.collect{|t| link_to(t.name, topicos_path({
+                                                    :tag_id => t.id,
+                                                    :topico_type => topico.type.downcase.pluralize}),
+                                                    :title => "Veja demais #{topico.nome_do_tipo} de '#{t.name}'", :target => "_blank") }.join(", ").html_safe %>
+    </p>
+    <div class="descricao clearfix">
+      <%=
+        auto_link(simple_format(escape_once(topico.descricao)), :urls, :target => "_blank" ) do |text|
+          truncate(text, :length => 25)
+        end.html_safe
+      %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="grid_11 alpha">
+  <div class="manifesto">
+    <h2 class="title">Transforme vontades em resultados</h2>
+    <p>
+      Identifique desejos coletivos através da participação de diversos públicos.<br>
+      Tome decisões com o apoio da inteligência coletiva. Esse é um novo modelo de colaboração para governança social.
+    </p>
+  </div>
+
+  <% if @running_competitions.size > 0 %>
+  <div class="competitions_list">
+    <h3 class="title">Concursos ativos</h3>
+    <ul class="running_competitions">
+      <%= render :partial => "competitions/running_competitions",
+        :collection => @running_competitions, :as => :competition %>
+    </ul>
+  </div>
+  <% end %>
+
+  <% if @finished_competitions.size > 0 %>
+  <div class="competitions_list">
+    <h3 class="title">Concursos concluídos</h3>
+    <ul class="finished_competitions">
+      <%= render :partial => "competitions/finished_competitions",
+        :collection => @finished_competitions, :as => :competition %>
+    </ul>
+  </div>
+  <% end %>
+</div>
+
+<div class="grid_5 omega sidebar">
+  <iframe class="youtube-player" type="text/html" width="280" height="210" src="http://www.youtube.com/embed/kjO0Zqwozc0" frameborder="0"></iframe>
+
+  <%= render "shared/action_buttons" %>
+
+  <div id="resumo_de_atividades" class="resumo clearfix rounded">
+    <p class="qtd"><%= @counters[:topics] %></p>
+    <p class="sobre">Propostas e problemas</p>
+    <p class="qtd"><%= @counters[:activities] %></p>
+    <p class="sobre">Atividades</p>
+    <p class="qtd"><%= @counters[:users] %></p>
+    <p class="sobre">Usuários</p>
+  </div>
+
+  <div class="local_panel">
+    <%= render "local" %>
+  </div>
+
+  <h3>Tags relevantes</h3>
+  <div class="cloud">
+    <% tag_cloud(@tags) do |tag, c| -%>
+      <span class="<%= c %>"><%= link_to tag.name, topicos_path(:tag_id => tag.id) %></span>
+    <% end -%>
+  </div>
+
+  <%= render "shared/activities_feed", :activities => @activities %>
+  <%= render "shared/addthis_toolbox" %>
+</div>
+

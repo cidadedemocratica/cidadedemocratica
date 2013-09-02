@@ -1,0 +1,11 @@
+<%= f.input :pais, :include_blank => false %>
+
+<%= f.input :estado, :input_html => { :class => "estado_select_cascade" }  %>
+
+<%= f.input :cidade, :input_html => { :class => "cidade_select_cascade", "data-first_option" => " " },
+  :as => :select, :collection => f.object.estado.nil? ? [] : f.object.estado.cidades %>
+
+<%= f.input :bairro, :input_html => { :class => "bairro_select_cascade", "data-first_option" => " " },
+  :as => :select, :collection => f.object.cidade.nil? ? [] : f.object.cidade.bairros %>
+
+<li><%= f.link_to_remove 'Remover Local', :class => 'button' %></li>

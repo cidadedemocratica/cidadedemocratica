@@ -1,0 +1,3 @@
+<%=l atividade.created_at, :format => "%A, %d de %B," %>, <%= atividade.user.nome %> criou <%= atividade.nome_do_tipo(:artigo => :definido) %> "<%= atividade.titulo %>" 
+Mais em: http://www.cidadedemocratica.org.br/topico/<%= atividade.to_param %>
+<%= quebra %>

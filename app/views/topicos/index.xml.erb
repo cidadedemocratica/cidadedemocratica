@@ -1,0 +1,33 @@
+<% if @topicos and (@topicos.size > 0) -%>
+<% @topicos.each_with_index do |topico, i| -%>
+<% if (i < 10) -%>
+<item>
+  <title><%= topico.titulo %></title>
+  <link>
+    <%= topico_url(:topico_slug => topico.to_param) %>
+  </link>
+  <% if @tag -%>
+  <category><%= @tag.name %></category>
+  <% end -%>
+  <% if topico.imagens and (topico.imagens.size > 0) -%>
+  <image>
+    <% if topico.imagens[0].legenda.blank? -%>
+    <title>Imagem de <%= topico.titulo %></title>
+    <% else -%>
+    <title><%= topico.imagens[0].legenda %></title>
+    <% end -%>
+    <url><%= request.protocol %><%= request.host %><%= topico.imagens[0].public_filename %></url>
+    <link><%= request.url %></link>
+  </image>
+  <% end -%>
+  <description>
+  <%= topico.descricao %>
+  </description>
+  <pubDate><%=l topico.updated_at, :format => "%a, %d %b %Y %H:%M:%S -0300" %></pubDate>
+  <guid>
+    <%= topico_url(:topico_slug => topico.to_param) %>
+  </guid>
+</item>
+<% end -%>
+<% end -%>
+<% end %>

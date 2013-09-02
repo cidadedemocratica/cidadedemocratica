@@ -1,0 +1,57 @@
+"pt-BR":
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              blank: "não pode ser vazia"
+              too_short: "é muito curta (não menos do que %{count} caracteres)"
+            password_confirmation:
+              blank: "não pode ser vazia"
+
+    models:
+      user:
+        one: Usuário
+        other: Usuários
+
+    attributes:
+      user:
+        email: E-mail
+        relevancia: Relevância
+        state: Situação
+        password: Senha
+        dado_nome: Nome
+        password_confirmation: Confirmação da senha
+        nome_do_tipo: "Tipo"
+        type: "Tipo"
+        state: "Situação"
+        created_at: "Criação"
+        dado_sexo: "Sexo"
+        topicos_count: "Quantidade de tópicos"
+        comments_count: "Quantidade de comentários"
+        adesoes_count: "Quantidade de apoios"
+        inspirations_count: "Quantidade de inspirações"
+        email_de_contato: "E-mail de contato"
+        site_url: "Website"
+        descricao: "Descrição"
+        aniversario: "Nascimento"
+        atividades:
+          resumo:
+            one: atividade registrada
+            other: atividades recentes
+          propostas:
+            one: proposta
+            other: propostas
+          problemas:
+            one: problema
+            other: problemas
+          comentarios:
+            one: comentário
+            other: comentários
+          apoios:
+            one: apoio
+            other: apoios
+          seguindo:
+            one: seguido
+            other: seguidos

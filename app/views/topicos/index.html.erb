@@ -1,0 +1,59 @@
+<%
+  if params[:topico_type] != "topicos"
+    title params[:topico_type].camelize
+  else
+    title "Propostas e problemas"
+  end
+  title @bairro.nome if @bairro
+  title @cidade.nome if @cidade
+  title @estado.abrev if @estado
+%>
+
+<div class="grid_12 alpha">
+  <%= render :partial => "topicos/breadcrumb" %>
+
+  <div id="contador_e_ordenador" class="clearfix rounded rounded_beige">
+    <ul id="ordenador">
+      <li><%= link_to_topicos_with_context "Relevância", :order => "relevancia" %></li>
+      <li><%= link_to_topicos_with_context "Recentes", :order => "recentes" %></li>
+      <li><%= link_to_topicos_with_context "Antigos", :order => "antigos" %></li>
+      <li><%= link_to_topicos_with_context "Mais comentários", :order => "mais_comentarios" %></li>
+      <li><%= link_to_topicos_with_context "Mais apoios", :order => "mais_apoios" %></li>
+    </ul>
+  </div>
+
+  <div class="grid_4 alpha sidebar">
+    <div id="resumo_de_atividades" class="resumo clearfix rounded">
+      <p class="qtd"><%= @contadores[:propostas] %></p>
+      <p class="sobre">Propostas</p>
+      <p class="qtd"><%= @contadores[:problemas] %></p>
+      <p class="sobre">Problemas</p>
+      <p class="qtd"><%= @contadores[:comentarios] %></p>
+      <p class="sobre">Comentários</p>
+      <p class="qtd"><%= @contadores[:adesoes] %></p>
+      <p class="sobre">Apoios</p>
+    </div>
+    <%= render :partial => "topicos/cloud", :locals => { :tags => @tags } %>
+    <%= render :partial => "topicos/portal_odm", :locals => { :cidade => @cidade, :estado => @estado } %>
+  </div>
+
+  <div class="grid_8 omega">
+    <%= topicos(@topicos, :titulo_max_chars => 58, :mostrar_local => true) %>
+    <%= will_paginate @topicos %>
+  </div>
+
+</div>
+
+<div id="barra_lateral" class="grid_4 omega sidebar">
+  <%= render :partial => "shared/action_buttons" %>
+  <% if signed_in? and current_user.local and current_user.local.cidade %>
+  <h3>Da sua cidade</h3>
+  <%= link_to_topicos_with_context "Questões de #{current_user.local.descricao}",
+                                  {:estado_abrev => current_user.local.estado.abrev.downcase,
+                                  :cidade_slug => current_user.local.cidade.slug,
+                                  :bairro_id => nil,
+                                  :user_type => nil},
+                                  :class => "btn btn-mini-extended" %>
+  <% end %>
+  <%= render :partial => "filtros" %>
+</div>

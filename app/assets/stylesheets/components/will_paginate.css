@@ -1,0 +1,80 @@
+.pagination {
+  padding: 3px;
+  margin: 3px;
+  text-align: center;
+}
+.pagination a {
+  background: #00b0d9;
+  color: #fff;
+  margin: 0;
+  text-decoration: none;
+}
+.pagination a:hover, .pagination a:active {
+  background: #80D8EC;
+}
+.pagination a,
+.pagination .current,
+.pagination span {
+  border-radius: 20px;
+  display: inline-block;
+  font-size: 11px;
+  height: 25px;
+  line-height: 28px;
+  margin: 0;
+  padding: 0 10px;
+}
+.pagination .current {
+  background: #fff;
+  color: #00b0d9;
+  font-size: 14px;
+  font-weight: normal;
+}
+.pagination span.disabled {
+  border: 1px solid #eee;
+  color: #ddd;
+}
+.pagination span.gap {
+  color: #00b0d9;
+}
+
+/* Todo o bloco de paginacao. */
+.pages {
+  border-top: 1px solid #999999;
+  /*font-size: 9pt;*/
+  margin-top: 10px;
+  padding: 8px 0;
+}
+
+/* Todos os links, incluindo <<, >> e paginas. */
+.pages a {
+  background: #FFFFFF none repeat scroll 0%;
+  border: 1px solid #DDDDDD;
+  padding: 5px 10px;
+  text-decoration: none;
+}
+
+.pages a:hover {
+  background: #67C3E4 none repeat scroll 0%;
+  border-color: #239BC7;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+/* Botoes >> e <<. */
+.next a, .prev a {
+  border: 2px solid #DDDDDD;
+  font-weight: bold;
+}
+
+/* Pagina atua. */
+.current {
+  color: #239BC7;
+  font-size: 120%;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+
+/* Janela e quantidade de itens: (X-Y de Z). */
+.pages .overview {
+  color: #239BC7;
+}

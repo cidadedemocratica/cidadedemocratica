@@ -1,0 +1,99 @@
+<ul id="breadcrumb" class="clearfix">
+  <li>
+    <h1 class="localizacao">
+      <%= link_to_topicos_with_context "Em todo o Brasil",
+                                       :estado_abrev => nil,
+                                       :cidade_slug => nil,
+                                       :bairro_id => nil,
+                                       :tag_id => nil,
+                                       :topico_type => "topicos",
+                                       :user_type => nil %>
+    </h1>
+  </li>
+
+<% if @estado %>
+  <li>
+    <span class="separador">&raquo;</span>
+    <h2>
+      <%= link_to_topicos_with_context @estado.abrev.upcase,
+                                       :estado_abrev => @estado.slug,
+                                       :cidade_slug => nil,
+                                       :bairro_id => nil,
+                                       :tag_id => nil,
+                                       :topico_type => "topicos",
+                                       :user_type => nil %>
+    </h2>
+  </li>
+<% end %>
+
+<% if @cidade %>
+  <li>
+    <span class="separador">&raquo;</span>
+    <h3>
+      <%= link_to_topicos_with_context @cidade.nome,
+                                       :estado_abrev => @cidade.estado.slug,
+                                       :cidade_slug => @cidade.slug,
+                                       :bairro_id => nil,
+                                       :tag_id => nil,
+                                       :topico_type => "topicos",
+                                       :user_type => nil %>
+    </h3>
+  </li>
+<% end %>
+
+<% if @bairro -%>
+  <li>
+    <span class="separador">&raquo;</span>
+    <h4>
+      <%= link_to_topicos_with_context @bairro.nome,
+                                       :estado_abrev => @bairro.cidade.estado.slug,
+                                       :cidade_slug => @bairro.cidade.slug,
+                                       :bairro_id => @bairro.id,
+                                       :tag_id => nil,
+                                       :topico_type => "topicos",
+                                       :user_type => nil %>
+    </h4>
+  </li>
+<% end %>
+
+<% if (params[:topico_type] == "propostas") or (params[:topico_type] == "problemas") %>
+  <li>
+    <span class="separador">&raquo;</span>
+    <h2>
+      <%= link_to_topicos_with_context params[:topico_type].capitalize,
+                                       :topico_type => params[:topico_type],
+                                       :estado_abrev => params[:estado_abrev],
+                                       :cidade_slug => params[:cidade_slug],
+                                       :bairro_id => params[:bairro_id],
+                                       :tag_id => nil %>
+    </h2>
+  </li>
+<% end %>
+
+<% if @tag %>
+  <li>
+    <span class="separador">&raquo;</span>
+    <h2 class="tag">
+      <%= link_to_topicos_with_context @tag.name,
+                                       :topico_type => "topicos",
+                                       :user_type => nil %>
+    </h2>
+    <span style="margin-left:10px">
+      <%= link_to_topicos_with_context image_tag("icones/rss_feed.png"),
+                                       :topico_type => "topicos",
+                                       :user_type => nil,
+                                       :rss => "rss" %>
+    </span>
+  </li>
+<% end %>
+
+<% if params[:user_type] -%>
+  <li>
+    <span class="separador">&raquo;</span>
+    <h2 class="criador">
+      <%= link_to_topicos_with_context params[:user_type].humanize.gsub(/adaos/, 'adãos').gsub(/publicos/, 'públicos') %>
+    </h2>
+  </li>
+<% end -%>
+
+</ul><!-- breadcrumb -->

@@ -1,0 +1,48 @@
+<%= semantic_nested_form_for([:admin_new, @competition], :multipart => true) do |f| %>
+  <%= f.inputs 'Dados Básicos' do %>
+    <%= f.input :title %>
+    <%= f.input :short_description %>
+    <%= f.input :long_description %>
+    <%= f.input :author_description %>
+  <% end %>
+
+  <%= f.inputs "Local", :for => :locais, :class => 'inputs local-form cascade_container' do |lm| %>
+    <%= render 'local_fields', :f => lm %>
+  <% end %>
+  <div class="fieldset_panel">
+    <%= f.link_to_add "Adicionar Local", :locais, :class => 'button' %>
+  </div>
+
+  <%= f.inputs 'Fases' do %>
+    <%= f.input :start_date %>
+    <%= f.input :inspiration_phase %>
+    <%= f.input :proposals_phase %>
+    <%= f.input :support_phase %>
+    <%= f.input :joining_phase %>
+    <%= f.input :announce_phase %>
+  <% end %>
+
+  <%= f.inputs 'Imagem' do %>
+    <% if f.object.image? %>
+      <%= f.input :image, :hint => image_tag(f.object.image.url(:small)) %>
+    <% else %>
+      <%= f.input :image %>
+    <% end %>
+    <%= f.input :image_cache, :as => :hidden %>
+  <% end %>
+
+  <%= f.inputs 'Outros dados' do %>
+    <%= f.input :regulation %>
+    <%= f.input :awards %>
+    <%= f.input :partners %>
+  <% end %>
+
+  <%= f.inputs "Publicar" do %>
+    <%= f.input :published, :hint => "Marque para fazer o concurso aparecer na página." %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :input %>
+    <%= f.action :cancel, :as => :link, :label => 'Cancelar', :wrapper_html => { :class => 'cancel' } %>
+  <% end %>
+<% end %>

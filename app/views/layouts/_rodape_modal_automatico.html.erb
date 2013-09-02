@@ -1,0 +1,21 @@
+<% if ((@settings["aviso_ligado"].to_i==1) and !cookies['aviso_allsite']) -%>
+<!-- AVISO via modal -->
+<div id="aviso_geral">
+<% if @settings["aviso_geral_tipo"]=="texto" -%>
+  <%= simple_format(@settings["aviso_geral_texto"]) %>
+<% elsif @settings["aviso_geral_tipo"]=="arquivo" -%>
+  <%= render :partial => @settings["aviso_geral_arquivo"] %>
+<% end -%>
+<!-- dismiss + Modalbox.close -->
+<a href="#" id="dismiss_welcome" class="hide" title="Hide" onclick="javascript:entendiMaisFechar();return false;">Ok, já entendi</a>
+</div>
+
+<script type="text/javascript">
+window.onload = Modalbox.show($('aviso_geral'), { title: "Cidade Democrática", loadingString: "Aguarde...", transitions: false });
+function entendiMaisFechar() {
+  //dismiss_window_hide_dismissible_welcome_message(); => Set cookie!
+  document.cookie = 'aviso_allsite=1; expires=<%= CGI.rfc1123_date(2.months.from_now) %>; path=/';
+  Modalbox.hide();
+}
+</script>
+<!-- AVISO via modal --><% end -%>

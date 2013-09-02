@@ -1,0 +1,12 @@
+<h3>Quem apoia</h3>
+<div id="caixa_de_usuarios_relacionados">
+<% if usuarios and (usuarios.size > 0) %>
+  <%= lista_relacionados(usuarios) %>
+<% else %>
+  <p class="no_adesoes rounded rounded_beige">
+    Ninguém aderiu ainda a <%= topico.nome_do_tipo(:demonstrativo => :true) %>.<br />
+    <span class="call2action">Apóie a causa!</span><br />
+    <span class="hint">Clique no botão "Apoie!" à direita do título <%= topico.nome_do_tipo(:artigo => :definido) %></span>
+  </p>
+<% end %>
+</div>

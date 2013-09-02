@@ -1,0 +1,43 @@
+<% title "União de #{@author_topico.display_name}s" %>
+<div class="section_title"><h2 class="title">União de Propostas</h2></div>
+<%= render :partial => 'steps_edit' %>
+
+<div class="grid_16 alpha omega rounded clearfix">
+
+
+  <div class="topicos_list">
+    <div class="grid_8 alpha">
+      <h3>Sua descrição</h3>
+      <div class="descricao rounded rounded_beige clearfix">
+        <%=
+          auto_link(simple_format(escape_once(@author_topico.descricao)), :urls, :target => "_blank" ) do |text|
+            truncate(text, :length => 25)
+          end.html_safe
+        %>
+      </div>
+    </div>
+
+    <div class="grid_8 omega">
+      <h3>Outra descrição</h3>
+      <div class="descricao rounded rounded_beige clearfix">
+        <%=
+          auto_link(simple_format(escape_once(@coauthor_topico.descricao)), :urls, :target => "_blank" ) do |text|
+            truncate(text, :length => 25)
+          end.html_safe
+        %>
+      </div>
+    </div>
+  </div>
+  <h4>Nova Descrição</h4>
+  <%= form_for @joining_topic, :url => description_update_joining_topic_path do |f| %>
+    <fieldset>
+      <ol>
+        <li>
+          <span class="ajuda">Procure contemplar o que cada proposta tem de melhor.</span><br />
+          <%= f.text_area :description, :rows => 15 %>
+        </li>
+      </ol>
+    </fieldset>
+    <%= f.submit "Enviar nova proposta >", :class => 'btn btn-mini f_right' %>
+  <% end %>
+</div>

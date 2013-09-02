@@ -1,0 +1,13 @@
+"pt-BR":
+  activerecord:
+    models:
+      contato:
+        nome: Nome
+        email: Email
+        mensagem: Mensagem
+    errors:
+      models:
+        contato:
+          attributes:
+            mensagem:
+              blank: "não pode ser vazia"

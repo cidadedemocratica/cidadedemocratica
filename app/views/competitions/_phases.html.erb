@@ -1,0 +1,12 @@
+<ul class="competition_phase">
+  <% competition.enabled_phases.each do |phase| %>
+    <li class="<%= "#{phase} #{active_phase == phase ? 'active' : ''}" %>" >
+      <% if competition.phase_over? phase or competition.current_phase == phase %>
+        <%= link_to_competition_with_context raw("<span>" + t("activerecord.attributes.competition.#{phase}") + "</span>"),
+                                              { :id => competition.to_param, :phase => phase }, {}, ![:inspiration_phase, :announce_phase].include?(phase) %>
+      <% else %>
+        <span><%= t "activerecord.attributes.competition.#{phase}" %></span>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

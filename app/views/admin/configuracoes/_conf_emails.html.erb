@@ -1,0 +1,10 @@
+<ul class="sans-bullets bem-distribuidos">  
+  <fieldset class="grupo-simples">
+    <legend>Notificações do sistema</legend>
+    <li>
+      <%= label_tag "Nome e email do administrador" %>
+      <%= text_field_tag "settings[emails_administrador]", @settings["emails_administrador"], :size => 50 -%>
+      <p class="dica">Ex.: Administrador &lt;admin@xxx.com&gt; (recebe pedidos de cadastro de empresas, ongs; denúncias etc.)</p>
+    </li>
+  </fieldset>
+</ul>

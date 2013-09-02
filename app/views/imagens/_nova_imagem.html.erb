@@ -1,0 +1,15 @@
+<h2>Incluir nova imagem</h2>
+<%= form_for :imagem,
+            :url => { :controller => "imagens",
+                      :action => "create"
+                    },
+            :html => { :multipart => true } do |f| %>
+  <%= hidden_field_tag "topico[id]", @topico.id %>
+  <%= render :partial => "form_imagem", :locals => { :f => f } %>
+
+  <p class="action_horizontal">
+    <%= submit_tag "Enviar Imagem", :class => 'btn btn-mini' %> 
+    <%= link_to "Finalizar Importação", topico_url(:topico_slug => @topico.to_param), :class => 'btn btn-mini' %> ou 
+    <%= link_to "Voltar", topico_url(:topico_slug => @topico.slug) %>
+  </p>
+<% end %>

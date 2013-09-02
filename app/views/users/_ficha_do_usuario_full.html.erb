@@ -1,0 +1,34 @@
+<% cache ["ficha_do_usuario_full", usuario.id, usuario.updated_at, options] do %>
+  <div class="ficha_do_usuario_full <%= usuario.type.to_s.underscore %> clearfix">
+    <div class="perfil clearfix">
+      <div class="imagem">
+        <%= link_to_perfil_with_avatar(usuario, :version => :thumb) %>
+      </div>
+
+      <div class="retangular_info">
+        <p class="tipo cor_de_<%= usuario.type.to_s.underscore %>"><%= usuario.nome_do_tipo %></p>
+        <% nome_usuario = truncate(usuario.nome.try(:nome_proprio), :length => options[:truncate]) if options[:truncate] %>
+        <p class="nome" style="font-size:14px"><%= link_to nome_usuario ? nome_usuario : usuario.nome.try(:nome_proprio), perfil_path(usuario) %></p>
+      <% if usuario.local and usuario.local.cidade -%>
+        <p class="local"><%= usuario.local.cidade.nome %></p>
+      <% end -%>
+      </div>
+    </div>
+
+    <% if options[:with_summary] %>
+    <div class="resumo clearfix">
+      <p class="topicos">
+        <span class="numero"><%= usuario.topicos_count %></span> tópicos
+      </p>
+      <p class="comentarios">
+        <span class="numero"><%= usuario.comments_count %></span> comentários
+      </p>
+      <p class="apoios">
+        <span class="numero"><%= usuario.adesoes_count %></span> apoios
+      </p>
+    </div>
+    <% end %>
+
+    <p class="tags"><%= usuario.owned_tags.find(:all, :limit => 7).collect { |t| link_to(t.name, { :controller => "topicos", :action => "index", :topico_type => "topicos", :tag_id => t.id }) }.join(", ").html_safe %>
+  </div>
+<% end %>

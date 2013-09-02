@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <%= render :partial => "layouts/head" %>
+  </head>
+
+  <body class="<%= controller_name %> <%= controller_name %>_<%= action_name %>">
+    <div class="content">
+      <div class="menu_top">
+        <%= render :partial => "layouts/faixa_login" %>
+      </div>
+      <div class="header">
+          <%= render :partial => "layouts/cabecalho", :locals => { :cidade_corrente => @cidade_corrente } %>
+      </div>
+      <div id="conteudo" class="container_16 clearfix">
+        <div class="grid_16">
+          <%= flash_message -%>
+          <%= content_for?(:content) ? yield(:content) : yield %>
+        </div>
+      </div> <!-- conteudo -->
+
+      <%= render :partial => "layouts/rodape" %>
+      <%= yield :rodape %>
+    </div>
+  </body>
+</html>

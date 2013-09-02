@@ -1,0 +1,16 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require 960/reset.css
+ *= require 960/960.css
+ *= require 960/text.css
+
+ *= require admin/will_paginate.css
+ *= require admin/crud.css
+ *= require admin/forms.css
+ *= require admin/tabs.css
+ *= require admin/menu.css
+ *= require admin/default.css
+*/

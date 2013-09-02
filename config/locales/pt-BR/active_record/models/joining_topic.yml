@@ -1,0 +1,27 @@
+"pt-BR":
+  activerecord:
+    models:
+      joining_topic:
+        one: União
+        other: Uniões
+
+    attributes:
+      joining_topic:
+        user: Sugestão de
+        author: Autor
+        current_phase: Fase atual
+        human_current_phase: Fase atual
+        topico: Tópico
+        topico_joined: Tópico unido
+        topico_to: Tópico resultante
+        title: Título
+        description: Descrição
+
+    enums:
+      joining_topic:
+        current_phases:
+          propose_phase: Sugestão de união
+          author_phase: Autor atribuído
+          pending_phase: União pendente
+          aproved_phase: União aprovada
+          rejected_phase: União rejeitada

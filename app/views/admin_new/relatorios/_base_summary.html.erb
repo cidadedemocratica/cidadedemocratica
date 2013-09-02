@@ -1,0 +1,85 @@
+<div class="section">
+  <h2 class="title">Resumo</h2>
+  <p>Veja um sumário das atividades realizadas pelos usuários do site referentes aos temas e territórios de interesse no período.</p>
+
+
+  <h3 class="subtitle">Número total de Atividades: <span><%= @activities_stats["total"] %> por <%= @users.size %> usuários</span></h3>
+  <p class="lnk_mostrar_dados"><%= link_to_function "mostrar dados", "$('tb_dados_atividades').toggle()" %></p>
+  <table class="crud" id="tb_dados_atividades" style="display:none">
+    <tr>
+      <th>Dia</th>
+      <th>Atividades</th>
+    </tr>
+    <% @activities["total"].each do |day, total| %>
+      <tr>
+        <td><%= l day.to_date, :format => :short %></td>
+        <td><%= total %></td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="graph">
+    <%= activities_graph(@activities["total"]) %>
+  </div>
+
+
+  <h3 class="subtitle">Número de Propostas e Problemas: <span><%= @activities_stats["topicos"] %></span></h3>
+  <p class="lnk_mostrar_dados"><%= link_to_function "mostrar dados", "$('tb_dados_propprob').toggle()" %></p>
+  <table class="crud" id="tb_dados_propprob" style="display:none">
+    <tr>
+      <th>Tipo</th>
+      <th>Total</th>
+    </tr>
+    <tr>
+      <td>Propostas</td>
+      <td><%= @activities_stats["propostas"] %></td>
+    </tr>
+    <tr>
+      <td>Problemas</td>
+      <td><%= @activities_stats["problemas"] %></td>
+    </tr>
+  </table>
+  <div class="graph">
+    <%= pie_graph({ "Propostas - #{@activities_stats["propostas"]}" => @activities_stats["propostas"],
+                    "Problemas - #{@activities_stats["problemas"]}" => @activities_stats["problemas"] }) %>
+  </div>
+
+  <% {
+    "adesoes"             => "Apoios",
+    "seguidos"            => "Seguidores",
+    "comments"            => "Comentários",
+    "comment_comentarios" => "Comentários - Comentários",
+    "comment_ideias"      => "Comentários - Ideias",
+    "comment_perguntas"   => "Comentários - Perguntas",
+    "comment_respostas"   => "Comentários - Respostas"
+  }.each do |name, title| %>
+    <h3 class="subtitle">Número de <%= title %>: <span><%= @activities_stats[name] %></span></h3>
+    <% if @activities[name].empty? %>
+      <p>Nenhum registro no recorte.</p>
+    <% else %>
+      <p class="lnk_mostrar_dados"><%= link_to_function "mostrar dados", "$('tb_dados_#{name}').toggle()" %></p>
+      <table class="crud" id="tb_dados_<%= name %>" style="display:none">
+        <tr>
+          <th>Dia</th>
+          <th><%= title %></th>
+        </tr>
+        <% @activities[name].each do |day, total| %>
+          <tr>
+            <td><%= l day.to_date, :format => :short %></td>
+            <td><%= total %></td>
+          </tr>
+        <% end %>
+      </table>
+      <div class="graph">
+        <%= activities_graph(@activities[name]) %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <h3 class="subtitle">Nuvem de Palavras</h3>
+  <div class="cloud">
+    <% words_cloud(@words_counted) do |word, count, classname| %>
+      <span class="<%= classname %>"><%= "#{word} (#{count})" %></span>,
+    <% end %>
+  </div>
+</div>
+

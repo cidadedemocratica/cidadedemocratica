@@ -1,0 +1,63 @@
+.dropdown,
+ul.dropdown li,
+ul.dropdown li ul {
+  margin: 0;
+}
+
+ul.dropdown {
+  padding: 5px 0;
+}
+
+ul.dropdown li {
+  list-style: none;
+  display: inline;
+  position: relative;
+  margin-right: 20px;
+  line-height: 20px;
+}
+
+ul.dropdown li a,
+ul.dropdown li a:visited {
+  color: black;
+}
+
+ul.dropdown li a:hover {
+  /* background-color: #D5C88C; */
+}
+
+ul.dropdown a.dir {
+  background: transparent url(/assets/icones/dropdown_preto.png) no-repeat scroll right 8px;
+  padding: 5px 10px 5px 0;
+}
+
+ul.dropdown li ul {
+  position: absolute;
+  top: 22px;
+  left: 0;
+  width: 200px;
+  background-color: #D5C88C;
+  border: 1px solid #6E643E;
+}
+
+ul.dropdown li ul li {
+  display: block;
+  margin: 0;
+}
+
+ul.dropdown li ul li.secao {
+  padding: 5px;
+  font-weight: bold;
+}
+
+ul.dropdown li ul li a,
+ul.dropdown li ul li a:visited {
+  color: black;
+  display: block;
+  padding: 5px;
+  background: none;
+}
+
+ul.dropdown li ul li a:hover {
+  background-color: #6E643E;
+  color: white;
+}

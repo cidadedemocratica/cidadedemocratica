@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.16'
 
 gem 'activeadmin'
 gem 'acts_as_commentable_with_threading'

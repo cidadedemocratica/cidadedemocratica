@@ -18,7 +18,7 @@ set :deploy_via, :remote_cache
 set :use_sudo, false
 
 set :scm, "git"
-set :repository, "git@github.com:Codeminer42/#{application}-pvt.git"
+set :repository, "https://github.com/cidadedemocratica/#{application}.git"
 set :branch, "master"
 
 default_run_options[:pty] = true

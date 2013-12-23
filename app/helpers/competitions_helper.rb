@@ -13,4 +13,8 @@ module CompetitionsHelper
     end
   end
 
+  def phase_over_or_current?(competition, phase)
+    return false unless competition.current_phase
+    competition.phase_over?(phase) or competition.current_phase == phase
+  end
 end

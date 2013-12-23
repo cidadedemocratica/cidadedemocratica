@@ -23,7 +23,7 @@ feature 'Create proposals', :js => true do
 
     # done
     page.should have_content('proposta cadastrada com sucesso')
-    all('p.local a', text: 'Em todo o país').count.should == 1
+    all('p.local a', text: 'Todo o país').count.should == 1
     all('p.tags a', text: 'tag').count.should == 2
   end
 end

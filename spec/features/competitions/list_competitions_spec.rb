@@ -29,10 +29,4 @@ feature 'List Competitions' do
 
     page.should_not have_content unpublished_competition.title
   end
-
-  scenario 'No published competitions' do
-    visit competitions_path
-
-    page.should have_content 'O Cidade Democrática ainda não possui nenhum concurso ativo.'
-  end
 end

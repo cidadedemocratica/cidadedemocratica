@@ -48,6 +48,7 @@ namespace :deploy do
     put File.read("config/oauth.example.yml"), "#{shared_path}/config/oauth.yml"
     put File.read("config/.htaccess"), "#{shared_path}/apache/.htaccess"
     put File.read("config/email.example.yml"), "#{shared_path}/config/email.yml"
+    put File.read(".env.example"), "#{shared_path}/.env"
     puts "Now edit the config files in #{shared_path}."
   end
   after "deploy:setup", "deploy:setup_config"
@@ -59,6 +60,7 @@ namespace :deploy do
     run "ln -nfs #{shared_path}/uploaded #{release_path}/public/images/uploaded"
     run "ln -nfs #{shared_path}/apache/.htaccess #{release_path}/public/.htaccess"
     run "ln -nfs #{shared_path}/config/email.yml #{release_path}/config/email.yml"
+    run "ln -nfs #{shared_path}/.env #{release_path}/.env"
   end
   after "deploy:finalize_update", "deploy:symlink_config"
 

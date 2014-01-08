@@ -154,9 +154,14 @@ GEM
     devise-encryptable (0.1.1)
       devise (>= 2.1.0.rc)
     diff-lcs (1.2.1)
+    dotenv (0.9.0)
+    dotenv-rails (0.9.0)
+      dotenv (= 0.9.0)
     dynamic_form (1.1.4)
     erubis (2.7.0)
     eventmachine (1.0.1)
+    exception_notification (3.0.1)
+      actionmailer (>= 3.0.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (4.2.0)
@@ -467,7 +472,9 @@ DEPENDENCIES
   database_cleaner
   devise
   devise-encryptable
+  dotenv-rails
   dynamic_form
+  exception_notification
   factory_girl_rails
   fastercsv
   forgery

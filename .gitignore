@@ -52,3 +52,4 @@
 brakeman*
 coverage
 spec/support/capybara_remote.rb
+.env

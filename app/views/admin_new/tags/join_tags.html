@@ -1,0 +1,28 @@
+<%= semantic_form_for "join_tags", :url => join_tags_update_admin_new_tag_path(@tag) do |f| %>
+
+  <div class="panel">
+    <h3>Tag Principal</h3>
+    <div class="panel_contents">
+      <div class="attributes_table">
+        <table border="0" cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <th>Id</th>
+              <td><%= @tag.id %></td>
+            </tr>
+            <tr>
+              <th>Nome</th>
+              <td><%= @tag.name %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <%= f.inputs "Tags a Serem Unidas" do %>
+    <%= f.input :tags, :as => "select", :collection => {},
+        :input_html => { 'data-placeholder' => 'Pesquisar tags para unir.', :class => 'input_chosen input_chosen_tags', :multiple => 'multiple' } %>
+  <% end %>
+  <%= f.actions %>
+<% end %>

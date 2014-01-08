@@ -1,0 +1,33 @@
+<tr id="row_<%= @tag.id %>">
+  <td><%= @tag.id.to_s %></td>
+  <td>
+    <p class="tag_infos" id="<%= @tag.id %>">
+      <%= image_tag "icones/cursor-move.gif", :size => "32x32", :class => "cursor" %>
+      <strong><%= in_place_editor_field :tag, :name %></strong><br />
+      (usada em <%= pluralize(ActsAsTaggableOn::Tagging.where(:tag_id => @tag.id).count, 'Tópico') %>
+      <% obs_count = Observatorio.com_tag(@tag.name).count -%>
+      <% if obs_count > 0 %>
+        e em <%= pluralize(obs_count, "Observatório") -%>
+      <% end -%>
+      )<br />
+      Relevância: <%= @tag.relevancia %>
+    </p>
+    <%= draggable_element("#{@tag.id}", :revert => true) %>
+  </td>
+  <td>
+    <%= link_to "Editar", edit_admin_tag_path(@tag.id) %><br />
+    <%= link_to_function "Separar", "x_add_task(#{@tag.id})" %><br />
+    <%= link_to_remote "Remover", :url => admin_tag_path(@tag.id), :confirm => "Tem certeza?", :method => :delete %>
+  </td>
+  <td>
+    <span class="area_drop" id="area_<%= @tag.id %>">
+      Arraste até aqui para reunir tags
+    </span>
+    <%= drop_receiving_element("area_#{@tag.id}", 
+                               :url => { 
+                                 :action => "transfere_drag", 
+                                 :tag_para => @tag.id
+                               },
+                               :confirm => "Deseja mesmo transferir a tag?") %>
+  </td>
+</tr>

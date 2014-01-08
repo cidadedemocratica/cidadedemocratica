@@ -1,0 +1,38 @@
+<h1>Transferência entre tags</h1>
+
+<%= form_tag(:action => "transferencia_post") do %>
+  <%= error_messages_for :tag %>
+
+  <fieldset style="float:left;margin-right:10px">
+    <ol>
+      <li>
+        <%= label_tag "de" %>
+        <%= text_field_with_auto_complete :tag, :de,
+                                          { :class => "tags",
+                                            :autocomplete =>"off" },
+                                          { :url => auto_complete_responder_tags_path,
+                                            :min_chars => 2,
+                                            :param_name => "tag"
+                                          } %>
+      </li>
+    </ol>
+  </fieldset>
+
+  <fieldset>
+    <ol>
+      <li>
+        <%= label_tag "para" %>
+        <%= text_field_with_auto_complete :tag, :para,
+                                          { :class => "tags",
+                                            :autocomplete =>"off" },
+                                          { :url => auto_complete_responder_tags_path,
+                                            :min_chars => 2,
+                                            :param_name => "tag" } %>
+      </li>
+    </ol>
+  </fieldset>
+
+
+  <%= submit_tag "Transferir" %> ou
+  <%= link_to "Voltar", admin_tags_path %>
+<% end %>

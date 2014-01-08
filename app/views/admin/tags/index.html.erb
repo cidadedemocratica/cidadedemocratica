@@ -1,0 +1,56 @@
+<h1>Tags</h1>
+<p>
+  <%= link_to "Nova tag", new_admin_tag_path %> |
+  <%= link_to "Novas tags", maistags_admin_tags_path %> |
+  <%= link_to "Transferência", :action => "transferencia" %>
+</p>
+
+<p>
+<% tmp = [[], 0]
+@letras.sort{|l1, l2| l1.letra <=> l2.letra}.each do |row|
+  tmp[0] << link_to("#{row.letra}", :action => "index", :init => row.letra)
+  tmp[1] += row.total.to_i
+end -%>
+Tags que começam com: <%= tmp[0].join(" | ").html_safe %>
+<%= "<br />#{link_to("Todas as #{tmp[1]} tags", admin_tags_path)}".html_safe if params[:init] %>
+</p>
+<table class="crud">
+  <tr>
+    <th>Id</th>
+    <th>Tag</th>
+    <th>Ações</th>
+    <th></th>
+  </tr>
+<% for @tag in @tags %>
+  <%= render :partial => "tag_row", :locals => { :tag => @tag } %>
+<% end %>
+</table>
+
+<%= will_paginate(@tags) %>
+
+<%= javascript_tag %Q{
+  function x_add_task(tag_id)
+  {
+    var name = prompt('Novas tags (separe-as entre vírgulas, sem espaços)', '');
+    if (name == null) return;
+    #{remote_function :url => { :action => 'separar' }, 
+                      :with => "'id='+ tag_id +'&name=' + name" }
+  }
+} %>
+
+<style type="text/css" media="screen">
+.tag_infos {
+  display:inline;
+  width:300px;
+}
+.tag_infos .cursor {
+  vertical-align:bottom;
+}
+.area_drop {
+  border:1px dotted #0A759E;
+  background:#EAE3C5;
+  font-size:10px;
+  font-family:Arial,Verdana,sans-serif;
+  padding:10px;
+}
+</style>

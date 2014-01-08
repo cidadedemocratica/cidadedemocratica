@@ -1,0 +1,5 @@
+<ul class="tags">
+  <% for t in tags do %>
+    <li id="<%= h t.id %>" class="tag"><div class="name"><%= h t.name.gsub!(/(#{typed})/,'\1') %></div></li>
+  <% end %>
+</ul>

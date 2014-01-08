@@ -1,0 +1,12 @@
+<% if tags.present? %>
+  <div class="cloud">
+  <% tag_cloud_contexto(tags, :relevancia => true) do |t, c| -%>
+    <span class="<%= c %>">
+      <%= link_to(t.name, topicos_path(:tag_id => t.id),
+                          :title => "Filtre por #{t.name}") -%>
+    </span>
+  <% end -%>
+  </div>
+<% else %>
+  <div class="rounded rounded_beige">Ainda não há tags</div>
+<% end %>

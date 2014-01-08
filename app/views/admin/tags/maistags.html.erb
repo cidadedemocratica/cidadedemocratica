@@ -1,0 +1,13 @@
+<h1>Novas tags</h1>
+
+<%= form_tag(:action => "novastags") do %>
+
+  <p><%= text_area_tag "nomes_das_tags", nil, :rows => 10, :cols => 40 %><br />
+  <span class="formHint">Digite uma tag por linha</span>
+  </p>
+  
+  <p>
+    <%= submit_tag "Salvar" %> ou
+    <%= link_to "Voltar", admin_tags_path %>
+  </p>
+<% end %>

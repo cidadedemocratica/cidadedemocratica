@@ -271,26 +271,28 @@ class Topico < ActiveRecord::Base
       # Se tem filhos, relacionar os filhos
       Topico.do_pai(self.id).each{|t| relacionados << t }
 
-      # mesma cidade, mesmo bairro, mesmas tags
-      Topico.da_cidade(self.locais.first.cidade).do_bairro(self.locais.first.bairro).order("topicos.id DESC").exceto(self.id).
-        tagged_with(self.tags).limit(50).each{|t| relacionados << t }
-
-      # mesma cidade, mesmas tags
-      if relacionados.empty?
-        Topico.da_cidade(self.locais.first.cidade).order("topicos.id DESC").exceto(self.id).
+      if local = self.locais.first
+        # mesma cidade, mesmo bairro, mesmas tags
+        Topico.da_cidade(local.cidade).do_bairro(local.bairro).order("topicos.id DESC").exceto(self.id).
           tagged_with(self.tags).limit(50).each{|t| relacionados << t }
-      end
 
-      # mesma cidade, mesmo bairro, qualquer uma das mesmas tags
-      if relacionados.empty?
-        Topico.da_cidade(self.locais.first.cidade).do_bairro(self.locais.first.bairro).order("topicos.id DESC").exceto(self.id).
-          tagged_with(self.tags, :any => true).limit(50).each{|t| relacionados << t }
-      end
+        # mesma cidade, mesmas tags
+        if relacionados.empty?
+          Topico.da_cidade(local.cidade).order("topicos.id DESC").exceto(self.id).
+            tagged_with(self.tags).limit(50).each{|t| relacionados << t }
+        end
 
-      # mesma cidade, qualquer uma das mesmas tags
-      if relacionados.empty?
-        Topico.da_cidade(self.locais.first.cidade).order("topicos.id DESC").exceto(self.id).
-          tagged_with(self.tags, :any => true).limit(50).each{|t| relacionados << t }
+        # mesma cidade, mesmo bairro, qualquer uma das mesmas tags
+        if relacionados.empty?
+          Topico.da_cidade(local.cidade).do_bairro(local.bairro).order("topicos.id DESC").exceto(self.id).
+            tagged_with(self.tags, :any => true).limit(50).each{|t| relacionados << t }
+        end
+
+        # mesma cidade, qualquer uma das mesmas tags
+        if relacionados.empty?
+          Topico.da_cidade(local.cidade).order("topicos.id DESC").exceto(self.id).
+            tagged_with(self.tags, :any => true).limit(50).each{|t| relacionados << t }
+        end
       end
       relacionados
     end

@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   estado = Regexp.new('[a-z]{2}')
   cidade = Regexp.new('[a-zA-Z\-]+')
 
+  match "/*robots.txt", :to => redirect("/robots.txt")
+
   #=================================================#
   #  Admin
   #=================================================#

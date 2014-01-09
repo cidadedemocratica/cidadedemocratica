@@ -1,6 +1,6 @@
 <% content_for :content do %>
 
-  <% title "Perfil de #{@user.nome.nome_proprio}" %>
+  <% title "Perfil de #{@user.nome.try :nome_proprio}" %>
 
   <!-- Bloco primário -->
   <div class="grid_12 alpha">

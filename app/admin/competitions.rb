@@ -85,6 +85,7 @@ ActiveAdmin.register Competition do
       row :human_current_phase
 
       row :start_date
+      row :finished
 
       Competition::PHASES.each do |phase|
         row phase do

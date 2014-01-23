@@ -20,7 +20,7 @@ class Competition < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   as_enum :current_phase, PHASES
 
-  attr_accessible :title, :short_description, :long_description, :author_description, :start_date,
+  attr_accessible :title, :short_description, :long_description, :author_description, :start_date, :finished,
     :inspiration_phase, :proposals_phase, :support_phase, :joining_phase, :announce_phase,
     :image_cache, :regulation, :awards, :partners, :published, :locais_attributes, :image
 

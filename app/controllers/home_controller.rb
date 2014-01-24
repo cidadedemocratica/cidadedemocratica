@@ -13,8 +13,8 @@ class HomeController < ApplicationController
   end
 
   def index
-    @running_competitions  = Competition.running.includes(:locais)
-    @finished_competitions = Competition.finished.includes(:locais)
+    @running_competitions  = Competition.running.includes(:locais).order("updated_at desc")
+    @finished_competitions = Competition.finished.includes(:locais).order("updated_at desc")
     @tags = Topico.random_tags_to_cloud[0..20]
     @activities = ActivitiesBase.new.activities_summary
 

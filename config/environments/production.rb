@@ -71,7 +71,7 @@ Cidadedemocratica::Application.configure do
   config.active_support.deprecation = :notify
 
   config.middleware.use ExceptionNotification::Rack,
-    :ignore_exceptions => ['Mysql2::Error'] + ExceptionNotifier.ignored_exceptions,
+    :ignore_exceptions => [Mysql2::Error] + ExceptionNotifier.ignored_exceptions,
     :email => {
       :email_prefix => "[Exception - Cidade Democratica] ",
       :sender_address => %{"no-reply" <no-reply@cidadedemocratica.org.br>},
